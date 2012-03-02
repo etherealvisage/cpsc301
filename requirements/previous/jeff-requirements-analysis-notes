@@ -1,0 +1,34 @@
+Functional requirements:
+  Separate user accounts easily administered
+    Log in via keycard or username/password
+    Automatically logout when done
+    Log out when keycard removed
+  Four areas:
+    Calendar
+      Schedule for resident training
+      Ability to schedule events/ auto-sync to phone
+    IM
+      Real-time communication via smartphones
+      Replace pagers
+    Forums
+      Easy ability to add forums
+      Group discussions
+      Realtime access to ultrasound videos
+        Videos previously too big
+    Announcements
+      Easily push out policy info
+    Education
+      Wiki
+      Post papers
+      Discuss
+  Search function for archive
+  Access via wifi, not 3G -- 3G service spotty in hospitals
+  Lots of whitespace -- clean, functional design
+
+Nonfunctional requirements:
+  Availability: Half-hour downtime at midnight acceptable
+  Budget: essentially unlimited
+    Though $10k mentioned as unreasonable
+  Timeline: "Sooner the better"
+    Iterate
+    Priority is other functions without IM first
