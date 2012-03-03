@@ -1,4 +1,25 @@
-1. How many memos?
-2. Who can post memos?
-3. Volume of discussion posts?
-4. What projects can we re-use code from? (Bootstrap)
+How many memos per day?
+  Dealing with 10 users completely different from dealing with 100
+    IIRC, we'll have 60-70 docs, 20-30 residents
+
+Who can post memos?
+  Probably need all users in system (or at least all docs) to have this ability
+    But then this creates enormous number of memos -- everyone will have different criteria as to what's important enough for a memo
+  So, then, question becomes, How do we prioritize memos? What signals to use?
+    Time
+    User importance
+      Can be assigned by admin, or can be calculated algorithmically
+        Given small scale of system, manual assignment by admin probably better
+    Category (importance differs -- "Ecstasy treatment policy change" vs. "Microwave use in lounge")
+
+How many discussion posts per day?
+  Discussion posts should be separated from memos in UI, even if handling on backend is unified
+  How to rank?
+    Use same signals as memos (time, user importance, category)?
+      Use same weighting or different?
+
+What projects can we re-use code from? (Bootstrap)
+  HTML/CSS framework: Bootstrap (http://twitter.github.com/bootstrap/)
+  Web app framework:  Express (http://expressjs.com/)
+  Templating engine:  Jade (http://jade-lang.com/)
+  Testing framework:  Mocha (http://visionmedia.github.com/mocha/)
