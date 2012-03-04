@@ -23,3 +23,44 @@ What projects can we re-use code from? (Bootstrap)
   Web app framework:  Express (http://expressjs.com/)
   Templating engine:  Jade (http://jade-lang.com/)
   Testing framework:  Mocha (http://visionmedia.github.com/mocha/)
+
+Should discussions be threaded or flat?
+  Threaded seems more natural -- allows for multiple lines of long-lived discussion to evolve
+  We should definitely track which posts are read and which are unread, allowing user to quickly scan new posts
+    If threaded, how do we indicate what posts are unread? Much easier if discussions are flat, where we can just take user to start of new post
+
+How to categorize memos & discussions?
+  Do we have administrator explicitly create categories?
+    Or does user tag posts? Do we aim for hybrid like StackOverflow uses, where admin can merge tags to minimize different tags referring to same thing?
+
+Sources of content:
+  Perhaps keep focus on "subscribing" to different sources of content
+    This would cut down on amount of information thrown at user, allowing him to focus on only that which interests him
+    By default, user is subscribed to all announcements
+    User can also subscribe to specific discussion categories/tags of interest
+      Upon posting in a thread, user is perhaps automatically subscribed to it -- or can he be subscribed to only the "subthread" headed by his reply, so that he'll be notified of only replies to himself?
+
+Performance testing:
+  Shaun and Dr. Sillito seem to want hard performance numbers in our requirements doc
+    But this means that we must be able to verify the numbers
+  Writing test that uses ab to test performance isn't too hard
+    Can be integrated into main test suite or left as separate test to be run periodically
+    But this means simulating user logins, etc. -- not just matter of performing simple GET requests
+    Settling on "hard" performance numbers is difficult -- performance varies based on speed of machine, other load on system
+
+UI mockups: what accommodations should we make for "extra" functionality beyond first realistic iteration in our UI mockups?
+  Do we need to design mockups for, say, journal article sharing interface?
+
+Pages we'll need:
+  Landing page
+  Discussion landing page
+    View thread
+      On this page, will need controls to edit/delete posts for both original user & admins
+    Create new thread
+  Memo landing page (maybe)
+  Search results
+  User profile page
+    Change password, avatar
+  Admin landing page
+    Add/edit/delete users
+  
