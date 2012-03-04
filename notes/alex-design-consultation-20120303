@@ -1,0 +1,53 @@
+Below follows a consultation with Jeff's designer friend Alex about our initial mockups.
+
+Search should be consistent
+  Centre the search
+  Put it in top right/left, just below horizontal bar
+    On opposing side of it, have header describing what page you're on ("Dashboard", "Discussion")
+      Then, search always stays in exact same spot
+  How we should have search bar on every page: like on search results page, with bar across top -- perhaps centre it
+
+  Calling attention to search:
+    Can put light grey bar behind it
+    Don't necessarily need logo over search bar all the time -- just need text input, search button
+
+  Dashboard: way too much text currently
+    Look at news sites -- their target audience is people who want info quickly
+      How do they handle headline typography? People just scan headlines ("Heart Palpitations"), don't read text below
+
+    Need way to distinguish between different memos/discussions
+      Hierarchy of content now: very even, very heavy
+      For Dashboard, have identifiable cues that will indicate importance
+        Perhaps colour, perhaps differnet icons for different types
+
+Top navigation is good right now -- perhaps make "logout" text smaller, same size as "Memos"
+  User name should also be same size as rest of text
+  It should just be text -- not a button
+  "Logout" could have door opening/closing
+    Don't make it button -- that makes people more likely to look to it as first action
+
+Memos:
+  Reduce information presented
+  Show only headline -- expands upon click to show full text
+    Provide comment form
+
+Biggest thing we need to worry about: clarifying exact functionality
+  What can we do to make it more of an app? To cut down information, to give more useful things?
+
+Studguru mockup: http://alexswanson.net/stuff/Clients/135-StudGuru/Review-Comps/review/SG_Beta-05-v1-MyBabe-NoBabe_FirstSignIn.jpg
+  Good use of welcome message
+  Shows clearly what you can do on dashboard without being overwhelming -- edit stuff, add picture, etc.
+    Clearly shows what you can do
+
+Numero uno key message: establish your goals for project, then figure out how to express those in design
+  Good example: http://dribbble.com/shots/323757-Device-Dashboard-iPad-UI-UX-iOS/attachments/14426
+    You see that thre are devices and teams
+    Not lots of information presented, but you can see exactly what's there, and what you can do with it
+    Good use of icons to simplify delivery -- simpler than text
+      Based on design, you can see that icons are sub-nav of Devices
+      Key idea: little things that break up design, make information useful
+
+Whenever we come to dispute about design, make "mock profile" of user -- "52 year old doc, very busy, needed by lots of people; not up to date with latest tech, but knows his field inside-out; what would Frank the Doctor prefer in this situation?"
+
+Misc:
+  Add active states for navigation in nav bar at top
