@@ -1,0 +1,261 @@
+<mockup version="1.0" skin="sketch" measuredW="1173" measuredH="748" mockupW="1034" mockupH="675">
+  <controls>
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="139" y="73" w="1034" h="675" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Canvas" x="154" y="153" w="1004" h="72" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::Icon" x="871" y="159" w="-1" h="-1" measuredW="48" measuredH="48" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="923" y="175" w="128" h="29" measuredW="111" measuredH="24" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Ashlea%20Wilmott</text>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::RoundButton" x="169" y="165" w="110" h="36" measuredW="32" measuredH="32" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <shape>roundRect</shape>
+        <text>CMed</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Label" x="1090" y="175" w="53" h="29" measuredW="53" measuredH="24" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Logout</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="310" y="169" w="81" h="29" measuredW="81" measuredH="24" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Dashboard</text>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Label" x="413" y="169" w="57" h="29" measuredW="58" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Memos</text>
+      </controlProperties>
+    </control>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="491" y="169" w="86" h="29" measuredW="79" measuredH="24" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Discussion</text>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Label" x="592" y="169" w="86" h="29" measuredW="80" measuredH="24" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Knowledge</text>
+      </controlProperties>
+    </control>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Label" x="169" y="233" w="186" h="42" measuredW="118" measuredH="33" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>24</size>
+        <text>Dashboard</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::TextInput" x="728" y="233" w="346" h="-1" measuredW="79" measuredH="27" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>up</state>
+      </controlProperties>
+    </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Button" x="1090" y="233" w="-1" h="-1" measuredW="66" measuredH="27" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Search</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::HSplitter" x="639" y="282" w="-1" h="429" measuredW="12" measuredH="100" zOrder="13" locked="false" isInGroup="-1"/>
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="707" y="309" w="186" h="42" measuredW="97" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Discussion</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::HRule" x="169" y="267" w="989" h="-1" measuredW="100" measuredH="5" zOrder="16" locked="false" isInGroup="-1"/>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::Label" x="301" y="309" w="186" h="42" measuredW="69" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Memos</text>
+      </controlProperties>
+    </control>
+    <control controlID="103" controlTypeID="__group__" x="301" y="354" w="263" h="308" measuredW="263" measuredH="308" zOrder="17" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="263" h="50" measuredW="263" measuredH="50" zOrder="0" locked="false" isInGroup="103">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="0"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="__group__" x="0" y="63" w="263" h="50" measuredW="263" measuredH="50" zOrder="1" locked="false" isInGroup="103">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="1">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="1">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="1"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="2" controlTypeID="__group__" x="0" y="128" w="263" h="50" measuredW="263" measuredH="50" zOrder="2" locked="false" isInGroup="103">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="2">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="2">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="2"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="3" controlTypeID="__group__" x="0" y="193" w="263" h="50" measuredW="263" measuredH="50" zOrder="3" locked="false" isInGroup="103">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="3">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="3">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="3"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="4" controlTypeID="__group__" x="0" y="258" w="263" h="50" measuredW="263" measuredH="50" zOrder="4" locked="false" isInGroup="103">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="4">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="4">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="4"/>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="104" controlTypeID="__group__" x="707" y="354" w="263" h="308" measuredW="263" measuredH="308" zOrder="18" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="263" h="50" measuredW="263" measuredH="50" zOrder="0" locked="false" isInGroup="104">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="0"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="1" controlTypeID="__group__" x="0" y="63" w="263" h="50" measuredW="263" measuredH="50" zOrder="1" locked="false" isInGroup="104">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="1">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="1">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="1"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="2" controlTypeID="__group__" x="0" y="128" w="263" h="50" measuredW="263" measuredH="50" zOrder="2" locked="false" isInGroup="104">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="2">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="2">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="2"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="3" controlTypeID="__group__" x="0" y="193" w="263" h="50" measuredW="263" measuredH="50" zOrder="3" locked="false" isInGroup="104">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="3">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="3">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="3"/>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="4" controlTypeID="__group__" x="0" y="258" w="263" h="50" measuredW="263" measuredH="50" zOrder="4" locked="false" isInGroup="104">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Label" x="0" y="22" w="186" h="24" measuredW="181" measuredH="20" zOrder="0" locked="false" isInGroup="4">
+              <controlProperties>
+                <size>12</size>
+                <text>posted%20by%20Dr.%20Banana%202%20days%20ago</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Link" x="0" y="0" w="-1" h="-1" measuredW="263" measuredH="22" zOrder="1" locked="false" isInGroup="4">
+              <controlProperties>
+                <size>14</size>
+                <text>New%20policy%20for%20treating%20ecstasy%20overdoses</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::HRule" x="0" y="45" w="263" h="-1" measuredW="100" measuredH="5" zOrder="2" locked="false" isInGroup="4"/>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+  </controls>
+</mockup>
