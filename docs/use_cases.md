@@ -3,47 +3,7 @@ Use Cases
 
 Use Case 1
 ----------
-* Summary: system user U replies to an existing discussion with a new post P
-* Actor: U
-* Preconditions: U is logged into the system and is viewing an existing discussion D
-* Postconditions: new post P will be visible to all other users of S
-* Main success scenario:
-    1. U selects the "Reply" function adjacent to any post in D.
-    2. S serves U a page with controls permitting entry of a post body and list of tags.
-    3. U enters the post body and at least one tag.
-    4. U submits the completed form.
-    5. S saves U's post to the data store, along with a reference to the post to which it is a reply.
-
-
-Use Case 2
-----------
-* Summary: system user U edits an existing discussion post P
-* Actor: U
-* Precondition: U is logged in and viewing a discussion in which U has authored a given post P
-* Postcondition: U's edited post P' will be visible to all other users of S
-* Main success scenario:
-    1. U selects the "Edit post" function provided alongside P.
-    2. S serves U a page with editable copies of P's body and tags.
-    3. U makes modification to P's body and/or tags.
-    4. U activates the "Save post" function.
-    5. S saves the modified post to the data store, resulting in edited post P'.
-
-
-Use Case 3
-----------
-* Summary: system user U views list of most popular discussion threads
-* Actor: U
-* Preconditions: U is logged in to the system S
-* Postconditions: a rendered list of the most popular discussion threads has been served to U by S
-* Main success scenario:
-    1. U selects "Discussions" in the global navigation visible on every page.
-    2. S determines the most popular discussions using criteria such as number and frequency of posts.
-    3. S returns to U a page containing this list of most popular discussions.
-
-
-Use Case 4
-----------
-* Summary: system user U authenticates with system via username and password
+* Summary: System user U authenticates with system via username and password
 * Actor: U
 * Preconditions: U is unauthenticated
 * Postconditions: U is authenticated with system S
@@ -59,9 +19,9 @@ Use Case 4
     c. Resume at Step 2.
 
 
-Use Case 5
+Use Case 2
 ----------
-* Summary: system user U authenticates with system S via keycard
+* Summary: System user U authenticates with system S via keycard
 * Actor: U
 * Preconditions: U is unauthenticated with S. U possesses valid keycard K and is using a computer with a keycard reader.
 * Postconditions: U is authenticated with S
@@ -73,9 +33,49 @@ Use Case 5
     5. Dashboard renders in U's browser. U begins using S.
 
 
+Use Case 3
+----------
+* Summary: System user U replies to an existing discussion with a new post P
+* Actor: U
+* Preconditions: U is logged into the system and is viewing an existing discussion D
+* Postconditions: New post P will be visible to all other users of S
+* Main success scenario:
+    1. U selects the "Reply" function adjacent in D.
+    2. S serves U a page with controls permitting entry of a post body and list of tags.
+    3. U enters the post body and at least one tag.
+    4. U submits the completed form.
+    5. S saves U's post to the data store, along with a reference to the post to which it is a reply.
+
+
+Use Case 4
+----------
+* Summary: System user U edits an existing discussion post P
+* Actor: U
+* Precondition: U is logged in and viewing a discussion in which U has authored a given post P
+* Postcondition: U's edited post P' will be visible to all other users of S
+* Main success scenario:
+    1. U selects the "Edit post" function provided alongside P.
+    2. S serves U a page with editable copies of P's body and tags.
+    3. U makes modification to P's body and/or tags.
+    4. U activates the "Save post" function.
+    5. S saves the modified post to the data store, resulting in edited post P'.
+
+
+Use Case 5
+----------
+* Summary: System user U views list of most popular discussion threads
+* Actor: U
+* Preconditions: U is logged in to the system S
+* Postconditions: A rendered list of the most popular discussion threads has been served to U by S
+* Main success scenario:
+    1. U selects "Discussions" in the global navigation visible on every page.
+    2. S determines the most popular discussions using criteria such as number and frequency of posts.
+    3. S returns to U a page containing this list of most popular discussions.
+
+
 Use Case 6
 ----------
-* Summary: user U searches system S
+* Summary: User U searches system S
 * Actor: U
 * Preconditions: U is authenticated with S.
 * Postconditions: U has received results for the search.
@@ -106,7 +106,7 @@ Use Case 7
 
 Use Case 8
 ----------
-* Summary: system administrator A creates new account for user U
+* Summary: System administrator A creates new account for user U
 * Actor: A
 * Stakeholders: A, U
 * Preconditions: A is authenticated with system S and U has no existing account on S
@@ -130,7 +130,7 @@ Use Case 8
 
 Use Case 9
 ----------
-* Summary: system administrator A locks account of user U
+* Summary: System administrator A locks account of user U
 * Actor: A
 * Stakeholders: A, U
 * Preconditions: A is authenticated with system S and U is a valid, active user
@@ -145,7 +145,7 @@ Use Case 9
 
 Use Case 10
 -----------
-* Summary: user U reads unread memo M
+* Summary: User U reads unread memo M
 * Actor: U
 * Preconditions:
     1. U is authenticated
