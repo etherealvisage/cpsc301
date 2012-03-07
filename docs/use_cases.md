@@ -40,7 +40,7 @@ Use Case 3
 * Preconditions: U is logged into the system and is viewing an existing discussion D
 * Postconditions: New post P will be visible to all other users of S
 * Main success scenario:
-    1. U selects the "Reply" function adjacent in D.
+    1. U selects the "Reply" function in existing D.
     2. S serves U a page with controls permitting entry of a post body and list of tags.
     3. U enters the post body and at least one tag.
     4. U submits the completed form.
@@ -58,7 +58,7 @@ Use Case 4
     2. S serves U a page with editable copies of P's body and tags.
     3. U makes modification to P's body and/or tags.
     4. U activates the "Save post" function.
-    5. S saves the modified post to the data store, resulting in edited post P'.
+    5. S saves the modified post to the data store, resulting in edited post P.
 
 
 Use Case 5
@@ -100,8 +100,8 @@ Use Case 7
 * Preconditions: U is authenticated with S
 * Preconditions: U receives a list of archived memos.
 * Main success scenario:
-    1. U selects \`Memos' from global navigation menu.
-    2. S generates list of memos and sends resulting page to U.
+    1. U selects `Memos' from global navigation menu.
+    2. S generates a list of memos and sends resulting page to U.
 
 
 Use Case 8
@@ -112,7 +112,7 @@ Use Case 8
 * Preconditions: A is authenticated with system S and U has no existing account on S
 * Postconditions: U has a new account with S
 * Main success scenario:
-    1. A selects \`Admin' from global navigation menu.
+    1. A selects `Admin' from global navigation menu.
     2. A selects "Create new user" functionality and is presented with a form to create a new user.
     3. A enters U's name, e-mail address, and other associated information.
     4. A submits the completed form.
@@ -136,7 +136,7 @@ Use Case 9
 * Preconditions: A is authenticated with system S and U is a valid, active user
 * Postconditions: U may no longer authenticate with S
 * Main success scenario:
-    1. A selects \`Admin' from global navigation menu.
+    1. A selects `Admin' from global navigation menu.
     2. A selects "Access control" functionality.
     3. S lists all registered users and their access status.
     4. A locates U in list, then un-checks "Active" box next to U.
