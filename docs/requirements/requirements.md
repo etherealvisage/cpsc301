@@ -77,87 +77,81 @@ Discussion
 
 7. **(P2)** Users reading a discussion must be able to add, edit, or delete associated tags.
 
-8. **(P?)** A discussion's title must consist of at least three alphanumeric characters.
+8. **(P0)** A discussion must have a non-empty title.
 
-9. **(P?)** A post's body must consist of at least three alphanumeric characters.
+9. **(P0)** A discussion post's body be non-empty.
 
-10. **(P?)** Every discussion must be associated with at least one tag.
+10. **(P1)** Every discussion must be associated with at least one tag.
 
-11. **(P?)** When adding a new post, the user must be able to enter the post body using a WYSIWYG editor.
+11. **(P2)** When adding a new post, the user must be able to enter the post body using a WYSIWYG editor.
 
-12. **(P?)** The user must have the ability to receive via e-mail the full contents of any posts to subscribed
+12. **(P2)** The user must have the ability to receive via e-mail the full contents of any posts to subscribed
     discussions.
 
-13. **(P?)** The user must be able to post in a discussion by replying to an e-mail listing a post from
+13. **(P2)** The user must be able to post in a discussion by replying to an e-mail listing a post from
     that discussion.
 
-14. **(P?)** The user must be able to post a new discussion by sending an e-mail to a predefined
+14. **(P2)** The user must be able to post a new discussion by sending an e-mail to a predefined
     address. The e-mail's subject must indicate the discussion's title; its body must be used as the
     initial post. Some standardized means of describing the tags to be used for the discussion must also
     be established.
 
 
-General
--------
-1. **(P?)** Every object in the system (e.g., discussion thread, discussion post, or memo) must have
-   associated with it an unambiguous representation permitting references to it from other system
-   elements.
-
-
 System Administration
 ---------------------
-1. **(P?)** The administrator must be able to add new user accounts. While doing so, she must be able to
+1. **(P0)** The administrator must be able to add new user accounts. While doing so, she must be able to
    readily add and edit user information.
 
-2. **(P?)** The administrator must be able to change user information, such as username, password, and
+2. **(P1)** The administrator must be able to change user information, such as username, password, and
    avatar.
 
-3. **(P?)** Each user's name must contain at least three alphanumeric characters. No duplicate usernames will
-   be permitted.
+3. **(P0)** Each user's name must be non-empty.
 
-4. **(P?)** Each user's password must consist of at least six characters, and must not be a dictionary word.
+4. **(P0)** No duplicate usernames will be permitted.
 
-4. **(P?)** The administrator must be able to delete user accounts, removing the user's ability to use the system
+5. **(P0)** Each user's password must consist of at least six characters.
+
+6. **(P2)** Each user's password must not be a dictionary word.
+
+7. **(P1)** The administrator must be able to delete user accounts, removing the user's ability to use the system
    while preserving any data (e.g., memos and posts) he has entered.
 
-5. **(P?)** The administrator must be able to delete any discussion or post made in the discussion system.
+8. **(P1)** The administrator must be able to delete any discussion or post made in the discussion system.
 
-6. **(P?)** The administrator must be able to delete any memo.
+9. **(P1)** The administrator must be able to delete any memo.
 
-7. **(P?)** The administrator must be able to add new memo tags.
+10. **(P2)** The administrator must be able to add new memo tags.
 
-8. **(P?)** The administrator must be able to add new discussion tags.
+11. **(P2)** The administrator must be able to add new discussion tags.
 
 
 Instant Messaging
 -----------------
-1. **(P?)** Users must be able to send instant messages to other system users.
+1. **(P1)** Users must be able to send instant messages to other system users.
 
-2. **(P?)** The user must be presented with a list of users, with each user's online status clearly
+2. **(P2)** The user must be presented with a list of users, with each user's online status clearly
    indicated. From the list, the user must be able to message any user regardless of online status.
 
-3. **(P?)** If the user sends a message to an online user, the message must be delivered immediately.
+3. **(P1)** If the user sends a message to an online user, the message must be delivered immediately.
 
-4. **(P?)** If the user sends a message to an offline user, the message must be delivered when the receiving
+4. **(P2)** If the user sends a message to an offline user, the message must be delivered when the receiving
    user is next online.
 
-5. **(P?)** The user must receive a clear indication of how many unread messages he has from his Dashboard
+5. **(P2)** The user must receive a clear indication of how many unread messages he has from his Dashboard
    upon logging in. From here, he must be able to read and respond to any received messages.
 
 
 Search
 ------
-1. **(P?)** A search form must be provided on every page.
+1. **(P1)** A search form must be provided on every page.
 
-2. **(P?)** The search form must allow the user to enter multiple search terms. Upon submission, discussion
+2. **(P1)** The search form must allow the user to enter multiple search terms. Upon submission, discussion
    posts, memos, and the knowledge base must be searched.
 
-3. **(P?)** A search's results must be displayed alongside the number of results generated.
-
-4. **(P?)** Search results must be broken up, either via pagination or infinite scrolling, to prevent all
+3. **(P2)** Search results must be broken up, either via pagination or infinite scrolling, to prevent all
    from being displayed simultaneously.
 
-5. **(P?)** When viewing a search results, the user must have the ability to filter by type (e.g., discussion
+4. **(P2)** When viewing a search results, the user must have the ability to filter by type (e.g., discussion
    post, memo, knowledge base article), date, and any other type-specific criteria. For example, if
    the user filters his results to display only discussion posts, he must further be able to filter
    by post author and tags.
@@ -165,39 +159,43 @@ Search
 
 Knowledge Base
 --------------
-1. **(P?)** The system must provide wiki functionality to permit sharing of information regarding treatment
+1. **(P2)** The system must provide wiki functionality to permit sharing of information regarding treatment
    procedures.
 
-2. **(P?)** Every wiki article must be editable via a WYSIWYG interface.
+2. **(P2)** Every wiki article must be editable via a WYSIWYG interface.
 
-3. **(P?)** Any user must be able to add new articles or edit existing ones.
+3. **(P2)** Any user must be able to add new articles or edit existing ones.
 
 
 Nonfunctional
 -------------
-1. **(P?)** The system must be able to serve at least 10 requests per second with a mean response time not
-   exceeding 500 ms.
+1. **(P0)** The system must be able to serve pages with a mean response time not exceeding 500 ms under
+   reasonable load.
 
-2. **(P?)** The system must be accessible 99.9% of the time. This permits approximately 40 minutes of
+2. **(P0)** The system must be accessible 99.9% of the time. This permits approximately 40 minutes of
    unscheduled downtime per month.
 
-3. **(P?)** All HTML must be compliant with the HTML5 specification.
+3. **(P2)** All HTML must be compliant with the HTML5 specification.
 
-4. **(P?)** All CSS must be compliant with the CSS3 specification.
+4. **(P2)** All CSS must be compliant with the CSS3 specification.
 
-5. **(P?)** The system must be compatible with recent versions of modern web browsers. Full compatibility
+5. **(P0)** The system must be compatible with recent versions of modern web browsers. Full compatibility
    must be provided with Google Chrome 17 and Mozilla Firefox 3.6. Attempts must also be made to
    ensure compatibility with recent versions of Safari and Opera.
 
-6. **(P?)** Nightly backups of all system data must be made. Multiple backups must be retained.
+6. **(P2)** Nightly backups of all system data must be made. Multiple backups must be retained.
 
-7. **(P?)** Backups must be stored on multiple computers distinct from the production server, located in
+7. **(P2)** Backups must be stored on multiple computers distinct from the production server, located in
    physically disparate locations.
 
-8. **(P?)** Every "page" within the application must have its own distinct URL. Any provisions for a
+8. **(P2)** Every "page" within the application must have its own distinct URL. Any provisions for a
    smoother, ajax-backed interface must ensure that these URLs are made available through the
    browser's address bar to permit easy bookmarking of pages.
 
-9. **(P?)** Five consecutive failed login attempts must result in an artificial delay of 2 s being applied to
+9. **(P2)** Five consecutive failed login attempts must result in an artificial delay of 2 s being applied to
    each subsequent authentication attempt, preventing brute-force attacks. Any such imposed delay
    must be cleared 24 hours after the last failed authentication attempt.
+
+10. **(P0)** Every object in the system (e.g., discussion thread, discussion post, or memo) must have
+    associated with it an unambiguous representation permitting references to it from other system
+    elements.
