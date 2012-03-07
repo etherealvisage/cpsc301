@@ -3,7 +3,7 @@ Use Cases
 
 Use Case 1
 ----------
-* Summary: System user U authenticates with system via username and password
+* Summary: System user U authenticates with system via e-mail and password
 * Actor: U
 * Preconditions: U is unauthenticated
 * Postconditions: U is authenticated with system S
