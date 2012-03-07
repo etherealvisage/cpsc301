@@ -9,9 +9,9 @@ Use Case 1
 * Postconditions: new post P will be visible to all other users of S
 * Main success scenario:
     1. U selects the "Reply" function adjacent to any post in D.
-    2. S serves U a page with controls allowing him to enter a post body and list of tags.
+    2. S serves U a page with controls permitting entry of a post body and list of tags.
     3. U enters the post body and at least one tag.
-    4. U submits his completed form.
+    4. U submits the completed form.
     5. S saves U's post to the data store, along with a reference to the post to which it is a reply.
 
 
@@ -19,7 +19,7 @@ Use Case 2
 ----------
 * Summary: system user U edits an existing discussion post P
 * Actor: U
-* Precondition: U is logged in and viewing a discussion in which he has authored a given post P
+* Precondition: U is logged in and viewing a discussion in which U has authored a given post P
 * Postcondition: U's edited post P' will be visible to all other users of S
 * Main success scenario:
     1. U selects the "Edit post" function provided alongside P.
@@ -66,7 +66,7 @@ Use Case 5
 * Preconditions: U is unauthenticated with S. U possesses valid keycard K and is using a computer with a keycard reader.
 * Postconditions: U is authenticated with S
 * Main success scenario:
-    1. U inserts K into his systems' reader.
+    1. U inserts K into hardware reader.
     2. U's system recognizes K's insertion and launches the web browser.
     3. The browser automatically submits a login request to S using K's credentials.
     4. S creates a new session for U, sets cookie corresponding to session on U's browser, and sends U to the dashboard.
@@ -78,7 +78,7 @@ Use Case 6
 * Summary: user U searches system S
 * Actor: U
 * Preconditions: U is authenticated with S.
-* Postconditions: U has received results for his search.
+* Postconditions: U has received results for the search.
 * Main success scenario:
     1. U enters search terms into search bar.
     2. S searches through data store for discussions and memos matching search terms.
@@ -120,7 +120,7 @@ Use Case 8
     6. S writes it to the data store.
     7. S sends activation e-mail to U.
     8. U navigates to link provided in activation e-mail.
-    9. S allows U to enter password for her account.
+    9. S allows U to enter password for U's account.
 * Alternate flow A:
     a. At Step 5, S determines U's information to be invalid.
     b. S prompts A to correct U's information.
