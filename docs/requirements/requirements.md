@@ -1,5 +1,10 @@
 Requirements
 ============
+Priority Key
+------------
+* P0 = must-have
+* P1 = should-have
+* P2 = nice-to-have
 
 User Authentication and Identification
 --------------------------------------
