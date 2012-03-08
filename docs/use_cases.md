@@ -3,14 +3,14 @@ Use Cases
 
 Use Case 1
 ----------
-* Summary: System user U authenticates with system via e-mail and password
+* Summary: System user U authenticates with system S via e-mail and password
 * Actor: U
 * Preconditions: U is unauthenticated
-* Postconditions: U is authenticated with system S
+* Postconditions: U is authenticated with S
 * Main success scenario:
     1. Upon trying to access application, U is presented with login form by S.
     2. U enters e-mail address and password into corresponding fields.
-    3. U submits form, hashing password before sending across network.
+    3. U submits form.
     4. U's e-mail address and password hash match established user, so S creates new session for U, sets cookie corresponding to session on U's browser, and sends U to dashboard.
     5. Dashboard renders in U's browser. U begins using S.
 * Alternate flow A:
@@ -23,11 +23,13 @@ Use Case 2
 ----------
 * Summary: System user U authenticates with system S via keycard
 * Actor: U
-* Preconditions: U is unauthenticated with S. U possesses valid keycard K and is using a computer with a keycard reader.
+* Preconditions:
+    1. U is unauthenticated with S.
+    2. U possesses valid keycard K and is using a computer with a keycard reader.
 * Postconditions: U is authenticated with S
 * Main success scenario:
     1. U inserts K into hardware reader.
-    2. U's system recognizes K's insertion and launches the web browser.
+    2. U's system recognizes K's insertion and launches web browser.
     3. The browser automatically submits a login request to S using K's credentials.
     4. S creates a new session for U, sets cookie corresponding to session on U's browser, and sends U to the dashboard.
     5. Dashboard renders in U's browser. U begins using S.
@@ -37,28 +39,30 @@ Use Case 3
 ----------
 * Summary: System user U replies to an existing discussion with a new post P
 * Actor: U
-* Preconditions: U is logged into the system and is viewing an existing discussion D
+* Preconditions: U is authenticated with the system and is viewing an existing discussion D
 * Postconditions: New post P will be visible to all other users of S
 * Main success scenario:
     1. U selects the "Reply" function in existing D.
     2. S serves U a page with controls permitting entry of a post body and list of tags.
     3. U enters the post body and at least one tag.
     4. U submits the completed form.
-    5. S saves U's post to the data store, along with a reference to the post to which it is a reply.
+    5. S saves U's post to the data store.
 
 
 Use Case 4
 ----------
 * Summary: System user U edits an existing discussion post P
 * Actor: U
-* Precondition: U is logged in and viewing a discussion in which U has authored a given post P
-* Postcondition: U's edited post P' will be visible to all other users of S
+* Preconditions:
+    1. U is authenticated with the system S.
+    2. U is viewing a discussion in which U has authored a given post P
+* Postconditions: U's edited post P' will be visible to all other users of S
 * Main success scenario:
     1. U selects the "Edit post" function provided alongside P.
     2. S serves U a page with editable copies of P's body and tags.
     3. U makes modification to P's body and/or tags.
     4. U activates the "Save post" function.
-    5. S saves the modified post to the data store, resulting in edited post P.
+    5. S saves the modified post to the data store, resulting in edited post P'.
 
 
 Use Case 5
@@ -98,9 +102,9 @@ Use Case 7
 * Summary: U views archived memos
 * Actor: U
 * Preconditions: U is authenticated with S
-* Preconditions: U receives a list of archived memos.
+* Postconditions: U has received a list of archived memos
 * Main success scenario:
-    1. U selects `Memos' from global navigation menu.
+    1. U selects "Memos" from global navigation menu.
     2. S generates a list of memos and sends resulting page to U.
 
 
@@ -109,15 +113,17 @@ Use Case 8
 * Summary: System administrator A creates new account for user U
 * Actor: A
 * Stakeholders: A, U
-* Preconditions: A is authenticated with system S and U has no existing account on S
-* Postconditions: U has a new account with S
+* Preconditions:
+    1. A is authenticated with system S.
+    2. U has no existing account on S
+* Postconditions: U has a new account on S
 * Main success scenario:
-    1. A selects `Admin' from global navigation menu.
+    1. A selects "Admin" from global navigation menu.
     2. A selects "Create new user" functionality and is presented with a form to create a new user.
     3. A enters U's name, e-mail address, and other associated information.
     4. A submits the completed form.
-    5. S validates U's information
-    6. S writes it to the data store.
+    5. S validates U's information.
+    6. S writes this information to the data store.
     7. S sends activation e-mail to U.
     8. U navigates to link provided in activation e-mail.
     9. S allows U to enter password for U's account.
@@ -125,7 +131,7 @@ Use Case 8
     a. At Step 5, S determines U's information to be invalid.
     b. S prompts A to correct U's information.
     c. A enters correct information for U and submits form.
-    d. Resume execution at Step 6.
+    d. Resume execution at Step 5.
 
 
 Use Case 9
@@ -133,14 +139,16 @@ Use Case 9
 * Summary: System administrator A locks account of user U
 * Actor: A
 * Stakeholders: A, U
-* Preconditions: A is authenticated with system S and U is a valid, active user
+* Preconditions:
+    1. A is authenticated with system S 
+    2. U is a valid, active user
 * Postconditions: U may no longer authenticate with S
 * Main success scenario:
-    1. A selects `Admin' from global navigation menu.
+    1. A selects "Admin" from global navigation menu.
     2. A selects "Access control" functionality.
     3. S lists all registered users and their access status.
     4. A locates U in list, then un-checks "Active" box next to U.
-    5. S is notified of U's status change.
+    5. S is notified of U's status change and thus locks U's account.
 
 
 Use Case 10
@@ -163,4 +171,4 @@ Use Case 10
     8. On subsequent interactions, M is no longer displayed as unread to U.
 * Alternate flow A:
     a. At Step 4, U selects to hide M's unread notification rather than read M.
-    b. M's unread notificiation for U disappears.
+    b. Resume execution at Step 7.
