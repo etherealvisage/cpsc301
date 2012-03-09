@@ -10,10 +10,11 @@ User Authentication and Identification
 --------------------------------------
 1. **(P0)** Users must be able to log in to to the system, from both internal and external networks.
 
-2. **(P2)** Users must be able to authenticate via either the existing keycard authentication system, or via
-   a hospital-issued username and password.
+2. **(P2)** Users must be able to authenticate via an e-mail address and password.
 
-3. **(P1)** Users must be able to change their passwords. Upon changing his password, any logged-in sessions
+2. **(P2)** Users must be able to authenticate via the existing keycard authentication system.
+
+3. **(P1)** Users must be able to change their passwords. Upon changing password, any logged-in sessions
    of the user (save for the one from which he changed his password) must be terminated.
 
 4. **(P2)** Users must be able to upload an avatar image to be associated with their account. All such images
@@ -45,21 +46,21 @@ Memos
 
 5. **(P0)** The memo title and body must not be empty.
 
-6. **(P1)** The user must be able to delete any memo he has posted.
+6. **(P1)** Users must be able to delete any memo he has posted.
 
-7. **(P2)** The user must have the option of receiving the full contents of new memos via e-mail.
+7. **(P2)** Users must have the option of receiving the full contents of new memos via e-mail.
 
-8. **(P1)** The read status of each memo must be tracked for each user. The user must be notified on each
+8. **(P1)** The read status of each memo must be tracked for each user. Users must be notified on each
    page when any unread memos exist.
 
-9. **(P0)** The user must be able to "hide" the list of unread memos so that only a small notice
+9. **(P0)** Users must be able to "hide" the list of unread memos so that only a small notice
    remains, leaving the user free to carry out other work.
 
 
 Dashboard
 ---------
-1. **(P0)** Upon logging in, the user must be instantly given an overview of recent activity of potential
-   interest. The page presenting this information must be termed the Dashboard.
+1. **(P0)** Upon logging in, users must be instantly given an overview of recent activity of potential
+   interest via a "dashboard" interface.
 
 2. **(P0)** The Dashboard must display a short listing of both the most recent memos and discussion topics.
    Relevance may be determined by a number of factors, including post date, discussion topic tags,
@@ -118,7 +119,7 @@ System Administration
 
 6. **(P2)** Each user's password must not be a dictionary word.
 
-7. **(P1)** The administrator must be able to delete user accounts, removing the user's ability to use the system
+7. **(P1)** The administrator must be able to lock user accounts, removing the user's ability to use the system
    while preserving any data (e.g., memos and posts) he has entered.
 
 8. **(P1)** The administrator must be able to delete any discussion or post made in the discussion system.
@@ -129,13 +130,15 @@ System Administration
 
 11. **(P2)** The administrator must be able to add new discussion tags.
 
+12. **(P2)** The administrator must be able to restore the system backups made by an automated process.
+
 
 Instant Messaging
 -----------------
-1. **(P1)** Users must be able to send instant messages to other system users.
+1. **(P1)** Users must be able to send instant messages to other system users or groups of users.
 
 2. **(P2)** The user must be presented with a list of users, with each user's online status clearly
-   indicated. From the list, the user must be able to message any user regardless of online status.
+   indicated. From the list, the user must be able to message any user or group of users regardless of online status.
 
 3. **(P1)** If the user sends a message to an online user, the message must be delivered immediately.
 
@@ -164,8 +167,8 @@ Search
 
 Knowledge Base
 --------------
-1. **(P2)** The system must provide wiki functionality to permit sharing of information regarding treatment
-   procedures.
+1. **(P2)** The system must provide wiki functionality to permit sharing of
+   treatment procedures and other information of use.
 
 2. **(P2)** Every wiki article must be editable via a WYSIWYG interface.
 
@@ -174,8 +177,8 @@ Knowledge Base
 
 Nonfunctional
 -------------
-1. **(P0)** The system must be able to serve pages with a mean response time not exceeding 500 ms under
-   reasonable load.
+1. **(P0)** The system must be able to serve pages with a mean response time not exceeding 500 ms, so long
+   as the number of concurrent requests does not exceed 20 per second.
 
 2. **(P0)** The system must be accessible 99.9% of the time. This permits approximately 40 minutes of
    unscheduled downtime per month.
