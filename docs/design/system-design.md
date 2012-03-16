@@ -1,3 +1,6 @@
+System design
+=============
+
 In designing Plex, we chose to utilize a thick-client approach in which the
 only actual HTML served by the backend is a single container. All other server
 resources will be offered exclusively in JSON format, with the client
