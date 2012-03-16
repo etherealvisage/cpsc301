@@ -8,12 +8,12 @@ Feature Testing
 
 On the server, we will endeavor to perform automated unit testing of every
 module. Tests must be developed concurrently alongside code, with developers
-required to submit tset code simultaneously alongside application code when
+required to submit test code simultaneously alongside application code when
 pushing new commits to Github. (This does not, however, require that the
 developer pursue a test-driven-development approach -- he may pursue whatever
 approach he prefers, whether it be TDD or writing tests ex post facto.) New
 features must be accompanied by unit tests that demonstrate proper function,
-both in expected and erroneous scenarios. Bug fixes must have unit tests that
+both in expected and erroneous scenarios. Bug fixes must have unit tests which verify that
 the bug in question will not recur at a later time, and that any potential bugs
 similar in nature will never be introduced. For example, if the developer fixes
 a bug in which discussions with empty titles were permitted, he must provide
@@ -96,7 +96,7 @@ models expected use of the deployed system, and thus maximizes the chance that
 our tests will locate bugs that system users are likely to encounter. Though
 our integration testing will be carried out manually, we will formalize our
 test suite by writing out each test case, and then running through each
-(insofar as the system's state of compleion permits) on a weekly basis. With
+(insofar as the system's state of completion permits) on a weekly basis. With
 the three-week development cycle, this means that the tests will be carried out
 at the ends of the first and second development weeks, followed by an
 exhaustive test battery at the third week's close, prior to system delivery.
@@ -110,7 +110,7 @@ more than a JSON document (except, of course, for the initial index request
 necessary to construct the overall client-side application environmenet). To
 perform these automated tests, we will use our server-side unit test suite to invoke
 Apache Bench, parsing the results to ensure the performance metrics described in
-our requirements document are met (i.e., a sub-500 ms response time when serving
+our requirements document are met (i.e. a sub-500 ms response time when serving
 20 requests per second).
 
 Given the thick-client nature of our project, the server is far from the lone
