@@ -32,7 +32,8 @@ On the server, we will utilize the Node.js testing framework
 [Mocha](http://visionmedia.github.com/mocha/). If time permits, we will use
 [Github's post-receive hooks](http://help.github.com/post-receive-hooks/) to
 automatically execute our test suite when new commits are pushed, then e-mail
-the development team if any tests fail. On the client, we will use
+the development team if any tests fail. On the client, if time permits us to
+develop an automated test suite, we will use
 [Selenium](http://seleniumhq.org/).
 
 
@@ -67,37 +68,71 @@ character.
 
 ###### How will we test performance?
 
-Our thin-server approach will be amenable to automated performance testing, as
-the server will respond to only a small set of requests, never serving anything
-more than a JSON document (except, of course, for the initial index request
-necessary to construct the overall client-side application environmenet). To
-perform these automated tests, we will use our server-side test suite toinvoke
-Apache Bench, parsing the results to ensure the performance metrics described in
-our requirements document are met (i.e., a sub-500 ms response time when serving
-20 requests per second).
 
 On the client, performance testing will only be done during integration testing.
 
 
+System testing
+--------------
 
-Integration testing: must be fleshed out
-  How will we ensure quality of integrated project?
-    Rather than doing integration testing of progressively larger number of modules, take "Big Bang" approach:
-      Rely on continuous individual unit tests to drive individual component quality
-      Perform usage model testing, in which test cases driven by real-world tasks
-        More likely to locate bugs that users will encounter, that result from interactions fo coponets
-        Have test cases written out; perform once per week, and when major changes made to modules -- driven by use cases
-        e.g.:
-          1. User U logs into system S.
-          2. U navigates to Discsussions.
-          3. ...
-    
-  What scenarios must work?
+###### How will we ensure quality of the integrated project?
 
-  What performance metrics must be met?
-    Server performance ensured by unit tests, but thick-client approach means that server response time is far from lone factor in determining perf
-    Thus, perform manual perf tests on client -- when performing individual integration tests, use Chrome's Web Inspector to ensure overall page generation time does not exceed supplied metric (e.g., 500 ms)
+Due to this project's short development cycle, we will avoid the time-intensive
+practice of "bottom-up" integration testing, in which we group the lowest-level
+modules together, verify their proper functioning, and then grow the system to
+be tested by adding the next lowest level of modules and re-verifying its
+function. Instead, we will pursue a "Big Bang" approach in which we form entire
+systems (e.g., the Discussion system) from their modules and then test these.
+Given that our final system's code base will likely not exceed one-thousand
+lines, and that we will have extensive unit test coverage to test individual
+modules, this approach minimizes testing effort while maximizing the
+probability that bugs resulting from the interactions between two components
+will be exposed.
 
-  How many bugs can we have open?
-    Given size of code base, realistic to have 0 bugs open
-      But given tight deadlines, having low-proirity bugs open at end of project OK -- just no medium or high bugs
+Our "Big Bang" integration tests will be driven by usage model testing, in
+which our test cases are derived from use cases, such as those described in our
+requirements document. Such an approach will ensure that our test usage closely
+models expected use of the deployed system, and thus maximizes the chance that
+our tests will locate bugs that system users are likely to encounter. Though
+our integration testing will be carried out manually, we will formalize our
+test suite by writing out each test case, and then running through each
+(insofar as the system's state of compleion permits) on a weekly basis. With
+the three-week development cycle, this means that the tests will be carried out
+at the ends of the first and second development weeks, followed by an
+exhaustive test battery at the third week's close, prior to system delivery.
+
+
+###### What performance metrics must be met?
+
+Our thin-server approach will be amenable to automated performance testing, as
+the server will respond to only a small set of requests, never serving anything
+more than a JSON document (except, of course, for the initial index request
+necessary to construct the overall client-side application environmenet). To
+perform these automated tests, we will use our server-side unit test suite to invoke
+Apache Bench, parsing the results to ensure the performance metrics described in
+our requirements document are met (i.e., a sub-500 ms response time when serving
+20 requests per second).
+
+Given the thick-client nature of our project, the server is far from the lone
+factor in determining performance, with the client exerting a substantial
+(perhaps dominant) effect on performance. Automated testing of client
+performance, however, is excessively complex for our short development period.
+As such, we will perform manual client testing by settling on a standardized
+configuration (e.g., a given computer running a given operating system and
+browser, with the Node server running locally), setting target load times for
+each page (with allowances permitted for more complex ones), and then
+monitoring the page load time through the browser's development tools (e.g.,
+Chrome's Web Inspector). These performance tests will be repeated as part of
+our weekly integration testing cycle.
+
+
+###### How many bugs can we have open at the end of development?
+
+As our project's code base is small, number of developers is few, and
+development cycle is short, we might expect to fully resolve all bugs, leaving
+zero open at development's end. Even in a relatively modest project such as
+ours, however, we might encounter subtle bugs whose impact is sufficiently
+minimal so as to render excessive the effort required to resolve them. Thus, we
+shall permit a low number -- perhaps less than ten -- of open, low-priority
+bugs to remain open when we deliver our initial system revision. We shall
+endeavor, however, to close all medium- and high-priority bugs.
