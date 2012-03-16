@@ -17,12 +17,12 @@ is preferable to XML's complex verbosity; furthermore, working with a
 JavaScript-based serialization format seems natural, given that both our
 client- and server-side code will be written in the language.)
 
-On the client, we chose to implement a model-view-controller architecture. The
-nature of a GUI application running in a web browser lends itself naturally to
-such a structure: the model is simply a thin layer that parses JSON responses
-from the server and offers their data through a unified interface; the view
-retrieves a template (quite probably in [Jade](http://jade-lang.com/) format)
-from the server, then substitutes externally provided dynamic data for template
+On the client, we implemented a model-view-controller architecture. The nature
+of a GUI application running in a web browser lends itself naturally to such a
+structure: the model is simply a thin layer that parses JSON responses from the
+server and offers their data through a unified interface; the view retrieves a
+template (quite probably in [Jade](http://jade-lang.com/) format) from the
+server, then substitutes externally provided dynamic data for template
 placeholders and modifies the DOM to reflect the changed content; and the
 controller responds to user-generated events, passing data back and forth
 between the appropriate views and models.
