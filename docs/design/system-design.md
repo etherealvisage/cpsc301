@@ -1,7 +1,7 @@
 System design
 =============
 
-In designing Plex, we chose to utilize a thick-client approach in which the
+In designing Pynx, we chose to utilize a thick-client approach in which the
 only actual HTML served by the backend is a single container. All other server
 resources will be offered exclusively in JSON format, with the client
 responsible for parsing this data and making the appropriate DOM modifications
@@ -20,15 +20,16 @@ is preferable to XML's complex verbosity; furthermore, working with a
 JavaScript-based serialization format seems natural, given that both our
 client- and server-side code will be written in the language.)
 
-On the client, we implemented a model-view-controller architecture. The nature
-of a GUI application running in a web browser lends itself naturally to such a
-structure: the model is simply a thin layer that parses JSON responses from the
-server and offers their data through a unified interface; the view retrieves a
-template (quite probably in [Jade](http://jade-lang.com/) format) from the
-server, then substitutes externally provided dynamic data for template
-placeholders and modifies the DOM to reflect the changed content; and the
-controller responds to user-generated events, passing data back and forth
-between the appropriate views and models.
+On the client, we chose an architecture based on the Model-View-Controller
+pattern. The nature of a GUI application running in a web browser lends itself
+naturally to such a structure: the model is simply a thin layer that parses
+JSON responses from the server and offers their data through a unified
+interface; the view retrieves a template (quite probably in
+[Jade](http://jade-lang.com/) format) from the server, then substitutes
+externally provided dynamic data for template placeholders and modifies the
+DOM to reflect the changed content; and the controller responds to
+user-generated events, passing data back and forth between the appropriate
+views and models.
 
 The server's UML diagram requires several points of explanation. Firstly, all
 model types (e.g., Memo, Discussion, User) inherit from Loadable, which will
