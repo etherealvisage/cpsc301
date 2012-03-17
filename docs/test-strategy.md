@@ -12,7 +12,7 @@ On the server, we will endeavor to perform automated unit testing of every
 module. Tests must be developed concurrently alongside code, with developers
 required to submit test code simultaneously alongside application code when
 pushing new commits to Github. (This does not, however, require that the
-developer pursue a test-driven-development approach -- he may pursue whatever
+developer pursue a test-driven-development approach---he may pursue whatever
 approach he prefers, whether it be TDD or writing tests ex post facto.) New
 features must be accompanied by unit tests that demonstrate proper function,
 both in expected and erroneous scenarios. Bug fixes must have unit tests which verify that
@@ -135,6 +135,6 @@ development cycle is short, we might expect to fully resolve all bugs, leaving
 zero open at development's end. Even in a relatively modest project such as
 ours, however, we might encounter subtle bugs whose impact is sufficiently
 minimal so as to render excessive the effort required to resolve them. Thus, we
-shall permit a low number -- perhaps less than ten -- of open, low-priority
+shall permit a low number---perhaps less than ten---of open, low-priority
 bugs to remain open when we deliver our initial system revision. We shall
 endeavor, however, to close all medium- and high-priority bugs.

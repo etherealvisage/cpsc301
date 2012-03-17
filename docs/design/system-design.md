@@ -8,7 +8,7 @@ only actual HTML served by the backend is a single container. All other server
 resources will be offered exclusively in JSON format, with the client
 responsible for parsing this data and making the appropriate DOM modifications
 so that it becomes visible to the user. The prime advantage offered by this
-approach is performance -- the amount of data sent over the wire is minimized,
+approach is performance---the amount of data sent over the wire is minimized,
 obviating the need for a full-page refresh as the user navigates between
 sections. As a result, the resulting product will more closely approach the
 rich and responsive nature of desktop applications. Functionality need not be
