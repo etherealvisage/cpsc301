@@ -1,0 +1,15 @@
+body {
+    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+
+.locbar {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    font-size: 18pt;
+    font-weight: bold;
+    background: #f0f0f0;
+}
+.user-id {
+    font-size: 16pt;
+}
