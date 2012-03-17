@@ -1,10 +1,12 @@
+\setcounter{page}{5}
+
 Testing Strategy
 ================
 
 Feature Testing
 ---------------
 
-###### What testing strategy will we use?
+### What testing strategy will we use?
 
 On the server, we will endeavor to perform automated unit testing of every
 module. Tests must be developed concurrently alongside code, with developers
@@ -26,7 +28,7 @@ manual integration testing to ensure compliance with the system's iteration plan
 and to eliminate functional defects.
 
 
-###### What tools will we use?
+### What tools will we use?
 
 On the server, we will utilize the Node.js testing framework
 [Mocha](http://visionmedia.github.com/mocha/). If time permits, we will use
@@ -37,7 +39,7 @@ develop an automated test suite, we will use
 [Selenium](http://seleniumhq.org/).
 
 
-###### What test coverage will we require?
+### What test coverage will we require?
 
 We will endeavor to achieve 100% test coverage, meaning that every line of
 application code is executed at least once by our automated test suite. Such a
@@ -48,7 +50,7 @@ caught by the compiler in a compiled language, such as errors related to use of
 uninitialized variables.
 
 
-###### How will we generate test cases?
+### How will we generate test cases?
 
 We will use equivalence partioning to reduce the number of test inputs needed.
 Once our equivalence classes are generated, we will select "expected" values
@@ -66,7 +68,7 @@ password consisting of nothing but twenty copies of the Unicode snowman
 character.
 
 
-###### How will we test performance?
+### How will we test performance?
 
 
 On the client, performance testing will only be done during integration testing.
@@ -75,7 +77,7 @@ On the client, performance testing will only be done during integration testing.
 System testing
 --------------
 
-###### How will we ensure quality of the integrated project?
+### How will we ensure quality of the integrated project?
 
 Due to this project's short development cycle, we will avoid the time-intensive
 practice of "bottom-up" integration testing, in which we group the lowest-level
@@ -102,7 +104,7 @@ at the ends of the first and second development weeks, followed by an
 exhaustive test battery at the third week's close, prior to system delivery.
 
 
-###### What performance metrics must be met?
+### What performance metrics must be met?
 
 Our thin-server approach will be amenable to automated performance testing, as
 the server will respond to only a small set of requests, never serving anything
@@ -126,7 +128,7 @@ Chrome's Web Inspector). These performance tests will be repeated as part of
 our weekly integration testing cycle.
 
 
-###### How many bugs can we have open at the end of development?
+### How many bugs can we have open at the end of development?
 
 As our project's code base is small, number of developers is few, and
 development cycle is short, we might expect to fully resolve all bugs, leaving
