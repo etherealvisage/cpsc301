@@ -16,5 +16,6 @@ exports.mime_types = {
   '.html': 'text/html',
   '.js': 'application/javascript',
   '.css': 'text/css',
+  '.ico': 'image/x-icon',
   'default': 'application/octet-stream',
 };
