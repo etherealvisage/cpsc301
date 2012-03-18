@@ -1,15 +1,4 @@
 (function($) {
-  var discussions = [
-    {
-      title: 'Under Your Spell',
-      author: 'Desire',
-    },
-    {
-      title: 'A Real Hero',
-      author: 'College',
-    }
-  ];
-
   var Discussion = Backbone.Model.extend({
     defaults: {
       title: 'Discussion title',
@@ -28,14 +17,19 @@
   });
 
   var DiscussionCollection = Backbone.Collection.extend({
-    model: Discussion
+    model: Discussion,
+    url: '/discussions'
   });
 
   var DiscussionCollectionView = Backbone.View.extend({
     el: $('#discussions'),
     initialize: function() {
-      this.collection = new DiscussionCollection(discussions);
-      this.render();
+      var self = this;
+      this.collection = new DiscussionCollection();
+      this.collection.fetch();
+      this.collection.on('reset', function() {
+        self.render();
+      });
     },
     render: function() {
       var self = this;
