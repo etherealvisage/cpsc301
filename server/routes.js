@@ -9,6 +9,16 @@ var handlers = [
     method: 'GET',
     requestHandler: requestHandlers.listDiscussions,
   },
+  {
+    path: new RegExp('^/$', 'i'),
+    method: 'GET',
+    requestHandler: requestHandlers.serveRoot
+  },
+  {
+    path: new RegExp('\\.(css|js|ico|png|jpg|jpeg|gif)', 'i'),
+    method: 'GET',
+    requestHandler: requestHandlers.serveStaticFile
+  }
 ];
 
 exports.handlers = handlers;

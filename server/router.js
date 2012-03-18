@@ -1,4 +1,5 @@
 var util = require('./util');
+var requestHandlers = require('./requestHandlers');
 
 // Route the provided response to the appropriate handler. Return a 404 error
 // if an appropriate handler is not found.
@@ -18,10 +19,7 @@ function route(handlers, request, response) {
     }
   }
 
-  console.log('No ' + reqMethod + ' handler found for ' + reqPath);
-  response.writeHead(404, {'Content-Type': 'text/plain'});
-  response.write('404 Not Found');
-  response.end();
+  requestHandlers.throwFileNotFound(response, request);
 }
 
 exports.route = route;
