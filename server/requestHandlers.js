@@ -38,7 +38,10 @@ function serveStaticFile(response, request) {
     return throwFileNotFound(response, request);
 
   var extension = path.extname(filePath);
-  response.writeHead(200, {'Content-Type': util.lookupMimeType(extension)});
+  response.writeHead(200, {
+    'Content-Type': util.lookupMimeType(extension),
+    'Cache-Control': 'max-age=3600'
+  });
 
   var readStream = fs.createReadStream(filePath);
   readStream.on('data', function(data) {
