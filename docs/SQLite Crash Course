@@ -1,0 +1,28 @@
+sqlite Crash course
+
+CREATE TABLE cars (Id integer, Name text);
+INSERT INTO "cars" VALUES(1,'John');
+INSERT INTO "cars" VALUES(2, 'Jake');
+..
+..
+etc.
+SELECT * FROM cars; // Select all columns from table cars
+SELECT id FROM cars; // select just id's
+SELECT id=1 from cars; // Returns 0's and 1's (0 = no match, 1= match)
+
+
+.dump cars --> Shows all from the cars table
+.tables --> Shows all tables
+
+
+----------
+How to create an autoincrement field
+- A colum declared integer primary key will autoincrement
+- If you declare a column of a table to be INTEGER PRIMARY KEY, then whenever you insert a NULL into that column of the table, the NULL is automatically converted into an integer which is one greater than the largest value of that column over all other rows in the table, or 1 if the table is empty. 
+
+ex. CREATE TABLE t1(a INTEGER PRIMARY KEY, b INTEGER);
+  INSERT INTO t1 VALUES(NULL, 123);
+        is the same as
+  INSERT INTO t1 VALUES((SELECT max(a) FROM t1)+1,123);
+
+
