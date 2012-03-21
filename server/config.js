@@ -19,3 +19,5 @@ exports.mime_types = {
   '.ico': 'image/x-icon',
   'default': 'application/octet-stream',
 };
+
+exports.db_file = 'database.sqlite';

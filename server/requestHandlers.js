@@ -1,24 +1,13 @@
 var fs = require('fs');
 var path = require('path');
+var models = require('./models');
 var util = require('./util');
 
 function listDiscussions(response, request) {
-  var discussions = [
-    {
-      title: 'Under Your Spell',
-      author: 'Desire',
-    },
-    {
-      title: 'A Real Hero',
-      author: 'College',
-    }
-  ];
-
-  var response_body = JSON.stringify(discussions);
-
-  response.writeHead(200, {'Content-Type': 'application/json'});
-  response.write(response_body);
-  response.end();
+  var discussion = new models.Discussion();
+  discussion.list(function(rows) {
+    _serveJSON(response, rows);
+  });
 }
 
 function serveRoot(response, request) {
@@ -59,6 +48,13 @@ function throwFileNotFound(response, request) {
   console.log('No ' + request.method + ' handler found for ' + util.extractPath(request));
   response.writeHead(404, {'Content-Type': 'text/plain'});
   response.write('404 Not Found');
+  response.end();
+}
+
+function _serveJSON(response, obj) {
+  var response_body = JSON.stringify(obj);
+  response.writeHead(200, {'Content-Type': 'application/json'});
+  response.write(response_body);
   response.end();
 }
 

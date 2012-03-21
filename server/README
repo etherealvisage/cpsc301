@@ -8,3 +8,5 @@ Explanation of files:
   routes.js: maps URLs to specific handlers.
   server.js: initializes HTTP server and passes requests to router.
   util.js: miscellaneous utility functions of use throughout project.
+
+API docs for SQLite Node.js library: https://github.com/developmentseed/node-sqlite3/wiki/API
