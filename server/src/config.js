@@ -20,4 +20,4 @@ exports.mime_types = {
   'default': 'application/octet-stream',
 };
 
-exports.db_file = 'database.sqlite';
+exports.db_file = 'misc/database.sqlite';
