@@ -15,7 +15,7 @@ var handlers = [
     requestHandler: requestHandlers.serveRoot
   },
   {
-    path: new RegExp('\\.(css|js|ico|png|jpg|jpeg|gif)', 'i'),
+    path: new RegExp('\\.(css|js|ico|png|jpg|jpeg|gif)$', 'i'),
     method: 'GET',
     requestHandler: requestHandlers.serveStaticFile
   }
