@@ -1,0 +1,7 @@
+# HTML navigation design
+
+The general idea is that the state of the navigation bar can be changed by toggling the visibility of different <div> tags. In particular, there are two IDs of interest:
+
+1. authenticated-nav: contains all of the `authenticated-only' navigation options.
+2. admin-nav: contains the `Administrator-only' navigation options.
+

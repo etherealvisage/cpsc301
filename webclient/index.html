@@ -5,8 +5,31 @@
     <title>Pynx -- loading . . .</title>
 
     <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/pynx.css" rel="stylesheet" />
   </head>
   <body>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" href="#">Pynx</a>
+          <div id="authenticated-nav">
+            <ul class="nav">
+              <li><a href="#">Memos</a></li>
+              <li><a href="#">Discussions</a></li>
+            </ul>
+            <div id="admin-nav">
+              <ul class="nav">
+                <li><a href="#">Admin</a></li>
+              </ul>
+            </div>
+            <ul class="nav pull-right">
+              <li><a class="brand" href="#">Username</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="discussions"></div>
 
     <script type="text/template" id="discussion-thread-template">
