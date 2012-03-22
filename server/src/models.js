@@ -11,12 +11,6 @@ Discussion.prototype.list = function(on_results) {
   var tbl = this._tbl;
 
   db.serialize(function() {
-    var stmt = db.prepare('INSERT INTO ' + tbl + ' (title) VALUES (?)');
-    for(var i = 0; i < 3; i++) {
-      stmt.run('Socks ' + i);
-    }
-    stmt.finalize();
-
     db.all('SELECT * FROM ' + tbl, function(err, rows) {
       on_results(rows);
     });
@@ -24,3 +18,12 @@ Discussion.prototype.list = function(on_results) {
 
   db.close();
 };
+
+Discussion.prototype.create = function(params) {
+  var db = new sqlite3.Database(config.db_file);
+  var tbl = this._tbl;
+  db.serialize(function() {
+    db.run('INSERT INTO ' + tbl + ' (title) VALUES (?)', params.title);
+  });
+  db.close();
+}

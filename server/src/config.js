@@ -1,11 +1,11 @@
 // Host to listen on.
-exports.server_host = 'localhost';
+exports.server_host = '0.0.0.0';
 
 // Port to listen on.
 exports.server_port = 8888;
 
 // Path to directory containing static files.
-exports.static_path = '../webclient/'
+exports.static_path = '../../webclient/'
 
 // Mapping between file extensions and MIME types.
 exports.mime_types = {

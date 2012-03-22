@@ -5,14 +5,19 @@ var requestHandlers = require('./requestHandlers');
 // matching requests.
 var handlers = [
   {
-    path: new RegExp('^/discussions$', 'i'),
-    method: 'GET',
-    requestHandler: requestHandlers.listDiscussions,
-  },
-  {
     path: new RegExp('^/$', 'i'),
     method: 'GET',
     requestHandler: requestHandlers.serveRoot
+  },
+  {
+    path: new RegExp('^/discussions$', 'i'),
+    method: 'POST',
+    requestHandler: requestHandlers.createDiscussion
+  },
+  {
+    path: new RegExp('^/discussions$', 'i'),
+    method: 'GET',
+    requestHandler: requestHandlers.listDiscussions,
   },
   {
     path: new RegExp('\\.(css|js|ico|png|jpg|jpeg|gif)$', 'i'),

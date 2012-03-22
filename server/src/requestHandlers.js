@@ -10,6 +10,12 @@ function listDiscussions(response, request) {
   });
 }
 
+function createDiscussion(response, request, post_data) {
+  var discussion = new models.Discussion();
+  discussion.create(post_data);
+  _respondWithSuccess(response);
+}
+
 function serveRoot(response, request) {
   request.url = '/index.html';
   return serveStaticFile(response, request);
@@ -58,7 +64,13 @@ function _serveJSON(response, obj) {
   response.end();
 }
 
+function _respondWithSuccess(response) {
+  response.writeHead(200, {'Content-Type': 'text/plain'});
+  response.end();
+}
+
 exports.listDiscussions = listDiscussions;
+exports.createDiscussion = createDiscussion;
 exports.serveRoot = serveRoot;
 exports.serveStaticFile = serveStaticFile;
 exports.throwFileNotFound = throwFileNotFound;

@@ -3,7 +3,7 @@ var requestHandlers = require('./requestHandlers');
 
 // Route the provided response to the appropriate handler. Return a 404 error
 // if an appropriate handler is not found.
-function route(handlers, request, response) {
+function route(handlers, request, response, post_data) {
   var reqPath = util.extractPath(request);
   var reqMethod = request.method;
 
@@ -14,7 +14,7 @@ function route(handlers, request, response) {
     if(handler.path.test(reqPath) && handler.method === reqMethod) {
       console.log(reqMethod + ' request for ' + reqPath +
         ' dispatched to ' + handler.requestHandler.name);
-      handler.requestHandler(response, request);
+      handler.requestHandler(response, request, post_data);
       return;
     }
   }
