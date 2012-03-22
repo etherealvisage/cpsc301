@@ -26,3 +26,9 @@ ex. CREATE TABLE t1(a INTEGER PRIMARY KEY, b INTEGER);
   INSERT INTO t1 VALUES((SELECT max(a) FROM t1)+1,123);
 
 
+
+IM PRETTY SURE THIS IS THE NODE API WE WANT TO USE:
+
+https://github.com/developmentseed/node-sqlite3
+
+
