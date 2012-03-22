@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var config = require('./config');
 var models = require('./models');
 var util = require('./util');
 
@@ -35,7 +36,7 @@ function serveStaticFile(response, request) {
   var extension = path.extname(filePath);
   response.writeHead(200, {
     'Content-Type': util.lookupMimeType(extension),
-    'Cache-Control': 'max-age=3600'
+    'Cache-Control': 'max-age=' + config.http_caching_period
   });
 
   var readStream = fs.createReadStream(filePath);

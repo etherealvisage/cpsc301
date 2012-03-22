@@ -20,4 +20,8 @@ exports.mime_types = {
   'default': 'application/octet-stream',
 };
 
+// Path to SQLite database relative to server root directory.
 exports.db_file = 'misc/database.sqlite';
+
+// Time in seconds that HTTP agent will be instructed to cache static resources.
+exports.http_caching_period = 6*60*60;
