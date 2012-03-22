@@ -1,0 +1,14 @@
+INSTALLATION:
+1) First download the Node-sqlite3 files from : https://github.com/developmentseed/node-sqlite3
+
+2) to install we need to use npm
+  npm is a NodeJS package manager, so you need to ssh in since we don't have node on the computers
+ npm is already installed on ssh
+ 
+3) Go into the directory holding the Node-Sqlite3 Code
+  -> npm install sqlite3
+  BAM! DONE!
+  
+  
+USAGE:
+  
