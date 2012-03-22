@@ -1,8 +1,11 @@
 var fs = require('fs');
 var path = require('path');
 var util = require('./util');
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(':memory:');
 
 function listDiscussions(response, request) {
+ 
   var discussions = [
     {
       title: 'Under Your Spell',
@@ -19,6 +22,26 @@ function listDiscussions(response, request) {
   response.writeHead(200, {'Content-Type': 'application/json'});
   response.write(response_body);
   response.end();
+}
+
+// Experimenting with the node-sqlite3 
+function storeSomething(){
+
+db.serialize(function() {
+  db.run("CREATE TABLE lorem (info TEXT)");
+
+  var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
+  for (var i = 0; i < 10; i++) {
+      stmt.run("Ipsum " + i);
+  }
+  stmt.finalize();
+
+  db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+      console.log(row.id + ": " + row.info);
+  });
+});
+
+db.close();
 }
 
 function serveRoot(response, request) {
