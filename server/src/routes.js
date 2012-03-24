@@ -10,12 +10,12 @@ var handlers = [
     requestHandler: requestHandlers.serveRoot
   },
   {
-    path: new RegExp('^/discussions$', 'i'),
+    path: new RegExp('^/discussions\.json$', 'i'),
     method: 'POST',
     requestHandler: requestHandlers.createDiscussion
   },
   {
-    path: new RegExp('^/discussions$', 'i'),
+    path: new RegExp('^/discussions\.json$', 'i'),
     method: 'GET',
     requestHandler: requestHandlers.listDiscussions,
   },

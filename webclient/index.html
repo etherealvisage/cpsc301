@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Pynx -- loading . . .</title>
+    <title>Pynx</title>
 
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/pynx.css" rel="stylesheet" />
@@ -48,10 +48,7 @@
       </div>
     </div>
 
-    <div class="container" id="mainpage">
-    </div>
-
-    <div id="discussions"></div>
+    <div class="container" id="primary-content"></div>
 
     <script type="text/template" id="authentication-login-template">
       <div class="span6 offset3">
@@ -89,54 +86,12 @@
       </div>
     </script>
 
-    <div class="container">
-      <div id="discussion-post-IDHERE">
-        <div class="row">
-          <div class="span3 offset2 label">
-            Dr. P. Guin
-          </div>
-          <div class="span3 offset2" style="text-align: right; font-weight: bold">
-            Fri Mar 23 20:09:18 2012
-          </div>
-        </div>
-        <div class="row">
-          <div class="span8 offset2 well">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div id="discussion-post-IDHERE2">
-        <div class="row">
-          <div class="span3 offset2 label">
-            Dr. D. A. Mon
-          </div>
-          <div class="span3 offset2" style="text-align: right; font-weight: bold">
-            Fri Mar 23 20:20:09 2012
-          </div>
-        </div>
-        <div class="row">
-          <div class="span8 offset2 well">
-            <p>
-              <strong>Ad undas i</strong>, P!
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <script type="text/template" id="root-template">
+      <a href="/discussions">Discussions</a>
+    </script>
 
     <script type="text/template" id="discussion-thread-template">
-      <p>Discussion: <%= title %></p>
+      <p>Discussion: <%- title %></p>
     </script>
     
     <script src="js/lib/jquery.js"></script>
