@@ -18,6 +18,7 @@ Commands of interest:
     curl localhost:8888 # Test to ensure server is running.
 
   To execute tests:
+    # Note: for the tests to work, you must already have the server running.
     mocha
 
 Explanation of files:
