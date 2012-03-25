@@ -14,7 +14,7 @@ Commands of interest:
     bin/create_db # May re-run to overwrite database with virgin copy.
 
   To run:
-    node src/index.js
+    node app.js
     curl localhost:8888 # Test to ensure server is running.
 
   To execute tests:
@@ -31,6 +31,7 @@ Explanation of files:
   util.js: miscellaneous utility functions of use throughout project.
 
 API docs:
-  Node.js:            http://nodejs.org/api/
-  Mocha test library: http://visionmedia.github.com/mocha/
-  SQLite3 bindings:   https://github.com/developmentseed/node-sqlite3/wiki/API
+  Node.js:               http://nodejs.org/api/
+  Express web framework: http://expressjs.com/guide.html
+  Mocha test library:    http://visionmedia.github.com/mocha/
+  SQLite3 bindings:      https://github.com/developmentseed/node-sqlite3/wiki/API
