@@ -9,6 +9,15 @@ function dbCleanup() {
   db.close();
 }
 
+var Authentication = function() {
+
+};
+exports.Authentication = Authentication;
+
+Authentication.prototype.validateCookie = function(cookie, onValid, onInvalid) {
+  onInvalid();
+}
+
 var Memo = function() {
   
 };
@@ -41,7 +50,7 @@ Memo.prototype.create = function(params, onResult) {
   var q = this._createQuery;
   db.serialize(function() {
     q.run(params.title, params.content);
-    onResult({valid: "true"});
+    onResult(true);
   });
 }
 
