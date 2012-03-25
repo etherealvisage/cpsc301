@@ -4,7 +4,8 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , path = require('path');
 
 var app = module.exports = express.createServer();
 
@@ -16,7 +17,8 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.set('static_path', path.join(__dirname, '..', 'webclient'));
+  app.use(express.static(app.settings.static_path));
 });
 
 app.configure('development', function(){
