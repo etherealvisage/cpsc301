@@ -30,8 +30,8 @@ app.configure('production', function(){
   Routes
   ======*/
 app.get('/', routes.index);
-app.get('/discussions', routes.listDiscussions);
-app.post('/discussions', routes.createDiscussion);
+app.get('/api/discussions', routes.listDiscussions);
+app.post('/api/discussions', routes.createDiscussion);
 
 
 /*=====================
