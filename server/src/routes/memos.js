@@ -14,8 +14,10 @@ exports.getMemo = function(req, res) {
   });
 }
 
-exports.createDiscussion = function(req, res) {
-  var discussion = new models.Discussion();
-  discussion.create(req.body);
-  res.end();
+exports.createMemo = function(req, res) {
+  var memo = new models.Memo();
+  memo.create(req.body, function(result) {
+    res.json(result);
+  });
 };
+

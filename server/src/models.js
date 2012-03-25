@@ -16,6 +16,8 @@ exports.Memo = Memo;
 
 Memo.prototype._listQuery = db.prepare("SELECT id, title FROM " + config.dbTablePrefix + "memos");
 Memo.prototype._getQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix + "memos WHERE id = ?");
+Memo.prototype._createQuery =
+  db.prepare("INSERT INTO " + config.dbTablePrefix + "memos VALUES (NULL, ?, DATETIME('now'), ?)");
 
 Memo.prototype.list = function(onResults) {
   var q = this._listQuery;
@@ -26,40 +28,45 @@ Memo.prototype.list = function(onResults) {
   });
 }
 
-Memo.prototype.get = function(id, onResults) {
+Memo.prototype.get = function(params, onResults) {
   var q = this._getQuery;
   db.serialize(function() {
-    q.get(id, function(err, row) {
+    q.get(params.id, function(err, row) {
       onResults(row);
     });
   });
 }
 
+Memo.prototype.create = function(params, onResult) {
+  var q = this._createQuery;
+  db.serialize(function() {
+    q.run(params.title, params.content);
+    onResult({valid: "true"});
+  });
+}
+
 var Discussion = function() {
-  this._tbl = 'discussions';
 };
 exports.Discussion = Discussion;
 
+Discussion.prototype._listQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix + "discussions");
+Discussion.prototype._createQuery =
+  db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions VALUES (NULL, ?)");
+
 Discussion.prototype.list = function(onResults) {
-  var db = new sqlite3.Database(config.dbPath);
-  var tbl = this._tbl;
+  var q = this._listQuery;
 
   db.serialize(function() {
-    db.all('SELECT * FROM ' + tbl, function(err, rows) {
+    q.all(function(err, rows) {
       onResults(rows);
     });
   });
-
-  db.close();
 };
 
 Discussion.prototype.create = function(params) {
-  var db = new sqlite3.Database(config.dbPath);
-  var tbl = this._tbl;
+  var q = this._createQuery;
 
   db.serialize(function() {
-    db.run('INSERT INTO ' + tbl + ' (title) VALUES (?)', params.title);
+    q.run(params.title);
   });
-
-  db.close();
 }
