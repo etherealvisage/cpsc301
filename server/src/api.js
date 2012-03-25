@@ -14,7 +14,27 @@ server.router.post("/api/auth", function(request, response) {
   });
 });
 
-server.router.get("/{base}", function(req, res) {
-  console.log(JSON.stringify(req.params));
+
+/* Memos */
+function listMemos(request, response) {
+  var model = new models.Memo();
+  model.list(function(data) {
+    server.serveAsJSON(response, data);
+  });
+}
+
+server.router.get("/api/memos", function(request, response) {
+  listMemos(request, response);
+});
+
+function getMemo(request, response) {
+  var model = new models.Memo();
+  model.get({"id": request.params.id}, function(data) {
+    server.serveAsJSON(response, data);
+  });
+}
+
+server.router.get("/api/memos/{id}([0-9]+)", function(request, response) {
+  getMemo(request, response);
 });
 

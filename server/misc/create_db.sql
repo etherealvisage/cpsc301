@@ -11,6 +11,13 @@ CREATE TABLE sessions (
   uid INTEGER NOT NULL
 );
 
+CREATE TABLE memos (
+  id INTEGER PRIMARY KEY,
+  title TEXT NOT NULL,
+  postDate DATETIME,
+  content TEXT NOT NULL
+);
+
 CREATE TABLE discussions (
   id INTEGER PRIMARY KEY,
   title TEXT
