@@ -19,7 +19,7 @@ Discussion.View = Backbone.View.extend({
 
 Discussion.Collection = Backbone.Collection.extend({
   model: Discussion.Model,
-  url: '/discussions.json'
+  url: '/api/discussions'
 });
 
 Discussion.CollectionView = Backbone.View.extend({
