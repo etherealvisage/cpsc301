@@ -15,7 +15,7 @@
           <div id="authenticated-nav">
             <ul class="nav">
               <li class="divider-vertical"></li>
-              <li><a href="#">Memos</a></li>
+              <li><a href="/memos">Memos</a></li>
               <li class="divider-vertical"></li>
               <li><a href="#">Discussions</a></li>
               <li class="divider-vertical"></li>
@@ -86,6 +86,10 @@
       </div>
     </script>
 
+    <script type="text/template" id="memo-list-item-template">
+        <%= postDate %>
+    </script>
+
     <script type="text/template" id="root-template">
       <a href="/discussions">Discussions</a>
     </script>
@@ -98,11 +102,10 @@
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone.js"></script>
 
+    <script src="js/memo.js"></script>
     <script src="js/discussion.js"></script>
     <script src="js/root.js"></script>
     <script src="js/router.js"></script>
     <script src="js/init.js"></script>
   </body>
 </html>
-
-<!-- vim: set tabstop=2: -->

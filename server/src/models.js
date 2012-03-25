@@ -42,7 +42,7 @@ var Memo = function() {
 }
 exports.Memo = Memo;
 
-Memo.prototype._listQuery = db.prepare("SELECT id, title FROM " + config.tablePrefix + "memos");
+Memo.prototype._listQuery = db.prepare("SELECT id, title, postDate FROM " + config.tablePrefix + "memos");
 Memo.prototype._getQuery = db.prepare("SELECT * FROM " + config.tablePrefix + "memos WHERE id = ?");
 
 Memo.prototype.list = function(callback) {
@@ -64,3 +64,4 @@ Memo.prototype.get = function(params, callback) {
     });
   });
 }
+
