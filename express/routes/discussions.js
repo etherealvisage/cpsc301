@@ -8,5 +8,7 @@ exports.listDiscussions = function(req, res) {
 };
 
 exports.createDiscussion = function(req, res) {
-  res.send(req.body);
+  var discussion = new models.Discussion();
+  discussion.create(req.body);
+  res.end();
 };
