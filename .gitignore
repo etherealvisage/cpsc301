@@ -1,2 +1,3 @@
 server/misc/database.sqlite
 .*.swp
+.vimrc
