@@ -1,9 +1,10 @@
+var models = require('../models');
+
 exports.listDiscussions = function(req, res) {
-  var discussions = [
-    {id: 1, title: 'Pants'},
-    {id: 2, title: 'Socks'},
-  ];
-  res.json(discussions);
+  var discussion = new models.Discussion();
+  discussion.list(function(rows) {
+    res.json(rows);
+  });
 };
 
 exports.createDiscussion = function(req, res) {

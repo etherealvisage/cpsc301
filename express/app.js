@@ -1,11 +1,7 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express')
-  , routes = require('./routes')
-  , path = require('path');
+  , path = require('path')
+  , config = require('./config')
+  , routes = require('./routes');
 
 var app = module.exports = express.createServer();
 
@@ -14,14 +10,12 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.set('staticPath', path.join(__dirname, '..', 'webclient'));
-  app.set('dbFile', path.join(__dirname, '..', 'server', 'misc', 'database.sqlite'));
 
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   // Max static document age: 6 h
-  app.use(express.static(app.settings.staticPath, { maxAge: 6*60*60*1000 }));
+  app.use(express.static(config.staticDocPath, { maxAge: config.staticDocMaxAge }));
 });
 
 app.configure('development', function(){
