@@ -1,27 +1,39 @@
-var http = require('http');
-var querystring = require('querystring');
-var config = require('./config');
+var config = require("./config");
+var querystring = require("querystring");
+var router = require("router");
+var server = router();
 
-// Start the HTTP server.
-function start(route, handlers) {
-  http.createServer(function(request, response) {
-    var postData = '';
-    if(request.method === 'POST') {
-      // POST data's encoding must be specified as binary for it not to be
-      // manipulated as a result of string encoding.
-      request.setEncoding('binary');
-      request.addListener('data', function(postDataChunk) {
-        postData += postDataChunk;
-      });
+server.all(function(req, res) {
+  console.log("Default handler");
+  res.writeHead(404, {"Content-Type": "text/plain"});
+  res.end("File not found\n");
+});
+
+server.listen(config.listenPort);
+
+exports.router = server;
+
+exports.getPOST = function(request, callback) {
+  var postData = "";
+  request.addListener("data", function(chunk) {
+    postData += chunk;
+  });
+
+  request.addListener("end", function() {
+    var decoded = undefined;
+    if(request.headers["content-type"] == "application/x-www-form-urlencoded") {
+      decoded = querystring.parse(postData);
+      callback(request, decoded);
     }
-
-    request.addListener('end', function() {
-      var decoded_post = null;
-      if(request.headers['content-type'] === 'application/x-www-form-urlencoded')
-        decoded_post = querystring.parse(postData);
-      route(handlers, request, response, decoded_post);
-    });
-  }).listen(config.server_port, config.server_host);
+    else {
+      callback(request, postData);
+    }
+  });
 }
 
-exports.start = start;
+exports.serveAsJSON = function(response, object) {
+  response.writeHead(200, {"content-type": "application/json"});
+  response.write(JSON.stringify(object));
+  response.end();
+}
+
