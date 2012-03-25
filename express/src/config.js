@@ -4,6 +4,6 @@
 var path = require('path');
 
 exports.serverPort = 8888;
-exports.staticDocPath = path.resolve(__dirname, '..', 'webclient');
+exports.staticDocPath = path.resolve(__dirname, '..', '..', 'webclient');
 exports.staticDocMaxAge = 6*60*60*1000; // 6 hours
-exports.dbPath = path.resolve(__dirname, '..', 'server', 'misc', 'database.sqlite');
+exports.dbPath = path.resolve(__dirname, '..', '..', 'server', 'misc', 'database.sqlite');

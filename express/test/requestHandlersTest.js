@@ -1,6 +1,6 @@
 var assert = require('assert');
 var http = require('http');
-var config = require('../config');
+var config = require('../src/config');
 
 describe('Request handlers', function() {
   describe('#serveStaticFile()', function() {

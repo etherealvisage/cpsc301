@@ -14,7 +14,7 @@ Commands of interest:
     bin/create_db # May re-run to overwrite database with virgin copy.
 
   To run:
-    node app.js
+    node src/app.js
     curl localhost:8888 # Test to ensure server is running.
 
   To execute tests:
