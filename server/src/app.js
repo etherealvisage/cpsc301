@@ -30,6 +30,10 @@ app.configure('production', function(){
   Routes
   ======*/
 app.get('/', routes.index);
+
+app.get('/api/memos', routes.listMemos);
+app.get('/api/memos/:id([0-9]+)', routes.getMemo);
+
 app.get('/api/discussions', routes.listDiscussions);
 app.post('/api/discussions', routes.createDiscussion);
 
