@@ -1,6 +1,6 @@
 var assert = require('assert');
 var http = require('http');
-var config = require('../src/config');
+var config = require('../config');
 
 describe('Request handlers', function() {
   describe('#serveStaticFile()', function() {
@@ -32,8 +32,8 @@ describe('Request handlers', function() {
 
 function make_get_request(path, on_response) {
   http.get({
-    host: config.server_host,
-    port: config.server_port,
+    host: 'localhost',
+    port: config.serverPort,
     path: path,
   }, on_response).on('error', function(err) {
     throw err;

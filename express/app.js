@@ -32,5 +32,5 @@ app.get('/', routes.index);
 app.get('/discussions', routes.listDiscussions);
 app.post('/discussions', routes.createDiscussion);
 
-app.listen(8888);
+app.listen(config.serverPort);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
