@@ -20,7 +20,7 @@ var handlers = [
     requestHandler: requestHandlers.listDiscussions,
   },
   {
-    path: new RegExp('\\.(css|js|ico|png|jpg|jpeg|gif)$', 'i'),
+    path: new RegExp('\\.(css|js|ico|png|jpg|jpeg|gif|test)$', 'i'),
     method: 'GET',
     requestHandler: requestHandlers.serveStaticFile
   }
