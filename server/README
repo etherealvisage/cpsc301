@@ -1,7 +1,24 @@
-To install dependencies:
-  npm install sqlite3
-To run:
-  NODE_PATH=path/to/directory/containing/node-sqlite3 node src/index.js
+Commands of interest:
+  Note that all commands are relative to cpsc301-pynx/server/, meaning you must
+  be in that directory to execute.
+
+  To install dependencies:
+    npm set prefix ~/.node_modules
+    echo 'export PATH="$PATH":~/.node_modules/bin' >> ~/.bash_profile
+    echo 'export NODE_PATH=~/.node_modules/lib/node_modules:"$NODE_PATH"' >> ~/.bash_profile
+    source ~/.bash_profile
+    npm install -g sqlite3
+    npm install -g mocha
+
+  To set up database:
+    bin/create_db # May re-run to overwrite database with virgin copy.
+
+  To run:
+    node src/index.js
+    curl localhost:8888 # Test to ensure server is running.
+
+  To execute tests:
+    mocha
 
 Explanation of files:
   config.js: store configuration options that the sysadmin might want to change.
@@ -12,5 +29,7 @@ Explanation of files:
   server.js: initializes HTTP server and passes requests to router.
   util.js: miscellaneous utility functions of use throughout project.
 
-API docs for SQLite Node.js library:
-  https://github.com/developmentseed/node-sqlite3/wiki/API
+API docs:
+  Node.js:            http://nodejs.org/api/
+  Mocha test library: http://visionmedia.github.com/mocha/
+  SQLite3 bindings:   https://github.com/developmentseed/node-sqlite3/wiki/API
