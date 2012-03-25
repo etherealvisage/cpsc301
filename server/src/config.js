@@ -1,27 +1,9 @@
-// Host to listen on.
-exports.server_host = '0.0.0.0';
+// This file contains configuration information that is independent from
+// Express, and thus accessible from non-Express modules such as models.js.
 
-// Port to listen on.
-exports.server_port = 8888;
+var path = require('path');
 
-// Path to directory containing static files.
-exports.static_path = '../../webclient/'
-
-// Mapping between file extensions and MIME types.
-exports.mime_types = {
-  '.gif': 'image/gif',
-  '.jpeg': 'image/jpeg',
-  '.jpg': 'image/jpeg',
-  '.png': 'image/png',
-  '.html': 'text/html',
-  '.js': 'application/javascript',
-  '.css': 'text/css',
-  '.ico': 'image/x-icon',
-  'default': 'application/octet-stream',
-};
-
-// Path to SQLite database relative to server root directory.
-exports.db_file = 'misc/database.sqlite';
-
-// Time in seconds that HTTP agent will be instructed to cache static resources.
-exports.http_caching_period = 6*60*60;
+exports.serverPort = 8888;
+exports.staticDocPath = path.resolve(__dirname, '..', '..', 'webclient');
+exports.staticDocMaxAge = 6*60*60*1000; // 6 hours
+exports.dbPath = path.resolve(__dirname,  '..', 'misc', 'database.sqlite');
