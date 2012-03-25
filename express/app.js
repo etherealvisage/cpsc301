@@ -14,11 +14,14 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('staticPath', path.join(__dirname, '..', 'webclient'));
+  app.set('dbFile', path.join(__dirname, '..', 'server', 'misc', 'database.sqlite'));
+
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.set('static_path', path.join(__dirname, '..', 'webclient'));
-  app.use(express.static(app.settings.static_path));
+  // Max static document age: 6 h
+  app.use(express.static(app.settings.staticPath, { maxAge: 6*60*60*1000 }));
 });
 
 app.configure('development', function(){
@@ -32,7 +35,8 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index);
-app.get('/discussions', routes.list_discussions);
+app.get('/discussions', routes.listDiscussions);
+app.post('/discussions', routes.createDiscussion);
 
-app.listen(3000);
+app.listen(8888);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
