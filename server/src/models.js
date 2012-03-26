@@ -15,7 +15,7 @@ var Authentication = function() {
 exports.Authentication = Authentication;
 
 Authentication.prototype.validateCookie = function(cookie, onValid, onInvalid) {
-  onInvalid();
+  onValid();
 }
 
 var Memo = function() {
@@ -23,8 +23,10 @@ var Memo = function() {
 };
 exports.Memo = Memo;
 
-Memo.prototype._listQuery = db.prepare("SELECT id, title FROM " + config.dbTablePrefix + "memos");
-Memo.prototype._getQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix + "memos WHERE id = ?");
+Memo.prototype._listQuery =
+  db.prepare("SELECT id, title, postDate FROM " + config.dbTablePrefix + "memos");
+Memo.prototype._getQuery =
+  db.prepare("SELECT * FROM " + config.dbTablePrefix + "memos WHERE id = ?");
 Memo.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "memos VALUES (NULL, ?, DATETIME('now'), ?)");
 
@@ -41,6 +43,8 @@ Memo.prototype.get = function(params, onResults) {
   var q = this._getQuery;
   db.serialize(function() {
     q.get(params.id, function(err, row) {
+      console.log(err);
+      console.log(row);
       onResults(row);
     });
   });

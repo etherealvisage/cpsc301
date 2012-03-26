@@ -15,7 +15,7 @@
           <div id="authenticated-nav">
             <ul class="nav">
               <li class="divider-vertical"></li>
-              <li><a href="#">Memos</a></li>
+              <li><a href="/memos">Memos</a></li>
               <li class="divider-vertical"></li>
               <li><a href="#">Discussions</a></li>
               <li class="divider-vertical"></li>
@@ -75,13 +75,32 @@
           </div>
           <div class="span3 offset2" style="text-align: right; font-weight: bold">
             <%= timestamp %>
-            Fri Mar 23 20:09:18 2012
           </div>
         </div>
         <div class="row">
           <div class="span8 offset2 well">
             <%= content %>
           </div>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="memo-list-item-template">
+        <li><a href="/memos/<%= id %>"><%= title %></a> on <%= postDate %></li>
+    </script>
+
+    <script type="text/template" id="memo-view-template">
+      <div class="row">
+        <div class="span3 offset2 label">
+          <%= title %>
+        </div>
+        <div class="span3 offset2" style="text-align: right; font-weight: bold">
+          <%= postDate %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8 offset2 well">
+          <%= content %>
         </div>
       </div>
     </script>
@@ -98,11 +117,10 @@
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone.js"></script>
 
+    <script src="js/memo.js"></script>
     <script src="js/discussion.js"></script>
     <script src="js/root.js"></script>
     <script src="js/router.js"></script>
     <script src="js/init.js"></script>
   </body>
 </html>
-
-<!-- vim: set tabstop=2: -->

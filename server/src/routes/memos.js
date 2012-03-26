@@ -5,7 +5,7 @@ exports.listMemos = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
     memo.list(function(rows) {
-      response.json(rows);
+      res.json(rows);
     });
   });
 }
@@ -13,7 +13,8 @@ exports.listMemos = function(req, res) {
 exports.getMemo = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
-    memo.get(req.params.id, function(row) {
+    console.log("id: " + req.params.id);
+    memo.get(req.params, function(row) {
       res.json(row);
     });
   });
