@@ -1,7 +1,7 @@
 #!/bin/sh
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # Get directory in which script is stored.
-MISC_PATH=$DIR/../misc
-DB_PATH=$MISC_PATH/database.sqlite
+MISC_PATH="$DIR"/../misc
+DB_PATH="$MISC_PATH"/database.sqlite
 
-test -f $DB_PATH && rm $DB_PATH
-sqlite3 $DB_PATH ".read $MISC_PATH/create_db.sql"
+test -f "$DB_PATH" && rm "$DB_PATH"
+sqlite3 "$DB_PATH" ".read '$MISC_PATH/create_db.sql'"
