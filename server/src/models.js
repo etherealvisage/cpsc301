@@ -28,7 +28,8 @@ Memo.prototype._listQuery =
 Memo.prototype._getQuery =
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "memos WHERE id = ?");
 Memo.prototype._createQuery =
-  db.prepare("INSERT INTO " + config.dbTablePrefix + "memos VALUES (NULL, ?, DATETIME('now'), ?)");
+  db.prepare("INSERT INTO " + config.dbTablePrefix +
+    "memos VALUES (NULL, ?, 0, strftime('%s', 'now'), ?)");
 
 Memo.prototype.list = function(onResults) {
   var q = this._listQuery;
@@ -60,9 +61,10 @@ var Discussion = function() {
 };
 exports.Discussion = Discussion;
 
-Discussion.prototype._listQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix + "discussions");
+Discussion.prototype._listQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
+  + "discussions");
 Discussion.prototype._createQuery =
-  db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions VALUES (NULL, ?)");
+  db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions VALUES (NULL, ?, 0, '')");
 
 Discussion.prototype.list = function(onResults) {
   var q = this._listQuery;
