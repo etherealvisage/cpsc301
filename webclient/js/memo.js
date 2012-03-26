@@ -28,6 +28,7 @@ Memo.ListCollectionView = Backbone.View.extend({
   list: undefined,
 
   initialize: function() {
+    setNavInfo("memo", "Memo List", "");
     var self = this;
     this.collection = new Memo.ListCollection;
     this.collection.on("reset", function() {
@@ -70,6 +71,7 @@ Memo.MemoView = Backbone.View.extend({
   template: $("#memo-view-template").html(),
 
   initialize: function() {
+    setNavInfo("memo", "View Memo", "");
     this.model = new Memo.MemoModel();
     this.model.id = this.id;
     var self = this;

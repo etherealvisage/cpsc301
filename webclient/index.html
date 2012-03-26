@@ -11,18 +11,19 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/"><img src="img/pynx-logo-small.png" alt="Pynx" /></a>
+          <a class="brand" href="/">
+            <!--<img src="img/pynx-logo-small.png" alt="Pynx" />-->
+            Pynx
+          </a>
           <div id="authenticated-nav">
             <ul class="nav">
               <li class="divider-vertical"></li>
-              <li><a href="/memos">Memos</a></li>
-              <li class="divider-vertical"></li>
-              <li><a href="#">Discussions</a></li>
-              <li class="divider-vertical"></li>
+              <li id="navbar-memos"><a href="/memos">Memos</a></li>
+              <li id="navbar-discussions"><a href="/discussions">Discussions</a></li>
             </ul>
             <div id="admin-nav">
               <ul class="nav">
-                <li><a href="#">Admin</a></li>
+                <li id="navbar-admin"><a href="#">Admin</a></li>
                 <li class="divider-vertical"></li>
               </ul>
             </div>
@@ -39,10 +40,8 @@
     <div class="container" id="navbase">
       <div class="row">
         <div class="span4" id="navbase-left">
-          <h3>Left text</h3>
         </div>
         <div class="span4 offset4" style="text-align: right" id="navbase-right">
-          <h3>Right text</h3>
         </div>
         <div class="span10 offset1"><hr /></div>
       </div>
@@ -53,13 +52,14 @@
     <script type="text/template" id="authentication-login-template">
       <div class="span6 offset3">
         <div style="text-align: center">
-          <img src="img/pynx-logo.png"/>
+          <img src="img/pynx-logo.png" />
           <form id="authentication-form" style="text-align: center">
             <input type="textbox" name="authentication-username" style="width: 40%" />
             <br />
             <input type="password" name="authentication-password" style="width: 40%" />
             <br />
-            <input type="submit" name="authentication-submit" value="Login" style="width: 30%; text-align: center;"/>
+            <input type="submit" name="authentication-submit"
+                   value="Login" style="width: 30%; text-align: center;"/>
           </form>
         </div>
       </div>
@@ -121,6 +121,8 @@
     <script src="js/discussion.js"></script>
     <script src="js/root.js"></script>
     <script src="js/router.js"></script>
+    <script src="js/util.js"></script>
     <script src="js/init.js"></script>
   </body>
 </html>
+

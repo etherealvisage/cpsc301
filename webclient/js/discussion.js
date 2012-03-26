@@ -19,13 +19,14 @@ Discussion.View = Backbone.View.extend({
 
 Discussion.Collection = Backbone.Collection.extend({
   model: Discussion.Model,
-  url: '/discussions.json'
+  url: '/api/discussions'
 });
 
 Discussion.CollectionView = Backbone.View.extend({
   el: $('#primary-content'),
 
   initialize: function() {
+    setNavInfo("discussion", "Discussion List", "");
     var self = this;
     this.collection = new Discussion.Collection();
     this.collection.on('reset', function() {
