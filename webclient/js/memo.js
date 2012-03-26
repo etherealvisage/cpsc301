@@ -12,6 +12,9 @@ Memo.ListItemView = Backbone.View.extend({
   tagName: "div",
   template: $("#memo-list-item-template").html(),
   render: function() {
+    var d = new Date();
+    d.setTime(this.model.postDate);
+    this.model.postDateFormatted = d.toLocaleString();
     var tmpl = _.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
     return this;
