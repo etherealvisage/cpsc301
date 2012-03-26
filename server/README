@@ -3,13 +3,8 @@ Commands of interest:
   be in that directory to execute.
 
   To install dependencies:
-    npm set prefix ~/.node_modules
-    echo 'export PATH="$PATH":~/.node_modules/bin' >> ~/.bash_profile
-    echo 'export NODE_PATH=~/.node_modules/lib/node_modules:"$NODE_PATH"' >> ~/.bash_profile
-    source ~/.bash_profile
-    npm install -g express
-    npm install -g sqlite3
-    npm install -g mocha
+    # Ensure you're in the server directory first -- e.g., cpsc301-pynx/server/.
+    npm install express mocha sqlite3
 
   To set up database:
     bin/create_db # May re-run to overwrite database with virgin copy.
@@ -20,19 +15,27 @@ Commands of interest:
 
   To execute tests:
     # Note: for the tests to work, you must already have the server running.
-    mocha
-
-Explanation of files:
-  config.js: store configuration options that the sysadmin might want to change.
-  index.js: file called on server startup to perform initializations tasks.
-  requestHandlers.js: handlers to service requests.
-  router.js: routes request to appropriate request handler.
-  routes.js: maps URLs to specific handlers.
-  server.js: initializes HTTP server and passes requests to router.
-  util.js: miscellaneous utility functions of use throughout project.
+    node_modules/.bin/mocha
 
 API docs:
   Node.js:               http://nodejs.org/api/
   Express web framework: http://expressjs.com/guide.html
   Mocha test library:    http://visionmedia.github.com/mocha/
   SQLite3 bindings:      https://github.com/developmentseed/node-sqlite3/wiki/API
+
+Troubleshooting:
+  If you receive this error:
+    node.js:201
+      throw e; // process.nextTick error, or 'error' event on first tick
+            ^
+    TypeError: Cannot read property 'port' of null
+      at Object.<anonymous> (/home/uga/jawinter/work/cpsc301-project/server/src/app.js:47:76)
+      at Module._compile (module.js:432:26)
+      at Object..js (module.js:450:10)
+      at Module.load (module.js:351:31)
+      at Function._load (module.js:310:12)
+      at Array.0 (module.js:470:10)
+      at EventEmitter._tickCallback (node.js:192:40)
+  ... then the problem is that a server is already listening on the same port.
+  Change the serverPort in src/config.js and try again. (Make sure you don't
+  commit this change to the Git repo, however.)
