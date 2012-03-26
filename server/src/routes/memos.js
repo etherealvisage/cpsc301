@@ -13,7 +13,6 @@ exports.listMemos = function(req, res) {
 exports.getMemo = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
-    console.log("id: " + req.params.id);
     memo.get(req.params, function(row) {
       res.json(row);
     });

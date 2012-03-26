@@ -43,8 +43,6 @@ Memo.prototype.get = function(params, onResults) {
   var q = this._getQuery;
   db.serialize(function() {
     q.get(params.id, function(err, row) {
-      console.log(err);
-      console.log(row);
       onResults(row);
     });
   });
