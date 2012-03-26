@@ -1,4 +1,4 @@
-vr models = require('../models');
+var models = require('../models');
 var util = require("./util");
 
 exports.listMemos = function(req, res) {
