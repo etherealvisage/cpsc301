@@ -5,3 +5,17 @@ The general idea is that the state of the navigation bar can be changed by toggl
 1. authenticated-nav: contains all of the `authenticated-only' navigation options.
 2. admin-nav: contains the `Administrator-only' navigation options.
 
+# Template naming scheme
+<subsystem>-<type>-template
+Examples:
+- authentication-login-template
+- memo-list-template
+- memo-list-item-template
+- memo-view-template
+
+# Template element naming scheme
+Strip off the -template from the template name, and append whatever is necessary to that.
+Examples:
+- memo-view-edit
+- memo-edit-submit
+
