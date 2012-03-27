@@ -2,6 +2,7 @@ var sqlite3 = require('sqlite3').verbose();
 var config = require('./config');
 
 var db = new sqlite3.Database(config.dbPath);
+db.run("PRAGMA foreign_keys = ON");
 
 /* TODO: call dbCleanup on SIG{INT,KILL,TERM}. */
 function dbCleanup() {

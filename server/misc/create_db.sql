@@ -45,3 +45,10 @@ CREATE TABLE discussions (
   FOREIGN KEY(rootPostID) REFERENCES posts(id)
 );
 
+CREATE TABLE unreadDiscussions (
+  discussionID INTEGER,
+  userID INTEGER,
+  lastRead INTEGER,
+  FOREIGN KEY(discussionID) REFERENCES discussions(id),
+  FOREIGN KEY(userID) REFERENCES users(id)
+);

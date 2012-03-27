@@ -26,6 +26,15 @@ describe('Static file server', function() {
       });
     });
   });
+
+  it('should return an HTTP 404 error for a non-existent file', function(done) {
+    make_get_request('/does_not_exist', function(res) {
+      var resCode = res.statusCode;
+      var expectedCode = 404;
+      assert.equal(resCode, expectedCode);
+      done();
+    });
+  });
 });
 
 function make_get_request(path, on_response) {
