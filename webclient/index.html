@@ -5,10 +5,10 @@
     <title>Pynx</title>
 
     <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap-wysihtml5.css" rel="stylesheet" />
     <link href="css/pynx.css" rel="stylesheet" />
   </head>
-  <body>
-    <div class="navbar navbar-fixed-top">
+  <body> <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">
@@ -67,6 +67,7 @@
 
     <hr />
 
+
     <script type="text/template" id="discussion-post-template">
       <div id="discussion-post-<%= postid %>">
         <div class="row">
@@ -86,7 +87,7 @@
     </script>
 
     <script type="text/template" id="memo-list-item-template">
-        <li><a href="/memos/<%= id %>"><%= title %></a> on <%= postDate %></li>
+        <li><a href="/memos/<%= id %>"><%= title %></a> on <%= postDateFormatted %></li>
     </script>
 
     <script type="text/template" id="memo-view-template">
@@ -94,7 +95,11 @@
         <div class="span3 offset2 label">
           <%= title %>
         </div>
-        <div class="span3 offset2" style="text-align: right; font-weight: bold">
+        <div class="span1" id="memo-editbox">
+          <i class="icon-edit" />
+          <i class="icon-remove" />
+        </div>
+        <div class="span4" style="text-align: right; font-weight: bold; font-size: 8pt;">
           <%= postDateFormatted %>
         </div>
       </div>
@@ -102,6 +107,23 @@
         <div class="span8 offset2 well">
           <%= content %>
         </div>
+      </div>
+    </script>
+    
+    <script type="text/template" id="memo-edit-template">
+      <div class="row">
+        <div class="span3 offset2 label">
+          Something
+        </div>
+        <div class="span3 offset2">
+          Else
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8 offset2 well">
+          <textarea id="memo-edit-textarea" />
+        </div>
+      </div>
       </div>
     </script>
 
@@ -116,6 +138,8 @@
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone.js"></script>
+    <script src="js/lib/wysihtml5-0.3.0_rc1.js"></script>
+    <script src="js/lib/bootstrap-wysihtml5.js"></script>
 
     <script src="js/memo.js"></script>
     <script src="js/discussion.js"></script>

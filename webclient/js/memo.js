@@ -13,8 +13,8 @@ Memo.ListItemView = Backbone.View.extend({
   template: $("#memo-list-item-template").html(),
   render: function() {
     var d = new Date();
-    d.setTime(this.model.postDate);
-    this.model.postDateFormatted = d.toLocaleString();
+    d.setTime(this.model.get("postDate")*1000);
+    this.model.set("postDateFormatted", d.toLocaleString());
     var tmpl = _.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
     return this;
@@ -87,9 +87,34 @@ Memo.MemoView = Backbone.View.extend({
   },
 
   render: function() {
+    var d = new Date();
+    d.setTime(this.model.get("postDate")*1000);
+    this.model.set("postDateFormatted", d.toLocaleString());
+
     this.$el.empty();
     var tmpl =_.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
+  }
+});
+
+Memo.EditView = Backbone.View.extend({
+  el: $("#primary-content"),
+
+  template: $("#memo-edit-template").html(),
+
+  initialize: function() {
+    setNavInfo("memo", "Edit Memo", "");
+  },
+
+  updateFromModel: function() {
+    $("#memo-edit-textarea").html(model.content);
+  },
+
+  render: function() {
+    this.$el.empty();
+    var tmpl = _.template(this.template);
+    $(this.el).html(templ(this.model.toJSON()));
+    $("#memo-edit-textarea").wysihtml5();
   }
 });
 
