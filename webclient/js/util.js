@@ -1,3 +1,6 @@
+/* Sets up the `navigation info', that is, the main nav bar and the
+  left/right navbase elements.
+*/
 function setNavInfo(main, left, right) {
   navElements = {
     "admin": $("#navbar-admin"),

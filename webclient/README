@@ -19,3 +19,11 @@ Examples:
 - memo-view-edit
 - memo-edit-submit
 
+# Commenting guidelines
+The general idea is to provide a brief overview of what each section of code does. Nothing
+too in-depth is required, but some general guidelines might be:
+- Provide a one-line description comment for each `class'.
+- Provide a one-line description comment for each method.
+- Provide a one-line description comment for non-obvious attributes.
+- Document anything that seems non-obvious.
+

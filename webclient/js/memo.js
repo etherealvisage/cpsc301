@@ -1,5 +1,7 @@
+/* Client-side views/collections for memos. */
 var Memo = {};
 
+/* Represents a single memo in `list-mode', e.g. just metadata. */
 Memo.ListItemModel = Backbone.Model.extend({
   defaults: {
     id: -1,
@@ -8,19 +10,24 @@ Memo.ListItemModel = Backbone.Model.extend({
   }
 });
 
+/* View class for list of metadata about memos. */
 Memo.ListItemView = Backbone.View.extend({
   tagName: "div",
   template: $("#memo-list-item-template").html(),
+  /* Renders the view. */
   render: function() {
     var d = new Date();
+    /* setTime takes milliseconds since epoch, server returns seconds since. */
     d.setTime(this.model.get("postDate")*1000);
     this.model.set("postDateFormatted", d.toLocaleString());
+
     var tmpl = _.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
     return this;
   },
 });
 
+/* A collection of list items, e.g. a list itself. */
 Memo.ListCollection = Backbone.Collection.extend({
   model: Memo.ListItemModel,
   url: "/api/memos"
@@ -28,10 +35,12 @@ Memo.ListCollection = Backbone.Collection.extend({
 
 Memo.ListCollectionView = Backbone.View.extend({
   el: $("#primary-content"),
+  /* list stores the <ul> element for the memo list. */
   list: undefined,
 
   initialize: function() {
     setNavInfo("memo", "Memo List", "");
+
     var self = this;
     this.collection = new Memo.ListCollection;
     this.collection.on("reset", function() {
@@ -50,6 +59,7 @@ Memo.ListCollectionView = Backbone.View.extend({
     }, this);
   },
 
+  /* Renders one particular list item and appends it to this.list. */
   renderListItem: function(listitem) {
     var listItemView = new Memo.ListItemView({
       model: listitem
@@ -59,15 +69,18 @@ Memo.ListCollectionView = Backbone.View.extend({
   },
 });
 
+/* Model for a `full' memo: everything there is to know. */
 Memo.MemoModel = Backbone.Model.extend({
   defaults: {
     title: "",
     postDate: "",
     content: ""
   },
+  /* url automatically formed via this.id and urlRoot. */
   urlRoot: "/api/memos/"
 });
 
+/* View for MemoModel: a full view of one particular memo. */
 Memo.MemoView = Backbone.View.extend({
   el: $("#primary-content"),
 
@@ -79,6 +92,7 @@ Memo.MemoView = Backbone.View.extend({
     this.model.id = this.id;
     var self = this;
 
+    /* Grab the model and render the view once we have the data. */
     this.model.fetch({
       success: function(model) {
         self.render();
@@ -98,6 +112,7 @@ Memo.MemoView = Backbone.View.extend({
   }
 });
 
+/* View for editing a memo. Uses the same model as MemoView. */
 Memo.EditView = Backbone.View.extend({
   el: $("#primary-content"),
 
@@ -120,9 +135,23 @@ Memo.EditView = Backbone.View.extend({
     this.$el.empty();
     var tmpl = _.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
+
+    /* Some elements in this template need setup. */
     $("#memo-edit-textarea").wysihtml5();
     $("#memo-edit-textarea").html(this.model.get("content"));
     $("#memo-edit-submit").attr("value", "Submit changes");
+
+    /* Handle form submission. */
+    var self = this;
+    $("#memo-edit-submit").click(function() {
+      /* Get the model to save itself. */
+      self.model.set("content", $("#memo-edit-textarea").html());
+      self.model.save();
+      /* Swap to viewing the memo. */
+      new Memo.MemoView({id: self.model.id});
+      /* Return false so the browser doesn't actually try to submit the form itself. */
+      return false;
+    });
   }
 });
 
