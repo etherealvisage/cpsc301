@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # Get directory in which script is stored.
 MISC_PATH="$DIR"/../misc
 DB_PATH="$MISC_PATH"/database.sqlite
