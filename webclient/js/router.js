@@ -8,6 +8,7 @@ var HappyRouter = Backbone.Router.extend({
     'discussions/:thread_id': 'show_discussion',
     'memos': 'list_memos',
     'memos/:memo_id': 'show_memo',
+    'memos/:memo_id/edit': 'edit_memo'
   },
   show_root: function() {
     console.log('Show root');
@@ -26,4 +27,7 @@ var HappyRouter = Backbone.Router.extend({
   show_memo: function(memo_id) {
     new Memo.MemoView({id: memo_id});
   },
+  edit_memo: function(memo_id) {
+    new Memo.EditView({id: memo_id});
+  }
 });

@@ -94,6 +94,7 @@ Memo.MemoView = Backbone.View.extend({
     this.$el.empty();
     var tmpl =_.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
+    $("#memo-view-edit").attr("href", "/memos/" + this.model.get("id") + "/edit");
   }
 });
 
@@ -104,17 +105,24 @@ Memo.EditView = Backbone.View.extend({
 
   initialize: function() {
     setNavInfo("memo", "Edit Memo", "");
-  },
+    this.model = new Memo.MemoModel();
+    this.model.id = this.id;
+    var self = this;
 
-  updateFromModel: function() {
-    $("#memo-edit-textarea").html(model.content);
+    this.model.fetch({
+      success: function(model) {
+        self.render();
+      }
+    });
   },
 
   render: function() {
     this.$el.empty();
     var tmpl = _.template(this.template);
-    $(this.el).html(templ(this.model.toJSON()));
+    $(this.el).html(tmpl(this.model.toJSON()));
     $("#memo-edit-textarea").wysihtml5();
+    $("#memo-edit-textarea").html(this.model.get("content"));
+    $("#memo-edit-submit").attr("value", "Submit changes");
   }
 });
 
