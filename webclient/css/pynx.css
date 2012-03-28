@@ -12,9 +12,9 @@ body {
 }
 
 .navbar .nav > li > a:hover {
-  color: #ff0000;
+  color: #ff4444;
 }
 
 .navbar .nav .active > a, .navbar .nav .active > a:hover {
-  color: #ff0000;
+  color: #ff4444;
 }
