@@ -20,9 +20,22 @@ Authentication.prototype._getUserDetailsQuery =
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE username = ? AND locked == 0");
 Authentication.prototype._addTokenQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "sessions VALUES(?, ?)");
+Authentication.prototype._validateCookieQuery =
+  db.prepare('SELECT COUNT(token) AS tokenCount FROM ' + config.dbTablePrefix + 'sessions WHERE token = ?');
+Authentication.prototype._logoutQuery =
+  db.prepare('DELETE FROM sessions WHERE token = ?');
 
 Authentication.prototype.validateCookie = function(cookie, onValid, onInvalid) {
-  onValid();
+  var validateCookieQuery = this._validateCookieQuery;
+
+  db.serialize(function() {
+    validateCookieQuery.get(cookie, function(err, row) {
+      if(row.tokenCount > 0 && typeof onValid !== 'undefined')
+        onValid();
+      else if(typeof onInvalid !== 'undefined')
+        onInvalid();
+    });
+  });
 };
 
 Authentication.prototype.login = function(username, password, onResult) {
@@ -51,6 +64,13 @@ Authentication.prototype.login = function(username, password, onResult) {
         }
       }
     });
+  });
+};
+
+Authentication.prototype.logout = function(session) {
+  var logoutQuery = this._logoutQuery;
+  db.serialize(function() {
+    logoutQuery.run(session, function(err) { });
   });
 };
 
