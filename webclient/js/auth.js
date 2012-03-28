@@ -37,11 +37,12 @@ Authentication.LoginView = Backbone.View.extend({
           password: $("#authentication-login-password").val()
         }
       }).done(function(data) { 
-        msg.css("color", "red");
         if(data.state == "notFound") {
+          msg.css("color", "red");
           msg.html("Unknown username.");
         }
         else if(data.state == "failed") {
+          msg.css("color", "red");
           msg.html("Incorrect password.");
         }
         else if(data.state == "success") {
