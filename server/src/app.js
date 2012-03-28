@@ -10,8 +10,8 @@ var app = module.exports = express.createServer();
   Configuration
   =============*/
 app.configure(function(){
-  app.use(express.bodyParser());
   app.use(express.cookieParser());
+  app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   // Max static document age: 6 h

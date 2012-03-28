@@ -17,7 +17,7 @@ var Authentication = function() {
 exports.Authentication = Authentication;
 
 Authentication.prototype._getUserDetailsQuery = 
-  db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE username = ?");
+  db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE username = ? AND locked == 0");
 Authentication.prototype._addTokenQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "sessions VALUES(?, ?)");
 
@@ -38,7 +38,14 @@ Authentication.prototype.login = function(username, password, onResult) {
         if(pwHash === row.pwhash) {
           var token = self.generateToken();
           addQuery.run(row.id, token);
-          onResult({state: "success", token: token});
+          onResult({
+            state: "success",
+            token: token,
+            userId: row.id,
+            name: row.name,
+            username: row.username,
+            userType: row.userType,
+          });
         } else {
           onResult({state: "failed"});
         }
