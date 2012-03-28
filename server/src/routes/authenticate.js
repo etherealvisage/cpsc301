@@ -11,3 +11,10 @@ exports.login = function(req, res) {
     res.json(result);
   });  
 };
+
+exports.logout = function(req, res) {
+  var authenticator = new models.Authentication();
+  var session = req.cookies.session;
+  authenticator.validateCookie(session, function() {
+    authenticator.logout(session);
+  }};
