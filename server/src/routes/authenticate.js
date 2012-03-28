@@ -17,4 +17,5 @@ exports.logout = function(req, res) {
   var session = req.cookies.session;
   authenticator.validateCookie(session, function() {
     authenticator.logout(session);
-  }};
+  });
+}
