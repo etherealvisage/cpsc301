@@ -3,6 +3,7 @@ var Authentication = {};
 Authentication.LoginView = Backbone.View.extend({
   tagName: "div",
   el: $("#primary-content"),
+  first: true,
 
   template: $("#authentication-login-template").html(),
 
@@ -12,9 +13,12 @@ Authentication.LoginView = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).empty();
-    $(this.el).html(this.template);
-
+    if(!this.first) {
+      $(this.el).empty();
+      $(this.el).html(this.template);
+    }
+    else this.first = false;
+    
     /* Initialize page elements. */
     var self = this;
     var msg = $("#authentication-login-message");
