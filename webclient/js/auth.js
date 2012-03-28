@@ -1,9 +1,13 @@
 var Authentication = {};
 
+/* Handle the first login specially; the auth page has been preloaded
+  into the primary-content div; don't bother reloading it.
+*/
+Authentication.firstLogin = true;
+
 Authentication.LoginView = Backbone.View.extend({
   tagName: "div",
   el: $("#primary-content"),
-  first: true,
 
   template: $("#authentication-login-template").html(),
 
@@ -13,11 +17,11 @@ Authentication.LoginView = Backbone.View.extend({
   },
 
   render: function() {
-    if(!this.first) {
+    if(Authentication.firstLogin == false) {
       $(this.el).empty();
       $(this.el).html(this.template);
     }
-    else this.first = false;
+    else Authentication.firstLogin = false;
     
     /* Initialize page elements. */
     var self = this;
@@ -52,7 +56,7 @@ Authentication.LoginView = Backbone.View.extend({
         msg.css("color", "red");
       });
       msg.html("Sending login request . . .");
-      msg.css("color", "blue");
+      msg.css("color", "#888");
       return false;
     });
   }
