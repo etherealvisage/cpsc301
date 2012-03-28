@@ -17,13 +17,13 @@ var Authentication = function() {
 exports.Authentication = Authentication;
 
 Authentication.prototype._getUserDetailsQuery = 
-  db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE username = ?");
+  db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE username = ? AND locked == 0");
 Authentication.prototype._addTokenQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "sessions VALUES(?, ?)");
 
 Authentication.prototype.validateCookie = function(cookie, onValid, onInvalid) {
   onValid();
-}
+};
 
 Authentication.prototype.login = function(username, password, onResult) {
   var getQuery = this._getUserDetailsQuery;
@@ -31,36 +31,42 @@ Authentication.prototype.login = function(username, password, onResult) {
   var self = this;
   db.serialize(function() {
     getQuery.get(username, function(err, row) {
-      if(typeof row === "undefined"){
-        onResult({state:"notFound"});
-      }else{
+      if(typeof row === "undefined") {
+        onResult({state: "notFound"});
+      } else {
         var pwHash = self.generateHash(password, row.pwsalt);
-        if(pwHash === row.pwhash){
+        if(pwHash === row.pwhash) {
           var token = self.generateToken();
           addQuery.run(row.id, token);
-          onResult({state:"success", token:token});
-        }else{
-          onResult({state:"failed"});
+          onResult({
+            state: "success",
+            token: token,
+            userId: row.id,
+            name: row.name,
+            username: row.username,
+            userType: row.userType,
+          });
+        } else {
+          onResult({state: "failed"});
         }
       }
     });
   });
-}
+};
 
 Authentication.prototype.generateHash = function(password, salt) {
   var hasher = crypto.createHash('sha512');
   hasher.update(salt + password);
   return hasher.digest('hex');
-}
+};
 
 Authentication.prototype.generateToken = function() {
   var hasher = crypto.createHash('sha512');
   hasher.update("" + (new Date()).getTime());
   return hasher.digest('hex');
-}
+};
 
 var Memo = function() {
-  
 };
 exports.Memo = Memo;
 
