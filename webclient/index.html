@@ -90,8 +90,18 @@
       </div>
     </script>
 
+    <script type="text/template" id="memo-list-template">
+      
+    </script>
+
     <script type="text/template" id="memo-list-item-template">
-        <li><a href="/memos/<%= id %>"><%= title %></a> on <%= postDateFormatted %></li>
+      <div class="row">
+        <div class="span6 offset3">
+          <h4><a href="/memos/<%= id %>"><%= title %></a></h4>
+          <div style="text-align:right">posted by someone <%= postDateFormatted %></div>
+          <hr />
+        </div>
+      </div>
     </script>
 
     <script type="text/template" id="memo-view-template">
