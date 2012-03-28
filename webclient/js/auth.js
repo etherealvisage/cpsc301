@@ -17,18 +17,25 @@ Authentication.LoginView = Backbone.View.extend({
 
     /* Initialize page elements. */
     var self = this;
-    console.log($("#authentication-login-submit"));
+    var msg = $("#authentication-login-message");
+    $("#authentication-login-message").html("<h5>Enter username/password to login.</h5>");
     $("#authentication-login-submit").click(function() {
       $.ajax({
         url: "/api/authenticate",
         type: "POST",
+        dataType: "json",
         data: {
           username: $("#authentication-login-username").val(),
           password: $("#authentication-login-password").val()
         }
       }).done(function() { 
         console.log("!");
+      }).error(function(jqXHR, textStatus) {
+        msg.html("Error sending login request. Perhaps the server is down?");
+        msg.css("color", "red");
       });
+      msg.html("Sending login request . . .");
+      msg.css("color", "blue");
       return false;
     });
   }

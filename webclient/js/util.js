@@ -15,8 +15,8 @@ function setNavInfo(main, left, right) {
       navElements[element].removeClass("active");
     }
   }
-  $("#navbase-left").html("<h5>" + left + "</h5>");
-  $("#navbase-right").html("<h5>" + right + "</h5>");
+  $("#navbase-left").html("<h3>" + left + "</h3>");
+  $("#navbase-right").html("<h3>" + right + "</h3>");
 }
 
 /* Sets navbar state:
