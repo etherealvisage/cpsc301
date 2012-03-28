@@ -19,3 +19,27 @@ function setNavInfo(main, left, right) {
   $("#navbase-right").html("<h5>" + right + "</h5>");
 }
 
+/* Sets navbar state:
+  level = 0: nothing
+  level = 1: regular user
+  level = 2: admin user
+*/
+function setNavbarState(level) {
+  if(level == 0) {
+    $("#navbar").hide();
+    $("#navbase").hide();
+  }
+  else if(level == 1) {
+    $("#navbar").show();
+    $("#navbase").show();
+    $("#navbar-auth").show();
+    $("#navbar-admin").hide();
+  }
+  else if(level == 2) {
+    $("#navbar").show();
+    $("#navbase").show();
+    $("#navbar-auth").show();
+    $("#navbar-admin").show();
+  }
+}
+

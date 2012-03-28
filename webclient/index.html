@@ -8,20 +8,21 @@
     <link href="css/bootstrap-wysihtml5.css" rel="stylesheet" />
     <link href="css/pynx.css" rel="stylesheet" />
   </head>
-  <body> <div class="navbar navbar-fixed-top">
+  <body>
+    <div class="navbar navbar-fixed-top" id="navbar">
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" href="/">
             <!--<img src="img/pynx-logo-small.png" alt="Pynx" />-->
             Pynx
           </a>
-          <div id="authenticated-nav">
+          <div id="navbar-auth">
             <ul class="nav">
               <li class="divider-vertical"></li>
               <li id="navbar-memos"><a href="/memos">Memos</a></li>
               <li id="navbar-discussions"><a href="/discussions">Discussions</a></li>
             </ul>
-            <div id="admin-nav">
+            <div id="navbar-admin">
               <ul class="nav">
                 <li id="navbar-admin"><a href="#">Admin</a></li>
                 <li class="divider-vertical"></li>
@@ -53,20 +54,17 @@
       <div class="span6 offset3">
         <div style="text-align: center">
           <img src="img/pynx-logo.png" />
-          <form id="authentication-form" style="text-align: center">
-            <input type="textbox" name="authentication-username" style="width: 40%" />
+          <form id="authentication-login-form" style="text-align: center">
+            <input type="textbox" name="authentication-login-username" style="width: 40%" />
             <br />
-            <input type="password" name="authentication-password" style="width: 40%" />
+            <input type="password" name="authentication-login-password" style="width: 40%" />
             <br />
-            <input type="submit" name="authentication-submit"
+            <input type="submit" name="authentication-login-submit"
                    value="Login" style="width: 30%; text-align: center;"/>
           </form>
         </div>
       </div>
     </script>
-
-    <hr />
-
 
     <script type="text/template" id="discussion-post-template">
       <div id="discussion-post-<%= postid %>">
@@ -146,6 +144,7 @@
     <script src="js/lib/wysihtml5-0.3.0_rc1.js"></script>
     <script src="js/lib/bootstrap-wysihtml5.js"></script>
 
+    <script src="js/auth.js"></script>
     <script src="js/memo.js"></script>
     <script src="js/discussion.js"></script>
     <script src="js/root.js"></script>
