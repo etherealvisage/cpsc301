@@ -1,7 +1,8 @@
 // Use module pattern (http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth)
 // to confine variables and functions to local scope.
+var router = undefined;
 (function($) {
-  var router = new HappyRouter();
+  router = new HappyRouter();
 
   // Prevent browser from navigating to new page when link activated.
   $('body').on('click', 'a', function(evt) {

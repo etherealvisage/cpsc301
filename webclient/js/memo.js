@@ -148,7 +148,7 @@ Memo.EditView = Backbone.View.extend({
       self.model.set("content", $("#memo-edit-textarea").html());
       self.model.save();
       /* Swap to viewing the memo. */
-      new Memo.MemoView({id: self.model.id});
+      router.navigate("/memos/" + self.model.id, {trigger: true});
       /* Return false so the browser doesn't actually try to submit the form itself. */
       return false;
     });
