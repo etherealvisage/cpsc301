@@ -28,8 +28,21 @@ Authentication.LoginView = Backbone.View.extend({
           username: $("#authentication-login-username").val(),
           password: $("#authentication-login-password").val()
         }
-      }).done(function() { 
-        console.log("!");
+      }).done(function(data) { 
+        msg.css("color", "red");
+        if(data.state == "notFound") {
+          msg.html("Unknown username.");
+        }
+        else if(data.state == "failed") {
+          msg.html("Incorrect password.");
+        }
+        else if(data.state == "success") {
+          setNavbarState(data.authLevel || 1);
+          router.navigate("/memos", {trigger: true});
+        }
+        else {
+          msg.html("state: " + data.state);
+        }
       }).error(function(jqXHR, textStatus) {
         msg.html("Error sending login request. Perhaps the server is down?");
         msg.css("color", "red");
