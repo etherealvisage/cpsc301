@@ -19,7 +19,8 @@ Memo.ListItemView = Backbone.View.extend({
     var d = new Date();
     /* setTime takes milliseconds since epoch, server returns seconds since. */
     d.setTime(this.model.get("postDate")*1000);
-    this.model.set("postDateFormatted", d.toLocaleString());
+    
+    this.model.set("postDateFormatted", relativeTime(d) + " ago");
 
     var tmpl = _.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
@@ -99,7 +100,7 @@ Memo.MemoView = Backbone.View.extend({
   render: function() {
     var d = new Date();
     d.setTime(this.model.get("postDate")*1000);
-    this.model.set("postDateFormatted", d.toLocaleString());
+    this.model.set("postDateFormatted", relativeTime(d) + " ago");
 
     this.$el.empty();
     var tmpl =_.template(this.template);
