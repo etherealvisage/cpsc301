@@ -17,5 +17,4 @@ var router = undefined;
   });
 
   Backbone.history.start({pushState: true});
-  router.navigate("/login", {trigger: true});
 }(jQuery));
