@@ -11,6 +11,12 @@ CREATE TABLE users (
   locked INTEGER NOT NULL
 );
 
+CREATE TABLE sessions (
+  userID INTEGER NOT NULL,
+  token TEXT NOT NULL,
+  FOREIGN KEY(userID) REFERENCES users(id)
+);
+
 CREATE TABLE memos (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,

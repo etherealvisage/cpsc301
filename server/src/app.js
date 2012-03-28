@@ -32,6 +32,8 @@ app.configure('production', function(){
   ======*/
 app.get('/', routes.index);
 
+app.post('/api/authenticate', routes.login);
+
 app.get('/api/memos', routes.listMemos);
 app.get('/api/memos/:id([0-9]+)', routes.getMemo);
 app.post('/api/memos', routes.createMemo);
