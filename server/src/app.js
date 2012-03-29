@@ -40,7 +40,9 @@ app.get('/api/memos/:id([0-9]+)', routes.getMemo);
 app.post('/api/memos', routes.createMemo);
 
 app.get('/api/discussions', routes.listDiscussions);
+app.get('/api/discussions/:id([0-9]+)', routes.showOneDiscussion);
 app.post('/api/discussions', routes.createDiscussion);
+
 
 
 /*=====================

@@ -123,18 +123,27 @@ Memo.prototype.create = function(params, onResult) {
     onResult(true);
   });
 }
+// TO DO:
+// Create Discussion registry: Its purpose is to instantiate discussions
+// Access info from the database
+// Refactor and replace
 
-var Discussion = function() {
+// Create new discussion model
+// Getpost methods on it
+// Two instantiation model 
+var DiscussionRegistry = function() {
 };
-exports.Discussion = Discussion;
+exports.DiscussionRegistry = DiscussionRegistry;
 
-Discussion.prototype._listQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
+DiscussionRegistry.prototype._listDiscussionsQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
   + "discussions");
-Discussion.prototype._createQuery =
+DiscussionRegistry.prototype._listOneDiscussionQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
+  + "discussions");  
+DiscussionRegistry.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions VALUES (NULL, ?, 0, '')");
 
-Discussion.prototype.list = function(onResults) {
-  var q = this._listQuery;
+DiscussionRegistry.prototype.listDiscussions = function(onResults) {
+  var q = this._listDiscussionsQuery;
 
   db.serialize(function() {
     q.all(function(err, rows) {
@@ -143,10 +152,27 @@ Discussion.prototype.list = function(onResults) {
   });
 };
 
-Discussion.prototype.create = function(params) {
+DiscussionRegistry.prototype.listOneDiscussion = function(onResults) {
+  var q = this._listOneDiscussionQuery;
+
+  db.serialize(function() {
+    q.all(function(err, rows) {
+      onResults(rows);
+    });
+  });
+};
+
+
+DiscussionRegistry.prototype.create = function(params) {
   var q = this._createQuery;
 
   db.serialize(function() {
     q.run(params.title);
-  });
-}
+      });
+};
+
+
+var Discussion = function() {
+};
+
+exports.Discussion = Discussion;
