@@ -130,6 +130,7 @@ Memo.prototype.create = function(params, onResult) {
 
 // Create new discussion model
 // Getpost methods on it
+
 // Two instantiation model 
 var DiscussionRegistry = function() {
 };
@@ -138,31 +139,46 @@ exports.DiscussionRegistry = DiscussionRegistry;
 DiscussionRegistry.prototype._listDiscussionsQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
   + "discussions");
 DiscussionRegistry.prototype._listOneDiscussionQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
-  + "discussions");  
+  + "discussions WHERE id= ?" );  
 DiscussionRegistry.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions VALUES (NULL, ?, 0, '')");
 
+//Many discussions
 DiscussionRegistry.prototype.listDiscussions = function(onResults) {
   var q = this._listDiscussionsQuery;
 
   db.serialize(function() {
     q.all(function(err, rows) {
+     createManyDiscussions(rows);
       onResults(rows);
     });
   });
 };
 
-DiscussionRegistry.prototype.listOneDiscussion = function(onResults) {
+// Grab all information for a single discussion object
+DiscussionRegistry.prototype.listOneDiscussion = function(onResults, id) {
   var q = this._listOneDiscussionQuery;
-
+  
   db.serialize(function() {
-    q.all(function(err, rows) {
-      onResults(rows);
+    q.all(id, function(err, rows) {
+        // Instantantiate a new discussion object
+      createOneDiscussion(rows); //I added this for my own clarity
+      //onResults(rows);
     });
   });
 };
 
+function createOneDiscussion(rows){
+  // Call Discussion._create with rows
+}
 
+function createmanyDiscussions(rows){
+  for(i=0 ;i <rows.length; i++){
+      // Call Discussion._create with rows
+  }
+}
+
+// Adding a new discussion into the database
 DiscussionRegistry.prototype.create = function(params) {
   var q = this._createQuery;
 
@@ -171,8 +187,31 @@ DiscussionRegistry.prototype.create = function(params) {
       });
 };
 
-
 var Discussion = function() {
 };
 
 exports.Discussion = Discussion;
+
+/*CREATE TABLE posts (
+  id INTEGER PRIMARY KEY,
+  posterID INTEGER NOT NULL,
+  postDate INTEGER NOT NULL,
+  content TEXT NOT NULL,
+  discussionID INTEGER NOT NULL,
+  FOREIGN KEY(posterID) REFERENCES users(id),
+  FOREIGN KEY(discussionID) REFERENCES discussions(id)
+);
+*/
+
+Discussion.prototype._listPosts = db.prepare("SELECT * FROM " + config.dbTablePrefix
+  + "posts"); 
+Discussion.prototype._addPostQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
+  + "posts");
+
+// Create discussion object to be displayed
+// Method one -> For creating ONE discussion 
+Discussion.prototype.create = function(params) {
+  
+};
+
+
