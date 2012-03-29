@@ -29,6 +29,8 @@ describe('Static file server', function() {
       done();
       });
     });
+  
+    //TEST REMOVED SINCE DISCUSSIONS IS NOT WORKING YET
     /*
   it('should return an HTTP 404 error for requesting a bad discussions path', function(done) {
     make_get_request('/api/Discussions', function(res) {
