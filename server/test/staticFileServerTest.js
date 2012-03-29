@@ -12,6 +12,43 @@ describe('Static file server', function() {
     });
   });
 
+  it('should return an HTTP 404 error for requesting a bad memo path', function(done) {
+    make_get_request('/api/memos/fakepath', function(res) {
+      var resCode = res.statusCode;
+      var expectedCode = 404;
+      assert.equal(resCode, expectedCode);
+      done();
+      });
+    });
+    
+  it('should return an HTTP 404 error for requesting a bad memo path', function(done) {
+    make_get_request('/api/memos/.', function(res) {
+      var resCode = res.statusCode;
+      var expectedCode = 404;
+      assert.equal(resCode, expectedCode);
+      done();
+      });
+    });
+    /*
+  it('should return an HTTP 404 error for requesting a bad discussions path', function(done) {
+    make_get_request('/api/Discussions', function(res) {
+      var resCode = res.statusCode;
+      var expectedCode = 404;
+      assert.equal(resCode, expectedCode);
+      done();
+      });
+    });     
+*/
+   it('should return an HTTP 404 error for requesting a bad discussions path', function(done) {
+    make_get_request('/api/discussion', function(res) {
+      var resCode = res.statusCode;
+      var expectedCode = 404;
+      assert.equal(resCode, expectedCode);
+      done();
+      });
+    });
+
+
   it('should serve an existing static file with proper contents', function(done) {
     make_get_request('/static.test', function(res) {
       var body = '';
@@ -35,10 +72,30 @@ describe('Static file server', function() {
       done();
     });
   });
+  
+    it('should do something', function(done) {
+    make_post_request('/does_not_exist', function(res) {
+      var resCode = res.statusCode;
+      var expectedCode = 404;
+      assert.equal(resCode, expectedCode);
+      done();
+    });
+  });
+  
 });
 
 function make_get_request(path, on_response) {
   http.get({
+    host: 'localhost',
+    port: config.serverPort,
+    path: path,
+  }, on_response).on('error', function(err) {
+    throw err;
+  });
+}
+
+function make_post_request(path, on_response) {
+  http.request({
     host: 'localhost',
     port: config.serverPort,
     path: path,
