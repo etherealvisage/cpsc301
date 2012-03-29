@@ -21,15 +21,15 @@ Authentication.prototype._getUserDetailsQuery =
 Authentication.prototype._addTokenQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + "sessions VALUES(?, ?)");
 Authentication.prototype._validateCookieQuery =
-  db.prepare('SELECT COUNT(token) AS tokenCount FROM ' + config.dbTablePrefix + 'sessions WHERE token = ?');
+  db.prepare('SELECT COUNT(token) AS tokenCount FROM ' + config.dbTablePrefix + 'sessions WHERE token = ? AND userID = ?');
 Authentication.prototype._logoutQuery =
   db.prepare('DELETE FROM sessions WHERE token = ?');
 
-Authentication.prototype.validateCookie = function(cookie, onValid, onInvalid) {
+Authentication.prototype.validateCookie = function(session, uid, onValid, onInvalid) {
   var validateCookieQuery = this._validateCookieQuery;
 
   db.serialize(function() {
-    validateCookieQuery.get(cookie, function(err, row) {
+    validateCookieQuery.get(session, uid, function(err, row) {
       if(row.tokenCount > 0 && typeof onValid !== 'undefined')
         onValid();
       else if(typeof onInvalid !== 'undefined')
@@ -54,7 +54,7 @@ Authentication.prototype.login = function(username, password, onResult) {
           onResult({
             state: "success",
             token: token,
-            userId: row.id,
+            userID: row.id,
             name: row.name,
             username: row.username,
             userType: row.userType,
@@ -99,12 +99,25 @@ Memo.prototype._createQuery =
     "memos VALUES (NULL, ?, 0, strftime('%s', 'now'), ?)");
 Memo.prototype._updateQuery =
   db.prepare("UPDATE memos SET content=? WHERE id=?");
+Memo.prototype._checkReadQuery = 
+  db.prepare("SELECT * FROM unreadMemos WHERE userID = ?");
 
-Memo.prototype.list = function(onResults) {
-  var q = this._listQuery;
+Memo.prototype.list = function(uid, onResults) {
+  var listQuery = this._listQuery;
+  var checkQuery = this._checkReadQuery;
   db.serialize(function() {
-    q.all(function(err, rows) {
-      onResults(rows);
+    checkQuery.all(uid, function(err, rows) {
+      var unread = {};
+      for(var i = 0; i < rows.length; i ++) {
+        unread[rows[i].memoID] = true;
+      }
+      listQuery.all(function(err, rows) {
+        for(var i = 0; i < rows.length; i ++) {
+          if(unread[rows[i].id] == true) rows[i].unread = true;
+          else rows[i].unread = false;
+        }
+        onResults(rows);
+      });
     });
   });
 }

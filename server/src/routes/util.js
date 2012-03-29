@@ -2,7 +2,7 @@ var models = require("../models");
 
 exports.checkToken = function(req, res, onValid) {
   var auth = new models.Authentication();
-  auth.validateCookie(req.cookies.session, onValid, function() {
+  auth.validateCookie(req.cookies.session, req.cookies.uid, onValid, function() {
     exports.returnError(res, "auth");
   });
 }

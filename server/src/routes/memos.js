@@ -1,10 +1,11 @@
 var models = require('../models');
 var util = require("./util");
 
+/* TODO: add error checking. */
 exports.listMemos = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
-    memo.list(function(rows) {
+    memo.list(req.cookies.uid, function(rows) {
       res.json(rows);
     });
   });

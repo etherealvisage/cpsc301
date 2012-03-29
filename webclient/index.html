@@ -135,7 +135,15 @@
 
     <script type="text/template" id="memo-list-item-template">
       <div class="row">
-        <div class="span6 offset3">
+        <div class="span1 offset2"
+          <% if(unread || false) {
+              print('style="background:#ffcccc"');
+             }
+             print('>');
+          %>
+          &nbsp;
+          </div>
+        <div class="span6">
           <h4><a href="/memos/<%= id %>"><%= title %></a></h4>
           <div style="text-align:right">posted by someone <%= postDateFormatted %></div>
           <hr />

@@ -8,6 +8,11 @@ exports.login = function(req, res) {
         httpOnly: true,
         maxAge: 14*24*60*60*1000, // 2 weeks
       });
+      /* NOTE: perhaps find a better way than creating a new cookie? */
+      res.cookie('uid', result.userID, {
+        httpOnly: true,
+        maxAge: 14*24*60*60*1000, // 2 weeks
+      });
     res.json(result);
   });  
 };
