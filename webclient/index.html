@@ -48,6 +48,25 @@
       </div>
     </div>
 
+    <div class="modal hidden" id="auth-modal">
+      <div class="modal-header">
+        <h3>Authentication error</h3>
+      </div>
+      <div class="modal-body">
+        <p>
+          Something happened! Either:
+          <ul>
+            <li>You're not logged in properly anymore,</li>
+            <li>You tried to access something you shouldn't have.</li>
+          </ul>
+          If this just won't go away, try logging out and back in again.
+        </p>
+      </div>
+      <div class="modal-footer">
+        Click outside the box to dismiss, or you can <a href="/logout">Logout</a>.
+      </div>
+    </div>
+
     <div class="container" id="primary-content">
       <div class="span6 offset3">
         <div style="text-align: center">
@@ -177,13 +196,13 @@
     <script src="js/lib/backbone.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
     <script src="js/lib/bootstrap-button.js"></script>
+    <script src="js/lib/bootstrap-modal.js"></script>
     <script src="js/lib/wysihtml5-0.3.0_rc1.js"></script>
     <script src="js/lib/bootstrap-wysihtml5.js"></script>
 
     <script src="js/auth.js"></script>
     <script src="js/memo.js"></script>
     <script src="js/discussion.js"></script>
-    <script src="js/root.js"></script>
     <script src="js/router.js"></script>
     <script src="js/util.js"></script>
     <script src="js/init.js"></script>

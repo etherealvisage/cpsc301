@@ -63,3 +63,15 @@ Authentication.LoginView = Backbone.View.extend({
   }
 });
 
+/* Add Backbone model.parse() hook to check for invalid session tokens. */
+Backbone.Model.prototype.parse = function(response) {
+  if(response.error == "auth") {
+    $("#auth-modal").modal({
+      backdrop: true,
+      show: true,
+      keyboard: false
+    });
+  }
+  return response;
+}
+
