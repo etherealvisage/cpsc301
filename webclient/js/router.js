@@ -5,6 +5,7 @@ var HappyRouter = Backbone.Router.extend({
   routes: {
     '': 'login_page',
     'login': 'login_page',
+    'logout': 'logout_page',
     'discussions': 'list_discussions',
     'discussions/:thread_id': 'show_discussion',
     'memos': 'list_memos',
@@ -14,6 +15,9 @@ var HappyRouter = Backbone.Router.extend({
   login_page: function() {
     console.log("creating view");
     new Authentication.LoginView();
+  },
+  logout_page: function() {
+    new Authentication.LogoutView();
   },
   list_discussions: function() {
     console.log('List discsussions');

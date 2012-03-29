@@ -18,4 +18,5 @@ exports.logout = function(req, res) {
   authenticator.validateCookie(session, function() {
     authenticator.logout(session);
   });
+  res.json({});
 }

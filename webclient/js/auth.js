@@ -63,6 +63,18 @@ Authentication.LoginView = Backbone.View.extend({
   }
 });
 
+Authentication.LogoutView = Backbone.View.extend({
+  initialize: function() {
+    $.ajax({
+      url: "/api/logout",
+      type: "POST",
+      dataType: "json",
+    }).done(function(data) { 
+      router.navigate("/login", {trigger: true});
+    });
+  }
+});
+
 /* Add Backbone model.parse() hook to check for invalid session tokens. */
 Backbone.Model.prototype.parse = function(response) {
   if(response.error == "auth") {
