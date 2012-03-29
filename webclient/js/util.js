@@ -15,8 +15,8 @@ function setNavInfo(main, left, right) {
       navElements[element].removeClass("active");
     }
   }
-  $("#navbase-left").html("<h5>" + left + "</h5>");
-  $("#navbase-right").html("<h5>" + right + "</h5>");
+  $("#navbase-left").html("<h3>" + left + "</h3>");
+  $("#navbase-right").html("<h3>" + right + "</h3>");
 }
 
 /* Sets navbar state:
@@ -41,5 +41,60 @@ function setNavbarState(level) {
     $("#navbar-auth").show();
     $("#navbar-admin").show();
   }
+}
+
+/* Generates a relative time/date string from the current time.
+  If argument is a Date, uses that. If argument is an integer,
+  the time is treated as a UNIX-epoch seconds offset.
+
+  NOTE: `months' may be occasionally off.
+*/
+function relativeTime(time) {
+  var d = null;
+  if(typeof time == "integer") {
+    d = new Date();
+    d.setTime(time * 1000);
+  }
+  else {
+    /* Assume argument is a Date object. */
+    d = time;
+  }
+
+  var current = new Date();
+  var delta = new Date();
+  delta.setTime(current - d);
+
+  
+  var years = delta.getFullYear() - 1970;
+  var months = delta.getMonth();
+  var days = delta.getDate();
+  var hours = delta.getHours();
+  var minutes = delta.getMinutes();
+  var seconds = delta.getSeconds();
+    
+  if(years > 0) {
+    if(years == 1) return "A year";
+	  else return years + " years";
+  }
+  else if(months > 0) {
+	  if(months == 1) return "A month";
+	  else return months + " months";
+  }
+  else if(days > 0) {
+	  if(days == 1) return "A day";
+	  else return days + " days";
+  }
+  else if(hours > 0) {
+	  if(hours == 1) return "An hour";
+	  else return hours + " hours";
+  }
+  else if(minutes > 0) {
+	  if(minutes == 1) return "A minute";
+	  else return minutes + " minutes";
+  }
+  else if(seconds > 1) {
+	  return seconds + " seconds";
+  }
+  else return "A second";
 }
 

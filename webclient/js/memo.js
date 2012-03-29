@@ -19,7 +19,8 @@ Memo.ListItemView = Backbone.View.extend({
     var d = new Date();
     /* setTime takes milliseconds since epoch, server returns seconds since. */
     d.setTime(this.model.get("postDate")*1000);
-    this.model.set("postDateFormatted", d.toLocaleString());
+    
+    this.model.set("postDateFormatted", relativeTime(d) + " ago");
 
     var tmpl = _.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
@@ -35,8 +36,6 @@ Memo.ListCollection = Backbone.Collection.extend({
 
 Memo.ListCollectionView = Backbone.View.extend({
   el: $("#primary-content"),
-  /* list stores the <ul> element for the memo list. */
-  list: undefined,
 
   initialize: function() {
     setNavInfo("memo", "Memo List", "");
@@ -52,8 +51,6 @@ Memo.ListCollectionView = Backbone.View.extend({
   render: function() {
     var self = this;
     this.$el.empty();
-    this.list = $("<ul>");
-    this.$el.append(this.list);
     _.each(this.collection.models, function(listitem) {
       self.renderListItem(listitem);
     }, this);
@@ -65,7 +62,7 @@ Memo.ListCollectionView = Backbone.View.extend({
       model: listitem
     });
 
-    this.list.append(listItemView.render().el);
+    this.$el.append(listItemView.render().el);
   },
 });
 
@@ -103,7 +100,7 @@ Memo.MemoView = Backbone.View.extend({
   render: function() {
     var d = new Date();
     d.setTime(this.model.get("postDate")*1000);
-    this.model.set("postDateFormatted", d.toLocaleString());
+    this.model.set("postDateFormatted", relativeTime(d) + " ago");
 
     this.$el.empty();
     var tmpl =_.template(this.template);

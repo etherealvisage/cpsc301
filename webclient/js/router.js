@@ -3,17 +3,13 @@
   ======*/
 var HappyRouter = Backbone.Router.extend({
   routes: {
-    '': 'show_root',
+    '': 'login_page',
     'login': 'login_page',
     'discussions': 'list_discussions',
     'discussions/:thread_id': 'show_discussion',
     'memos': 'list_memos',
     'memos/:memo_id': 'show_memo',
     'memos/:memo_id/edit': 'edit_memo'
-  },
-  show_root: function() {
-    console.log('Show root');
-    new Root.View();
   },
   login_page: function() {
     console.log("creating view");

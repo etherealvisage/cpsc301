@@ -10,8 +10,8 @@ var app = module.exports = express.createServer();
   Configuration
   =============*/
 app.configure(function(){
-  app.use(express.bodyParser());
   app.use(express.cookieParser());
+  app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   // Max static document age: 6 h
@@ -31,6 +31,9 @@ app.configure('production', function(){
   Routes
   ======*/
 app.get('/', routes.index);
+
+app.post('/api/authenticate', routes.login);
+app.post('/api/logout', routes.logout);
 
 app.get('/api/memos', routes.listMemos);
 app.get('/api/memos/:id([0-9]+)', routes.getMemo);

@@ -7,3 +7,14 @@ body {
   display: none;
 }
 
+.navbar .nav > li > a {
+  color: #ffffff;
+}
+
+.navbar .nav > li > a:hover {
+  color: #ff4444;
+}
+
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
+  color: #ff4444;
+}

@@ -5,7 +5,7 @@ exports.index = function(req, res) {
   res.sendfile(path.join(config.staticDocPath, 'index.html'));
 };
 
-['discussions', 'memos'].forEach(function(moduleName) {
+['discussions', 'memos', 'authenticate'].forEach(function(moduleName) {
   var module = require('./' + moduleName);
   for(var ex in module)
     exports[ex] = module[ex];
