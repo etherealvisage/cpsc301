@@ -13,18 +13,16 @@ var HappyRouter = Backbone.Router.extend({
     'memos/:memo_id/edit': 'edit_memo'
   },
   login_page: function() {
-    console.log("creating view");
     new Authentication.LoginView();
   },
   logout_page: function() {
     new Authentication.LogoutView();
   },
   list_discussions: function() {
-    console.log('List discsussions');
     new Discussion.CollectionView();
   },
   show_discussion: function(thread_id) {
-    console.log('Show discsussion ' + thread_id);
+
   },
   list_memos: function() {
     new Memo.ListCollectionView();
