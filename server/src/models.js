@@ -161,7 +161,7 @@ DiscussionRegistry.prototype.listOneDiscussion = function(onResults, id) {
   
   db.serialize(function() {
     q.all(id, function(err, rows) {
-        // Instantantiate a new discussion object
+      // Instantantiate a new discussion object
       createOneDiscussion(rows); //I added this for my own clarity
       //onResults(rows);
     });
