@@ -28,6 +28,8 @@ Authentication.prototype._logoutQuery =
 Authentication.prototype.validateCookie = function(cookie, onValid, onInvalid) {
   var validateCookieQuery = this._validateCookieQuery;
 
+  console.log(cookie);
+
   db.serialize(function() {
     validateCookieQuery.get(cookie, function(err, row) {
       if(row.tokenCount > 0 && typeof onValid !== 'undefined')
