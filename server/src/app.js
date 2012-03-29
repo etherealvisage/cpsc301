@@ -37,6 +37,7 @@ app.post('/api/logout', routes.logout);
 
 app.get('/api/memos', routes.listMemos);
 app.get('/api/memos/:id([0-9]+)', routes.getMemo);
+app.put('/api/memos/:id([0-9]+)', routes.updateMemo);
 app.post('/api/memos', routes.createMemo);
 
 app.get('/api/discussions', routes.listDiscussions);

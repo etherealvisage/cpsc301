@@ -97,6 +97,8 @@ Memo.prototype._getQuery =
 Memo.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
     "memos VALUES (NULL, ?, 0, strftime('%s', 'now'), ?)");
+Memo.prototype._updateQuery =
+  db.prepare("UPDATE memos SET content=? WHERE id=?");
 
 Memo.prototype.list = function(onResults) {
   var q = this._listQuery;
@@ -123,6 +125,15 @@ Memo.prototype.create = function(params, onResult) {
     onResult(true);
   });
 }
+
+Memo.prototype.update = function(params, onResult) {
+  var q = this._updateQuery;
+  db.serialize(function() {
+    q.run(params.content, params.id);
+    onResult(true);
+  });
+}
+
 // TO DO:
 // Create Discussion registry: Its purpose is to instantiate discussions
 // Access info from the database

@@ -19,6 +19,7 @@ exports.getMemo = function(req, res) {
   });
 }
 
+/* TODO: check permissions & sanitize input. */
 exports.createMemo = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
@@ -28,3 +29,12 @@ exports.createMemo = function(req, res) {
   });
 }
 
+/* TODO: check permissions & sanitize input. */
+exports.updateMemo = function(req, res) {
+  util.checkToken(req, res, function() {
+    var memo = new models.Memo();
+    memo.update(req.body, function(result) {
+      res.json(result);
+    });
+  });
+}
