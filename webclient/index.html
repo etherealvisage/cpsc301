@@ -12,13 +12,9 @@
     <div class="navbar navbar-fixed-top hidden" id="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">
-            <!--<img src="img/pynx-logo-small.png" alt="Pynx" />-->
-            Pynx
-          </a>
+          <img class="brand" src="img/pynx-logo-small.png" alt="Pynx" />
           <div id="navbar-auth">
             <ul class="nav">
-              <li class="divider-vertical"></li>
               <li id="navbar-memos"><a href="/memos">Memos</a></li>
               <li id="navbar-discussions"><a href="/discussions">Discussions</a></li>
             </ul>
@@ -29,7 +25,7 @@
               </ul>
             </div>
             <ul class="nav pull-right">
-              <li><a class="brand" href="#">Username</a></li>
+              <li><a class="brand" href="#" id="navbar-username"></a></li>
               <li class="divider-vertical"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
@@ -68,7 +64,7 @@
     </div>
 
     <div class="container" id="primary-content">
-      <div class="span6 offset3">
+      <div class="span8 offset2">
         <div style="text-align: center">
           <img src="img/pynx-logo.png" />
           <form id="authentication-login-form" style="text-align: center">
@@ -136,15 +132,17 @@
     <script type="text/template" id="memo-list-item-template">
       <div class="row">
         <div class="span1 offset2"
-          <% if(unread || false) {
-              print('style="background:#ffcccc"');
-             }
-             print('>');
-          %>
           &nbsp;
           </div>
         <div class="span6">
-          <h4><a href="/memos/<%= id %>"><%= title %></a></h4>
+          <h4>
+            <%
+              if(unread || false) {
+                print('<i class="icon-envelope" />');
+              }
+            %>
+            <a href="/memos/<%= id %>"><%= title %></a>
+          </h4>
           <div style="text-align:right">posted by someone <%= postDateFormatted %></div>
           <hr />
         </div>

@@ -47,6 +47,7 @@ Authentication.LoginView = Backbone.View.extend({
         }
         else if(data.state == "success") {
           setNavbarState(data.authLevel || 1);
+          setNavbarUsername(data.name);
           router.navigate("/memos", {trigger: true});
         }
         else {
