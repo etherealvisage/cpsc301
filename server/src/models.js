@@ -33,6 +33,9 @@ Authentication.prototype.validateCookie = function(session, uid, onValid, onInva
 
   db.serialize(function() {
     validateCookieQuery.get(session, uid, function(err, row) {
+      if(err !== null)
+        throw err;
+
       if(row.tokenCount > 0 && typeof onValid !== 'undefined')
         onValid();
       else if(typeof onInvalid !== 'undefined')
@@ -47,6 +50,9 @@ Authentication.prototype.login = function(username, password, onResult) {
   var self = this;
   db.serialize(function() {
     getQuery.get(username, function(err, row) {
+      if(err !== null)
+        throw err;
+
       if(typeof row === "undefined") {
         onResult({state: "notFound"});
       } else {
@@ -73,7 +79,10 @@ Authentication.prototype.login = function(username, password, onResult) {
 Authentication.prototype.logout = function(session) {
   var logoutQuery = this._logoutQuery;
   db.serialize(function() {
-    logoutQuery.run(session, function(err) { });
+    logoutQuery.run(session, function(err) {
+      if(err !== null)
+        throw err;
+    });
   });
 };
 
@@ -114,6 +123,9 @@ Memo.prototype.list = function(uid, onResults) {
   var checkQuery = this._checkReadQuery;
   db.serialize(function() {
     checkQuery.all(uid, function(err, rows) {
+      if(err !== null)
+        throw err;
+
       var unread = {};
       for(var i = 0; i < rows.length; i ++) {
         unread[rows[i].memoID] = true;
@@ -133,6 +145,9 @@ Memo.prototype.get = function(params, onResults) {
   var q = this._getQuery;
   db.serialize(function() {
     q.get(params.id, function(err, row) {
+      if(err !== null)
+        throw err;
+
       onResults(row);
     });
   });
@@ -141,7 +156,10 @@ Memo.prototype.get = function(params, onResults) {
 Memo.prototype.create = function(params, onResult) {
   var q = this._createQuery;
   db.serialize(function() {
-    q.run(params.title, params.content);
+    q.run(params.title, params.content, function(err) {
+      if(err !== null)
+        throw err;
+    });
     onResult(true);
   });
 }
@@ -149,7 +167,10 @@ Memo.prototype.create = function(params, onResult) {
 Memo.prototype.update = function(params, onResult) {
   var q = this._updateQuery;
   db.serialize(function() {
-    q.run(params.content, params.id);
+    q.run(params.content, params.id, function(err) {
+      if(err !== null)
+        throw err;
+    });
     onResult(true);
   });
 }
@@ -172,6 +193,9 @@ DiscussionRegistry.prototype.list = function(onResults) {
 
   db.serialize(function() {
     q.all(function(err, rows) {
+      if(err !== null)
+        throw err;
+
       onResults(rows);
     });
   });
