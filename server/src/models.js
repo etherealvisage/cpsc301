@@ -217,7 +217,31 @@ DiscussionRegistry.prototype.create = function(params) {
 /*==========
   Discussion
   ==========*/
-var Discussion = function() {
+var Discussion = function(disInfo, onLoad) {
+  if(typeof disInfo === 'number') {
+    this._load(disInfo, onLoad);
+  } else if(typeof disInfo === 'object') {
+    // If we already have discussion params from DB (e.g., from selecting all
+    // discussions), allow instantiation without hitting DB.
+    onLoad(disInfo);
+  } else {
+    throw 'Unknown type of discussion info: ' + (typeof disInfo);
+  }
+};
+
+Discussion.prototype._loadQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'discussions ' +
+  'WHERE id=?');
+
+Discussion.prototype._load = function(id, onResult) {
+  var query = this._loadQuery;
+
+  db.serialize(function() {
+    query.get(id, function(err, row) {
+      if(err !== null)
+        throw err;
+      onResult(row);
+    });
+  });
 };
 
 exports.Discussion = Discussion;
