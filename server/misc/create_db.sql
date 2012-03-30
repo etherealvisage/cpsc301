@@ -1,4 +1,6 @@
-PRAGMA foreign_keys = ON;
+/* Disable foreign keys during testing so that we can insert discussions
+ * without needing user, for example. */
+PRAGMA foreign_keys = OFF;
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY,
@@ -47,9 +49,8 @@ CREATE TABLE discussions (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   rootPostID INTEGER NOT NULL,
-  tags TEXT NOT NULL/*,
-  Disable FK during testing
-  FOREIGN KEY(rootPostID) REFERENCES posts(id)*/
+  tags TEXT NOT NULL,
+  FOREIGN KEY(rootPostID) REFERENCES posts(id)
 );
 
 CREATE TABLE unreadDiscussions (

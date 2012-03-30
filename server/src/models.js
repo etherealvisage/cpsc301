@@ -217,29 +217,38 @@ DiscussionRegistry.prototype.create = function(params) {
 /*==========
   Discussion
   ==========*/
-var Discussion = function(disInfo, onLoad) {
-  if(typeof disInfo === 'number') {
-    this._load(disInfo, onLoad);
-  } else if(typeof disInfo === 'object') {
-    // If we already have discussion params from DB (e.g., from selecting all
-    // discussions), allow instantiation without hitting DB.
-    onLoad(disInfo);
-  } else {
-    throw 'Unknown type of discussion info: ' + (typeof disInfo);
-  }
+var Discussion = function() {
 };
 
-Discussion.prototype._loadQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'discussions ' +
+Discussion.prototype._loadDiscussionQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'discussions ' +
   'WHERE id=?');
+Discussion.prototype._loadPostsQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'posts ' +
+  'WHERE discussionId=?');
 
-Discussion.prototype._load = function(id, onResult) {
-  var query = this._loadQuery;
-
+Discussion.prototype.load = function(id, onLoad) {
+  var query = this._loadDiscussionQuery;
+  var self = this;
   db.serialize(function() {
     query.get(id, function(err, row) {
       if(err !== null)
         throw err;
-      onResult(row);
+      self._params = row;
+      self._loadPosts(function() {
+        onLoad(self._params);
+      });
+    });
+  });
+};
+
+Discussion.prototype._loadPosts = function(onLoad) {
+  var query = this._loadPostsQuery;
+  var self = this;
+  db.serialize(function() {
+    query.all(self._params.id, function(err, rows) {
+      if(err !== null)
+        throw err;
+      self._params.posts = rows;
+      onLoad();
     });
   });
 };

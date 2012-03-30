@@ -15,7 +15,8 @@ exports.createDiscussion = function(req, res) {
 
 exports.getDiscussion = function(req, res) {
   var discussion_id = parseInt(req.params.id, 10);
-  var discussion = new models.Discussion(discussion_id, function(result) {
+  var discussion = new models.Discussion;
+  discussion.load(discussion_id, function(result) {
     res.json(result);
   });
 };
