@@ -56,9 +56,9 @@ Authentication.prototype.login = function(username, password, onResult) {
       if(typeof row === "undefined") {
         onResult({state: "notFound"});
       } else {
-        var pwHash = self.generateHash(password, row.pwsalt);
+        var pwHash = self._generateHash(password, row.pwsalt);
         if(pwHash === row.pwhash) {
-          var token = self.generateToken();
+          var token = self._generateToken();
           addQuery.run(row.id, token);
           onResult({
             state: "success",
@@ -86,13 +86,13 @@ Authentication.prototype.logout = function(session) {
   });
 };
 
-Authentication.prototype.generateHash = function(password, salt) {
+Authentication.prototype._generateHash = function(password, salt) {
   var hasher = crypto.createHash('sha512');
   hasher.update(salt + password);
   return hasher.digest('hex');
 };
 
-Authentication.prototype.generateToken = function() {
+Authentication.prototype._generateToken = function() {
   var hasher = crypto.createHash('sha512');
   hasher.update("" + (new Date()).getTime());
   return hasher.digest('hex');
