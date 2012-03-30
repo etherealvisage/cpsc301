@@ -11,8 +11,11 @@ function dbCleanup() {
   db.close();
 }
 
-var Authentication = function() {
 
+/*==============
+  Authentication
+  ==============*/
+var Authentication = function() {
 };
 exports.Authentication = Authentication;
 
@@ -86,6 +89,10 @@ Authentication.prototype.generateToken = function() {
   return hasher.digest('hex');
 };
 
+
+/*====
+  Memo
+  ====*/
 var Memo = function() {
 };
 exports.Memo = Memo;
@@ -147,95 +154,46 @@ Memo.prototype.update = function(params, onResult) {
   });
 }
 
-// TO DO:
-// Create Discussion registry: Its purpose is to instantiate discussions
-// Access info from the database
-// Refactor and replace
-
-// Create new discussion model
-// Getpost methods on it
-
-// Two instantiation model 
+/*==================
+  DiscussionRegistry
+  ==================*/
 var DiscussionRegistry = function() {
 };
 exports.DiscussionRegistry = DiscussionRegistry;
 
 DiscussionRegistry.prototype._listDiscussionsQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
   + "discussions");
-DiscussionRegistry.prototype._listOneDiscussionQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
-  + "discussions WHERE id= ?" );  
 DiscussionRegistry.prototype._createQuery =
-  db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions VALUES (NULL, ?, 0, '')");
+  db.prepare("INSERT INTO " + config.dbTablePrefix + "discussions (title, rootPostID, tags) VALUES (?, 1, '')");
 
-//Many discussions
-DiscussionRegistry.prototype.listDiscussions = function(onResults) {
+// List all discussions.
+DiscussionRegistry.prototype.list = function(onResults) {
   var q = this._listDiscussionsQuery;
 
   db.serialize(function() {
     q.all(function(err, rows) {
-     createManyDiscussions(rows);
       onResults(rows);
     });
   });
 };
 
-// Grab all information for a single discussion object
-DiscussionRegistry.prototype.listOneDiscussion = function(onResults, id) {
-  var q = this._listOneDiscussionQuery;
-  
-  db.serialize(function() {
-    q.all(id, function(err, rows) {
-      // Instantantiate a new discussion object
-      createOneDiscussion(rows); //I added this for my own clarity
-      //onResults(rows);
-    });
-  });
-};
-
-function createOneDiscussion(rows){
-  // Call Discussion._create with rows
-}
-
-function createmanyDiscussions(rows){
-  for(i=0 ;i <rows.length; i++){
-      // Call Discussion._create with rows
-  }
-}
-
-// Adding a new discussion into the database
+// Create single discussion.
 DiscussionRegistry.prototype.create = function(params) {
   var q = this._createQuery;
 
   db.serialize(function() {
-    q.run(params.title);
-      });
+    q.run(params.title, function(err) {
+      if(err !== null)
+        throw err;
+    });
+  });
 };
 
+
+/*==========
+  Discussion
+  ==========*/
 var Discussion = function() {
 };
 
 exports.Discussion = Discussion;
-
-/*CREATE TABLE posts (
-  id INTEGER PRIMARY KEY,
-  posterID INTEGER NOT NULL,
-  postDate INTEGER NOT NULL,
-  content TEXT NOT NULL,
-  discussionID INTEGER NOT NULL,
-  FOREIGN KEY(posterID) REFERENCES users(id),
-  FOREIGN KEY(discussionID) REFERENCES discussions(id)
-);
-*/
-
-Discussion.prototype._listPosts = db.prepare("SELECT * FROM " + config.dbTablePrefix
-  + "posts"); 
-Discussion.prototype._addPostQuery = db.prepare("SELECT * FROM " + config.dbTablePrefix
-  + "posts");
-
-// Create discussion object to be displayed
-// Method one -> For creating ONE discussion 
-Discussion.prototype.create = function(params) {
-  
-};
-
-

@@ -47,8 +47,9 @@ CREATE TABLE discussions (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   rootPostID INTEGER NOT NULL,
-  tags TEXT NOT NULL,
-  FOREIGN KEY(rootPostID) REFERENCES posts(id)
+  tags TEXT NOT NULL/*,
+  Disable FK during testing
+  FOREIGN KEY(rootPostID) REFERENCES posts(id)*/
 );
 
 CREATE TABLE unreadDiscussions (
