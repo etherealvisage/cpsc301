@@ -43,6 +43,10 @@ function setNavbarState(level) {
   }
 }
 
+function setNavbarUsername(username) {
+  $("#navbar-username").html(username);
+}
+
 /* Generates a relative time/date string from the current time.
   If argument is a Date, uses that. If argument is an integer,
   the time is treated as a UNIX-epoch seconds offset.
