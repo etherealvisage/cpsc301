@@ -1,3 +1,4 @@
+var crypto = require('crypto');
 var models = require('../models');
 
 exports.login = function(req, res) {
