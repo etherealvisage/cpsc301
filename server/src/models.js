@@ -59,7 +59,10 @@ Authentication.prototype.login = function(username, password, onResult) {
         var pwHash = self._generateHash(password, row.pwsalt);
         if(pwHash === row.pwhash) {
           var token = self._generateToken();
-          addQuery.run(row.id, token);
+          addQuery.run(row.id, token, function(err) {
+            if(err !== null)
+              throw err;
+          });
           onResult({
             state: "success",
             token: token,
