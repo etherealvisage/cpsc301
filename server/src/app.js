@@ -44,6 +44,8 @@ app.get('/api/discussions', routes.listDiscussions);
 app.get('/api/discussions/:id([0-9]+)', routes.getDiscussion);
 app.post('/api/discussions', routes.createDiscussion);
 
+app.post('/api/posts', routes.createPost);
+
 
 /*=====================
   Server initialization

@@ -195,7 +195,6 @@ DiscussionRegistry.prototype.list = function(onResults) {
     q.all(function(err, rows) {
       if(err !== null)
         throw err;
-
       onResults(rows);
     });
   });
@@ -213,12 +212,12 @@ DiscussionRegistry.prototype.create = function(params) {
   });
 };
 
-
 /*==========
   Discussion
   ==========*/
 var Discussion = function() {
 };
+exports.Discussion = Discussion;
 
 Discussion.prototype._loadDiscussionQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'discussions ' +
   'WHERE id=?');
@@ -232,6 +231,9 @@ Discussion.prototype.load = function(id, onLoad) {
     query.get(id, function(err, row) {
       if(err !== null)
         throw err;
+      if(typeof row === 'undefined')
+        throw 'No post with ID ' + id;
+
       self._params = row;
       self._loadPosts(function() {
         onLoad(self._params);
@@ -253,4 +255,23 @@ Discussion.prototype._loadPosts = function(onLoad) {
   });
 };
 
-exports.Discussion = Discussion;
+/*====
+  Post
+  ====*/
+var Post = function() {
+};
+exports.Post = Post;
+
+Post.prototype._createPostQuery = db.prepare('INSERT INTO ' + config.dbTablePrefix + 'posts ' +
+  "(posterID, postDate, body, discussionId) VALUES (?, datetime('now'), ?, ?)");
+
+Post.prototype.create = function(params) {
+  var query = this._createPostQuery;
+  db.serialize(function() {
+    var posterId = 1; // Temporarily hard-coded.
+    query.run(posterId, params.body, params.discussionId, function(err) {
+      if(err !== null)
+        throw err;
+    });
+  });
+};

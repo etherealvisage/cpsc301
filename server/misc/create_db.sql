@@ -15,8 +15,8 @@ CREATE TABLE users (
 
 CREATE TABLE sessions (
   userID INTEGER NOT NULL,
-  token TEXT NOT NULL,
-  FOREIGN KEY(userID) REFERENCES users(id)
+  token TEXT NOT NULL
+  /*FOREIGN KEY(userID) REFERENCES users(id)*/
 );
 
 CREATE TABLE memos (
@@ -24,39 +24,39 @@ CREATE TABLE memos (
   title TEXT NOT NULL,
   posterID INTEGER NOT NULL,
   postDate INTEGER NOT NULL,
-  content TEXT NOT NULL,
-  FOREIGN KEY(posterID) REFERENCES users(id)
+  content TEXT NOT NULL
+  /*FOREIGN KEY(posterID) REFERENCES users(id)*/
 );
 
 CREATE TABLE unreadMemos (
   memoID INTEGER,
-  userID INTEGER,
-  FOREIGN KEY(memoID) REFERENCES memos(id),
-  FOREIGN KEY(userID) REFERENCES users(id)
+  userID INTEGER
+  /*FOREIGN KEY(memoID) REFERENCES memos(id),
+  FOREIGN KEY(userID) REFERENCES users(id)*/
 );
 
 CREATE TABLE posts (
   id INTEGER PRIMARY KEY,
   posterID INTEGER NOT NULL,
   postDate INTEGER NOT NULL,
-  content TEXT NOT NULL,
-  discussionID INTEGER NOT NULL,
-  FOREIGN KEY(posterID) REFERENCES users(id),
-  FOREIGN KEY(discussionID) REFERENCES discussions(id)
+  body TEXT NOT NULL,
+  discussionID INTEGER NOT NULL
+  /*FOREIGN KEY(posterID) REFERENCES users(id),
+  FOREIGN KEY(discussionID) REFERENCES discussions(id)*/
 );
 
 CREATE TABLE discussions (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   rootPostID INTEGER NOT NULL,
-  tags TEXT NOT NULL,
-  FOREIGN KEY(rootPostID) REFERENCES posts(id)
+  tags TEXT NOT NULL
+  /*FOREIGN KEY(rootPostID) REFERENCES posts(id)*/
 );
 
 CREATE TABLE unreadDiscussions (
   discussionID INTEGER,
   userID INTEGER,
-  lastRead INTEGER,
-  FOREIGN KEY(discussionID) REFERENCES discussions(id),
-  FOREIGN KEY(userID) REFERENCES users(id)
+  lastRead INTEGER
+  /*FOREIGN KEY(discussionID) REFERENCES discussions(id),
+  FOREIGN KEY(userID) REFERENCES users(id)*/
 );
