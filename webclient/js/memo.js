@@ -186,7 +186,14 @@ Memo.NewView = Backbone.View.extend({
           content: $("#memo-new-textarea").val()
         }
       }).done(function(data) {
-        console.log("!!!");
+        if(typeof data.memoID !== "undefined") {
+          router.navigate("/memos/" + data.memoID, {trigger: true});
+        }
+        else {
+          /* There was an error. */
+          console.log("Error. Data returned from server:");
+          console.log(data);
+        }
       });
       /* Return false so the browser doesn't actually try to submit the form itself. */
       return false;

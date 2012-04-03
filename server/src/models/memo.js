@@ -79,8 +79,9 @@ Memo.prototype.create = function(params, onResult) {
         unreadQuery.run(memoID, row.id, function(err) {
           if(err !== null)
             throw err;
-          onResult({memoID: memoID});
         });
+      }, function() {
+        onResult({memoID: memoID});
       });
     });
   });
