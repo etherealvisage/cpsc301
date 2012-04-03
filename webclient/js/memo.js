@@ -137,12 +137,14 @@ Memo.EditView = Backbone.View.extend({
     $("#memo-edit-textarea").wysihtml5();
     $("#memo-edit-textarea").html(this.model.get("content"));
     $("#memo-edit-submit").attr("value", "Submit changes");
+    $("#memo-edit-title").val(this.model.get("title"));
 
     /* Handle form submission. */
     var self = this;
     $("#memo-edit-submit").click(function() {
       /* Get the model to save itself. */
       self.model.set("content", $("#memo-edit-textarea").val());
+      self.model.set("title", $("#memo-edit-title").val());
       self.model.save().done(function(){
         /* Once the update request has gone through,
           swap to viewing the memo. */

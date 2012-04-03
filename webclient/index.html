@@ -156,7 +156,6 @@
         </div>
         <div class="span1" id="memo-editbox">
           <a class="icon-edit" id="memo-view-edit" href="/"></a>
-          <a class="icon-remove" id="memo-view-remove" href="/" />
         </div>
         <div class="span4" style="text-align: right; font-weight: bold; font-size: 8pt;">
           <%= postDateFormatted %>
@@ -173,7 +172,8 @@
       <div class="row">
         <div class="span8 offset2 well">
           <form id="memo-new-form" style="text-align: center" method="POST">
-            Title: <input type="textbox" id="memo-new-title" class="span4" />
+            <input type="textbox" id="memo-new-title" class="span4"
+              placeholder="Memo title" />
             <textarea id="memo-new-textarea" class="span8" style="height: 30em;" />
             <input type="submit" id="memo-new-submit" name="memo-new-submit"
                    value="placeholder" style="width: 30%;"/>
@@ -184,16 +184,10 @@
 
     <script type="text/template" id="memo-edit-template">
       <div class="row">
-        <div class="span3 offset2 label">
-          Something
-        </div>
-        <div class="span3 offset2">
-          Else
-        </div>
-      </div>
-      <div class="row">
         <div class="span8 offset2 well">
           <form id="memo-edit-form" style="text-align: center" method="POST">
+            <input type="textbox" id="memo-edit-title" class="span4"
+              placeholder="Memo title" />
             <textarea id="memo-edit-textarea" class="span8" style="height: 30em;" />
             <input type="submit" id="memo-edit-submit" name="memo-edit-submit"
                    value="placeholder" style="width: 30%;"/>

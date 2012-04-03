@@ -13,7 +13,7 @@ Memo.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
     "memos VALUES (NULL, ?, 0, strftime('%s', 'now'), ?)");
 Memo.prototype._updateQuery =
-  db.prepare("UPDATE memos SET content=? WHERE id=?");
+  db.prepare("UPDATE memos SET content=?, title=? WHERE id=?");
 Memo.prototype._checkReadQuery = 
   db.prepare("SELECT * FROM unreadMemos WHERE userID = ?");
 Memo.prototype._markUnreadQuery = 
@@ -90,7 +90,7 @@ Memo.prototype.create = function(params, onResult) {
 Memo.prototype.update = function(params, onResult) {
   var q = this._updateQuery;
   db.serialize(function() {
-    q.run(params.content, params.id, function(err) {
+    q.run(params.content, params.title, params.id, function(err) {
       if(err !== null)
         throw err;
     });
