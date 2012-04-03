@@ -154,3 +154,42 @@ Memo.EditView = Backbone.View.extend({
   }
 });
 
+Memo.NewView = Backbone.View.extend({
+  el: $("#primary-content"),
+  
+  template: $("#memo-new-template").html(),
+  
+  initialize: function() {
+    setNavInfo("memo", "New Memo", "");
+    this.render();
+  },
+
+  render: function() {
+    this.$el.empty();
+    var tmpl = _.template(this.template);
+    $(this.el).html(tmpl({}));
+
+    /* Some elements in this template need setup. */
+    $("#memo-new-textarea").wysihtml5();
+    $("#memo-new-textarea").html("");
+    $("#memo-new-submit").attr("value", "Submit memo");
+
+    /* Handle form submission. */
+    var self = this;
+    $("#memo-new-submit").click(function() {
+      $.ajax({
+        url: "/api/memos",
+        type: "POST",
+        dataType: "json",
+        data: {
+          title: $("#memo-new-title").val(),
+          content: $("#memo-new-textarea").val()
+        }
+      }).done(function(data) {
+        console.log("!!!");
+      });
+      /* Return false so the browser doesn't actually try to submit the form itself. */
+      return false;
+    });
+  }
+});

@@ -1,5 +1,6 @@
 var config = require('../config');
 var db = require('./index').db;
+var crypto = require("crypto");
 
 var Authentication = function() {
 };
