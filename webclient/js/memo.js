@@ -62,7 +62,7 @@ Memo.ListCollectionView = Backbone.View.extend({
       model: listitem
     });
 
-    this.$el.append(listItemView.render().el);
+    this.$el.prepend(listItemView.render().el);
   },
 });
 

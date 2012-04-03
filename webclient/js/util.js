@@ -66,39 +66,38 @@ function relativeTime(time) {
 
   var current = new Date();
   var delta = new Date();
-  delta.setTime(current - d);
-
+  delta.setTime(Math.abs(current - d));
   
-  var years = delta.getFullYear() - 1970;
-  var months = delta.getMonth();
-  var days = delta.getDate();
-  var hours = delta.getHours();
-  var minutes = delta.getMinutes();
-  var seconds = delta.getSeconds();
+  var years = delta.getUTCFullYear() - 1970;
+  var months = delta.getUTCMonth();
+  var days = delta.getUTCDate();
+  var hours = delta.getUTCHours();
+  var minutes = delta.getUTCMinutes();
+  var seconds = delta.getUTCSeconds();
     
   if(years > 0) {
-    if(years == 1) return "A year";
+    if(years == 1) return "a year";
 	  else return years + " years";
   }
   else if(months > 0) {
-	  if(months == 1) return "A month";
+	  if(months == 1) return "a month";
 	  else return months + " months";
   }
   else if(days > 0) {
-	  if(days == 1) return "A day";
+	  if(days == 1) return "a day";
 	  else return days + " days";
   }
   else if(hours > 0) {
-	  if(hours == 1) return "An hour";
+	  if(hours == 1) return "an hour";
 	  else return hours + " hours";
   }
   else if(minutes > 0) {
-	  if(minutes == 1) return "A minute";
+	  if(minutes == 1) return "a minute";
 	  else return minutes + " minutes";
   }
   else if(seconds > 1) {
 	  return seconds + " seconds";
   }
-  else return "A second";
+  else return "a second";
 }
 
