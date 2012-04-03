@@ -33,13 +33,13 @@ function setNavbarState(level) {
     $("#navbar").show();
     $("#navbase").show();
     $("#navbar-auth").show();
-    $("#navbar-admin").hide();
+    $("#navbar-admin-items").hide();
   }
   else if(level == 2) {
     $("#navbar").show();
     $("#navbase").show();
     $("#navbar-auth").show();
-    $("#navbar-admin").show();
+    $("#navbar-admin-items").show();
   }
 }
 

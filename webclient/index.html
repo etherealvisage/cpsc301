@@ -18,9 +18,9 @@
               <li id="navbar-memos"><a href="/memos">Memos</a></li>
               <li id="navbar-discussions"><a href="/discussions">Discussions</a></li>
             </ul>
-            <div id="navbar-admin">
+            <div id="navbar-admin-items">
               <ul class="nav">
-                <li id="navbar-admin"><a href="#">Admin</a></li>
+                <li id="navbar-admin"><a href="/admin">Admin</a></li>
                 <li class="divider-vertical"></li>
               </ul>
             </div>
@@ -105,6 +105,13 @@
           <h5 id="authentication-login-message"></h5>
         </div>
       </div>
+    </script>
+
+    <script type="text/template" id="admin-main-template">
+      <ul>
+        <li><a href="/memos/new">New memo</a></li>
+        <li><a href="/admin/newuser">New user</a</li>
+      </ul>
     </script>
 
     <script type="text/template" id="discussion-post-template">
@@ -196,10 +203,6 @@
       </div>
     </script>
 
-    <script type="text/template" id="root-template">
-      <a href="/discussions">Discussions</a>
-    </script>
-
     <script type="text/template" id="discussion-thread-template">
       <p>Discussion: <%- title %></p>
     </script>
@@ -214,6 +217,7 @@
     <script src="js/lib/bootstrap-wysihtml5.js"></script>
 
     <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
     <script src="js/memo.js"></script>
     <script src="js/discussion.js"></script>
     <script src="js/router.js"></script>

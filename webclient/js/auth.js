@@ -46,7 +46,10 @@ Authentication.LoginView = Backbone.View.extend({
           msg.html("Incorrect password.");
         }
         else if(data.state == "success") {
-          setNavbarState(data.authLevel || 1);
+          console.log(data.userType);
+          if(data.userType == 0) setNavbarState(2);
+          else setNavbarState(1);
+          //setNavbarState(data.userType || 1);
           setNavbarUsername(data.name);
           router.navigate("/memos", {trigger: true});
         }
