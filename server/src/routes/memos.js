@@ -14,6 +14,7 @@ exports.listMemos = function(req, res) {
 exports.getMemo = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
+    req.params.userID = req.cookies.uid;
     memo.get(req.params, function(row) {
       res.json(row);
     });

@@ -70,7 +70,7 @@ function relativeTime(time) {
   
   var years = delta.getUTCFullYear() - 1970;
   var months = delta.getUTCMonth();
-  var days = delta.getUTCDate();
+  var days = delta.getUTCDate() - 1;
   var hours = delta.getUTCHours();
   var minutes = delta.getUTCMinutes();
   var seconds = delta.getUTCSeconds();
