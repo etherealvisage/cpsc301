@@ -143,14 +143,15 @@
           </div>
         <div class="span6">
           <h4>
+            <a href="/memos/<%= id %>"
             <%
-              if(unread || false) {
-                print('<img src="img/unread-icon.png" />');
+              if(unread == false) {
+                print('style="color: #000"');
               }
             %>
-            <a href="/memos/<%= id %>"><%= title %></a>
+            ><%= title %></a>
           </h4>
-          <div style="text-align:right">posted by someone <%= postDateFormatted %></div>
+          <div style="text-align:right">posted by <%= posterName %> <%= postDateFormatted %></div>
           <hr />
         </div>
       </div>

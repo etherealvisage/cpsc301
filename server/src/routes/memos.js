@@ -25,6 +25,7 @@ exports.getMemo = function(req, res) {
 exports.createMemo = function(req, res) {
   util.checkToken(req, res, function() {
     var memo = new models.Memo();
+    req.body.uid = req.cookies.uid;
     memo.create(req.body, function(result) {
       res.json(result);
     });

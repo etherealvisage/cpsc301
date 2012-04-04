@@ -6,12 +6,12 @@ var Memo = function() {
 exports.Memo = Memo;
 
 Memo.prototype._listQuery =
-  db.prepare("SELECT id, title, postDate FROM " + config.dbTablePrefix + "memos");
+  db.prepare("SELECT id, title, postDate, posterID FROM " + config.dbTablePrefix + "memos");
 Memo.prototype._getQuery =
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "memos WHERE id = ?");
 Memo.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
-    "memos VALUES (NULL, ?, 0, strftime('%s', 'now'), ?)");
+    "memos VALUES (NULL, ?, ?, strftime('%s', 'now'), ?)");
 Memo.prototype._updateQuery =
   db.prepare("UPDATE memos SET content=?, title=? WHERE id=?");
 Memo.prototype._checkReadQuery = 
@@ -25,10 +25,17 @@ Memo.prototype._markReadQuery =
 Memo.prototype._userListQuery =
   db.prepare("SELECT id FROM " + config.dbTablePrefix +
     "users");
+Memo.prototype._userNamesQuery =
+  db.prepare("SELECT id, name FROM " + config.dbTablePrefix +
+    "users");
+Memo.prototype._userNameQuery =
+  db.prepare("SELECT name FROM " + config.dbTablePrefix +
+    "users WHERE id = ?");
 
 Memo.prototype.list = function(uid, onResults) {
   var listQuery = this._listQuery;
   var checkQuery = this._checkReadQuery;
+  var namesQuery = this._userNamesQuery;
   db.serialize(function() {
     checkQuery.all(uid, function(err, rows) {
       if(err !== null)
@@ -43,7 +50,18 @@ Memo.prototype.list = function(uid, onResults) {
           if(unread[rows[i].id] == true) rows[i].unread = true;
           else rows[i].unread = false;
         }
-        onResults(rows);
+        var lrows = rows;
+        namesQuery.all(function(err, rows) {
+          var usernames = {};
+          for(var i = 0; i < rows.length; i ++) {
+            usernames[rows[i].id] = rows[i].name;
+          }
+
+          for(var i = 0; i < lrows.length; i ++) {
+            lrows[i].posterName = usernames[lrows[i].posterID] || "someone";
+          }
+          onResults(lrows);
+        });
       });
     });
   });
@@ -69,7 +87,7 @@ Memo.prototype.create = function(params, onResult) {
   var usersQuery = this._userListQuery;
   var unreadQuery = this._markUnreadQuery;
   db.parallelize(function() {
-    q.run(params.title, params.content, function(err) {
+    q.run(params.title, params.uid, params.content, function(err) {
       if(err !== null)
         throw err;
 
