@@ -22,21 +22,55 @@ Administration.NewUserView = Backbone.View.extend({
     this.$el.html(this.template);
 
     $("#admin-new-user-submit").click(function() {
-      // data validation here
+      var username = $("#admin-new-user-username").val();
+      var name = $("#admin-new-user-name").val();
+      var password = $("#admin-new-user-password").val();
+
+      if(username.length < 3) {
+        displayWarning("Login username", "Please use a login name at least three characters long.");
+        return false;
+      }
+      else if(username.length > 99) {
+        display.warning("Login username", "Please use a login name less than 100 characters.");
+        return false;
+      }
+
+      if(name.length < 3) {
+        displayWarning("Full name", "Please have a full name of at least three characters.");
+        return false;
+      }
+      else if(name.length > 99) {
+        displayWarning("Full name", "Please use a full name less than 100 characters long.");
+        return false;
+      }
+
+      if(password.length < 6) {
+        displayWarning("Password", "Please use a password at least six characters long.");
+        return false;
+      }
+      else if(password.length > 99) {
+        displayWarning("Password", "Please use a password less than 100 characters long.");
+        return false;
+      }
+
       var type = $("#admin-new-user-type").val();
       var typeCode = -1;
       if(type == "Resident") typeCode = 0;
       else if(type == "Doctor") typeCode = 1;
       else if(type =="Administrator") typeCode = 2;
+      else {
+        displayWarning("User type", "Please select a user type.");
+        return false;
+      }
 
       $.ajax({
         url: "/api/users",
         type: "POST",
         dataType: "json",
         data: {
-          username: $("#admin-new-user-username").val(),
-          name: $("#admin-new-user-name").val(),
-          password: $("#admin-new-user-password").val(),
+          username: username,
+          name: name,
+          password: password,
           userType: typeCode
         }
       }).done(function(data) {
