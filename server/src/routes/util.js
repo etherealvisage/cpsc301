@@ -7,6 +7,23 @@ exports.checkToken = function(req, res, onValid) {
   });
 }
 
+exports.checkPermission = function(req, res, action, onValid, context) {
+  var perm = new models.Permissions();
+  perm.check(req.cookies.uid, action, function(result) {
+    if(result)
+      onValid();
+    else
+      exports.returnError(res, "perm");
+  }, context);
+}
+
+exports.checkTokenAndPermission = function(req, res, action, onValid, context) {
+  var self = this;
+  this.checkToken(req, res, function() {
+    self.checkPermission(req, res, action, onValid, context);
+  });  
+}
+
 function returnError(res, error) {
   res.json({error: error});
 }

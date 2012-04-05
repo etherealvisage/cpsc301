@@ -17,12 +17,8 @@
             <ul class="nav">
               <li id="navbar-memos"><a href="/memos">Memos</a></li>
               <li id="navbar-discussions"><a href="/discussions">Discussions</a></li>
-            </ul>
-            <div id="navbar-admin-items">
-              <ul class="nav">
-                <li id="navbar-admin"><a href="/admin">Admin</a></li>
-                <li class="divider-vertical"></li>
-              </ul>
+              <li id="navbar-admin"><a href="/admin">Admin</a></li>
+              <li class="divider-vertical"></li>
             </div>
             <ul class="nav pull-right">
               <li><div class="brand" id="navbar-username"></div></li>
@@ -192,26 +188,67 @@
       </div>
     </script>
 
-    <script type="text/template" id="discussion-post-template">
-      <div id="discussion-post-<%= postid %>">
-        <div class="row">
-          <div class="span3 offset2 label">
-            <%= author %>
-          </div>
-          <div class="span3 offset2" style="text-align: right; font-weight: bold">
-            <%= timestamp %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span8 offset2 well">
-            <%= content %>
-          </div>
+    <script type="text/template" id="discussion-list-item-template">
+      <div class="row">
+        <div class="span6 offset3">
+          <h4>
+            <%
+              if(unread || false) {
+                print('<i class="icon-envelope" />');
+              }
+            %>
+            <a href="/memos/<%= id %>"
+            <%
+              if(unread || false) {
+                print('style="colour: #f44"');
+              }
+            %>
+            ><%= title %></a>
+          </h4>
+          <div style="text-align: right">started by <% authorName %> ...</div>
+          <hr />
         </div>
       </div>
     </script>
 
-    <script type="text/template" id="memo-list-template">
-      
+    <script type="text/template" id="discussion-view-template">
+      <div class="row">
+        
+      </div>
+      <div id="discussion-view-list"></div>
+        
+      <div>
+      </div>
+    </script>
+
+    <script type="text/template" id="discussion-post-template">
+      <div class="row">
+        <div class="span3 offset2 label">
+          <%= author %>
+        </div>
+        <div class="span3 offset2" style="text-align: right; font-weight: bold">
+          <%= timestamp %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span8 offset2 well">
+          <%= content %>
+        </div>
+      </div>
+    </script>
+
+    <script type="text/template" id="discussion-new-template">
+      <div class="row">
+        <div class="span8 offset2 well">
+          <form id="discussion-new-form" style="text-align: center" method="POST">
+            <input type="textbox" id="discussion-new-title" class="span4"
+              placeholder="Discussion title" />
+            <textarea id="discussion-new-textarea" class="span8" style="height: 30em;" />
+            <input type="submit" id="discussion-new-submit" name="discussion-new-submit"
+                   value="placeholder" style="width: 30%;"/>
+          </form>
+        </div>
+      </div>
     </script>
 
     <script type="text/template" id="memo-list-item-template">
@@ -288,10 +325,6 @@
       </div>
     </script>
 
-    <script type="text/template" id="discussion-thread-template">
-      <p>Discussion: <%- title %></p>
-    </script>
-    
     <script src="js/lib/jquery.js"></script>
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone.js"></script>

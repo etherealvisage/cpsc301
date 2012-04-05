@@ -40,7 +40,7 @@ CREATE TABLE posts (
   posterID INTEGER NOT NULL,
   postDate INTEGER NOT NULL,
   body TEXT NOT NULL,
-  discussionID INTEGER NOT NULL
+  discussionID INTEGER
   /*FOREIGN KEY(posterID) REFERENCES users(id),
   FOREIGN KEY(discussionID) REFERENCES discussions(id)*/
 );

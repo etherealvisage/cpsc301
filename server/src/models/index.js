@@ -13,13 +13,9 @@ function dbCleanup() {
 
 var auth = require('./authentication');
 var memo = require('./memo');
-var discussionRegistry = require('./discussionRegistry');
 var discussion = require('./discussion');
-var post = require('./post');
 var perm = require('./permissions');
 exports.Authentication = auth.Authentication;
 exports.Memo = memo.Memo;
-exports.DiscussionRegistry = discussionRegistry.DiscussionRegistry;
 exports.Discussion = discussion.Discussion;
-exports.Post = post.Post;
 exports.Permissions = perm.Permissions;

@@ -74,7 +74,8 @@ Administration.NewUserView = Backbone.View.extend({
           userType: typeCode
         }
       }).done(function(data) {
-        displayWarning("TODO", "This isn't implemented yet.");
+        /* TODO: redirect to user profile page. */
+        router.navigate("/admin", {trigger: true});
       }).error(function(jqXHR, textStatus) {
         displayWarning("There's a problem . . .", "Cannot contact the server!");
       });
