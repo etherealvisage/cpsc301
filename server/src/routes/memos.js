@@ -21,9 +21,9 @@ exports.getMemo = function(req, res) {
   });
 }
 
-/* TODO: check permissions & sanitize input. */
+/* TODO: sanitize input. */
 exports.createMemo = function(req, res) {
-  util.checkToken(req, res, function() {
+  util.checkTokenAndPermission(req, res, "createMemo", function() {
     var memo = new models.Memo();
     req.body.uid = req.cookies.uid;
     memo.create(req.body, function(result) {
@@ -32,9 +32,9 @@ exports.createMemo = function(req, res) {
   });
 }
 
-/* TODO: check permissions & sanitize input. */
+/* TODO: sanitize input. */
 exports.updateMemo = function(req, res) {
-  util.checkToken(req, res, function() {
+  util.checkTokenAndPermission(req, res, "editMemo", function() {
     var memo = new models.Memo();
     memo.update(req.body, function(result) {
       res.json(result);
