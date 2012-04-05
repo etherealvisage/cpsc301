@@ -18,8 +18,9 @@ exports.checkPermission = function(req, res, action, onValid, context) {
 }
 
 exports.checkTokenAndPermission = function(req, res, action, onValid, context) {
+  var self = this;
   this.checkToken(req, res, function() {
-    this.checkPermission(req, res, action, onValid, context);
+    self.checkPermission(req, res, action, onValid, context);
   });  
 }
 
