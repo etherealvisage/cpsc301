@@ -49,7 +49,8 @@ CREATE TABLE discussions (
   id INTEGER PRIMARY KEY,
   title TEXT NOT NULL,
   rootPostID INTEGER NOT NULL,
-  tags TEXT NOT NULL
+  authorID INTEGER NOT NULL
+  /*tags TEXT NOT NULL*/
   /*FOREIGN KEY(rootPostID) REFERENCES posts(id)*/
 );
 
