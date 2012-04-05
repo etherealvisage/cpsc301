@@ -5,38 +5,58 @@ var Discussion = function() {
 };
 exports.Discussion = Discussion;
 
-Discussion.prototype._loadDiscussionQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'discussions ' +
-  'WHERE id=?');
-Discussion.prototype._loadPostsQuery = db.prepare('SELECT * FROM ' + config.dbTablePrefix + 'posts ' +
-  'WHERE discussionId=?');
+Discussion.prototype._listQuery =
+  db.prepare("SELECT * FROM " + config.dbTablePrefix +
+    "discussions");
 
-Discussion.prototype.load = function(id, onLoad) {
-  var query = this._loadDiscussionQuery;
-  var self = this;
+Discussion.prototype._createPostQuery =
+  db.prepare("INSERT INTO " + config.dbTablePrefix +
+    'posts VALUES(NULL, ?, strftime("%s", "now"), ?, null)');
+
+Discussion.prototype._createDiscussionQuery =
+  db.prepare("INSERT INTO " + config.dbTablePrefix + 
+    "discussions VALUES(NULL, ?, ?, ?)");
+
+Discussion.prototype._setPostDiscussionQuery =
+  db.prepare("UPDATE " + config.dbTablePrefix +
+    "posts SET discussionID=? WHERE id=?");
+
+Discussion.prototype._userNameQuery =
+  db.prepare("SELECT name FROM " + config.dbTablePrefix +
+    "users WHERE id = ?");
+
+Discussion.prototype.list = function(uid, onResults) {
+  var listQuery = this._listQuery;
+  var namesQuery = this._userNamesQuery;
   db.serialize(function() {
-    query.get(id, function(err, row) {
-      if(err !== null)
-        throw err;
-      if(typeof row === 'undefined')
-        throw 'No post with ID ' + id;
+    listQuery.all(function(err, rows) {
+      onResults(rows);
+    });
+  });
+}
 
-      self._params = row;
-      self._loadPosts(function() {
-        onLoad(self._params);
+Discussion.prototype.createDiscussion = function(params, onResult) {
+  var createDiscussionQuery = this._createDiscussionQuery;
+  var createPostQuery = this._createPostQuery;
+  db.serialize(function() {
+    createPostQuery.run(params.uid, params.content, null, function(err) {
+      var rootID = createPostQuery.lastID;
+      createDiscussionQuery.run(params.title, rootID, params.uid, function(err) {
+        var discussionID = createDiscussionQuery.lastID;
+        setPostDiscussionQuery.run(discussionID, rootID, function(err) {
+          onResult({id: discussionID});
+        });
       });
     });
   });
-};
+}
 
-Discussion.prototype._loadPosts = function(onLoad) {
-  var query = this._loadPostsQuery;
-  var self = this;
+Discussion.prototype.addPost = function(params, onResult) {
   db.serialize(function() {
-    query.all(self._params.id, function(err, rows) {
-      if(err !== null)
-        throw err;
-      self._params.posts = rows;
-      onLoad();
-    });
+    
   });
-};
+}
+
+Discussion.prototype.getDiscussion = function(id, onResult) {
+  
+}
