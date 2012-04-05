@@ -8,7 +8,7 @@ exports.Permissions = Permissions;
 Permissions.prototype._getUserDetailsQuery = 
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE id = ?");
   
-Permissions.prototype.check = function(userid, action, context, cb) {
+Permissions.prototype.check = function(userid, action, cb, context) {
   var getQuery = this._getUserDetailsQuery;
   db.serialize(function() {
     getQuery.get(userid, function(err, row) {
@@ -72,4 +72,3 @@ var Actions = {
     }
   },  
 };
-exports.Actions = Actions;
