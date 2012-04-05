@@ -122,8 +122,57 @@
     <script type="text/template" id="admin-main-template">
       <ul>
         <li><a href="/memos/new">New memo</a></li>
-        <li><a href="/admin/newuser">New user</a</li>
+        <li><a href="/admin/new_user">New user</a</li>
       </ul>
+    </script>
+
+    <script type="text/template" id="admin-new-user-template">
+      <div class="span6 offset3 well">
+        <form class="form-horizontal" id="admin-new-user-form">
+          <fieldset>
+            <div class="control-group">
+              <label class="control-label">
+                Username
+              </label>
+              <div class="controls">
+                <input type="text" class="input-xlarge"
+                       id="admin-new-user-username" />
+              </div>
+
+              <label class="control-label">
+                Name
+              </label>
+              <div class="controls">
+                <input type="text" class="input-xlarge"
+                       id="admin-new-user-name" />
+              </div>
+
+              <label class="control-label">
+                User role
+              </label>
+              <div class="controls">
+                <select id="admin-new-user-type" class="input-xlarge">
+                  <option>Resident</option>
+                  <option>Doctor</option>
+                  <option>Administrator</option>
+                </select>
+              </div>
+
+              <label class="control-label">
+                Password
+              </label>
+              <div class="controls">
+                <input type="password" id="admin-new-user-password"
+                       class="input-xlarge" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary"
+                      id="admin-new-user-submit">Create User</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </script>
 
     <script type="text/template" id="discussion-post-template">

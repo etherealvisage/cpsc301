@@ -13,6 +13,7 @@ var HappyRouter = Backbone.Router.extend({
     'memos/:memo_id': 'show_memo',
     'memos/:memo_id/edit': 'edit_memo',
     'admin': 'main_admin',
+    'admin/new_user': 'new_user',
   },
   login_page: function() {
     new Authentication.LoginView();
@@ -41,4 +42,7 @@ var HappyRouter = Backbone.Router.extend({
   main_admin: function() {
     new Administration.MainView();
   },
+  new_user: function() {
+    new Administration.NewUserView();
+  }
 });
