@@ -176,6 +176,8 @@ Memo.NewView = Backbone.View.extend({
     $("#memo-new-textarea").html("");
     $("#memo-new-submit").attr("value", "Submit memo");
 
+    displayWarning("Header", "message");
+
     /* Handle form submission. */
     var self = this;
     $("#memo-new-submit").click(function() {

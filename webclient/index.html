@@ -44,6 +44,18 @@
       </div>
     </div>
 
+    <div class="modal hidden" id="warning">
+      <div class="modal-header">
+        <a class="close" data-dismiss="modal" href="#">&times</a>
+        <h3 id="warning-header"></h3>
+      </div>
+      <div class="modal-body" id="warning-message">
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="btn" data-dismiss="modal">Close</a>
+      </div>
+    </div>
+
     <div class="modal hidden" id="auth-modal">
       <div class="modal-header">
         <h3>Authentication error</h3>
@@ -143,10 +155,15 @@
           </div>
         <div class="span6">
           <h4>
+            <%
+              if(unread || false) {
+                print('<i class="icon-envelope" />');
+              }
+            %>
             <a href="/memos/<%= id %>"
             <%
-              if(unread == false) {
-                print('style="color: #000"');
+              if(unread || false) {
+                print('style="color: #f44"');
               }
             %>
             ><%= title %></a>
@@ -176,6 +193,7 @@
       </div>
     </script>
     
+
     <script type="text/template" id="memo-new-template">
       <div class="row">
         <div class="span8 offset2 well">
@@ -212,8 +230,10 @@
     <script src="js/lib/underscore.js"></script>
     <script src="js/lib/backbone.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/bootstrap-alert.js"></script>
     <script src="js/lib/bootstrap-button.js"></script>
     <script src="js/lib/bootstrap-modal.js"></script>
+    <script src="js/lib/bootstrap-transition.js"></script>
     <script src="js/lib/wysihtml5-0.3.0_rc1.js"></script>
     <script src="js/lib/bootstrap-wysihtml5.js"></script>
 

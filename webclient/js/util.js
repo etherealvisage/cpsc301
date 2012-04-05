@@ -43,6 +43,7 @@ function setNavbarState(level) {
   }
 }
 
+/* Sets the username in the top navbar. */
 function setNavbarUsername(username) {
   $("#navbar-username").html(username);
 }
@@ -101,3 +102,14 @@ function relativeTime(time) {
   else return "a second";
 }
 
+function displayWarning(header, message) {
+  var w = $("#warning");
+  $("#warning-header").html(header);
+  $("#warning-message").html(message);
+
+  w.modal({
+    backdrop: true,
+    show: true,
+    keyboard: false
+  });
+}
