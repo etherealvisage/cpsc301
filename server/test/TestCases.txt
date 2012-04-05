@@ -1,0 +1,23 @@
+Test Cases
+
+
+
+Authentication:
+-Login
+	+Non existent user ---> onResult([state]) = string "notFound" 
+		Authentication.prototype.login("NotExisting","password",Console.Log([state]));
+	+Null user ---> string "notFound"
+		Authentication.prototype.login(null,"password",Console.Log([state]));
+	+Wrong password ---> string "failed"
+		Authentication.prototype.login("Mike","notthepassword",Console.Log([state]));
+	+Wrong password (empty)---> string "failed"
+		Authentication.prototype.login("Mike","",Console.Log([state]));
+	+Wrong password (null)---> string "failed"
+		Authentication.prototype.login("Mike",null,Console.Log([state]));
+	+Wrong password (really long password)---> string "failed"
+		Authentication.prototype.login("Mike","",Console.Log([state]));       /*insert war and peace sample when testing, left out for visibility*/
+	+Wrong password (other users password)---> string "failed"
+		Authentication.prototype.login("Mike","banjo",Console.Log([state]));	//assuming the user Evan has the pasword banjo
+	+XSS (recursive call of a successful password) ---> string ?
+		Authentication.prototype.login(Authentication.prototype.login("Mike","banjo",Console.Log([state])),"password",Console.Log([state])); 
+	+
