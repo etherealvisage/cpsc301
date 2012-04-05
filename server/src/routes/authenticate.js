@@ -1,5 +1,6 @@
 var crypto = require('crypto');
 var models = require('../models');
+var util = require("./util");
 
 exports.login = function(req, res) {
   var authenticator = new models.Authentication();
@@ -28,15 +29,17 @@ exports.logout = function(req, res) {
 }
 
 exports.createUser = function(req, res) {
-  var authenticator = new models.Authentication();
-  var username = req.body.username;
-  var name = req.body.name;
-  var password = req.body.password;
-  var userType = req.body.userType;
-  
-  authenticator.createUser(username, name, password, userType, function(data) {
-    res.json({uid: data.uid});
-  });
+  util.checkTokenAndPermission(req, res, "createUser", function() {
+    var authenticator = new models.Authentication();
+    var username = req.body.username;
+    var name = req.body.name;
+    var password = req.body.password;
+    var userType = req.body.userType;
+    
+    authenticator.createUser(username, name, password, userType, function(data) {
+      res.json({uid: data.uid});
+    });
+  });  
 }
 
 exports.listUsers = function(req, res) {
