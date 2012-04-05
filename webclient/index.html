@@ -25,7 +25,7 @@
               </ul>
             </div>
             <ul class="nav pull-right">
-              <li><a class="brand" href="#" id="navbar-username"></a></li>
+              <li><div class="brand" id="navbar-username"></div></li>
               <li class="divider-vertical"></li>
               <li><a href="/logout">Logout</a></li>
             </ul>
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="modal hidden" id="warning">
+    <div class="modal hidden fade" id="warning">
       <div class="modal-header">
         <a class="close" data-dismiss="modal" href="#">&times</a>
         <h3 id="warning-header"></h3>
@@ -123,6 +123,7 @@
       <ul>
         <li><a href="/memos/new">New memo</a></li>
         <li><a href="/admin/new_user">New user</a</li>
+        <li><a href="/admin/user_list">User list</a</li>
       </ul>
     </script>
 
@@ -172,6 +173,22 @@
             </div>
           </fieldset>
         </form>
+      </div>
+    </script>
+
+    <script type="text/template" id="admin-user-list-entry-template">
+      <ul>
+        <li>Username: <%= username %></li>
+        <li>Name: <%= name %></li>
+        <li>id: <%= id %></li>
+        <li>type: <%= userType %></li>
+      </ul>
+      <hr />
+    </script>
+
+    <script type="text/template" id="admin-user-list-template">
+      <div class="span6 offset3" id="admin-user-list">
+        <ul id="admin-user-list"></ul>
       </div>
     </script>
 

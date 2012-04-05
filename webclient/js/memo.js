@@ -179,13 +179,42 @@ Memo.NewView = Backbone.View.extend({
     /* Handle form submission. */
     var self = this;
     $("#memo-new-submit").click(function() {
+      /* Data validation. */
+      var title = $("#memo-new-title").val();
+      var content = $("#memo-new-textarea").val();
+
+      if(title.length < 3) {
+        displayWarning("Title",
+          "<p>The title must be at least three characters long.</p>"
+        );
+        return false;
+      }
+      else if(title.length > 1024) {
+        displayWarning("Title",
+          "<p>. . . nice try. Title has to be at most 1024 characters long."
+        );
+        return false;
+      }
+      else if(content.length < 10) {
+        displayWarning("Content",
+          "<p>The memo is a touch too small -- at least ten characters, please."
+        );
+        return false;
+      }
+      else if(content.length > 1048576) {
+        displayWarning("Content",
+          "<p>The memo is a bit too long; try to keep it under 500,000 characters.</p>"
+        );
+        return false;
+      }
+
       $.ajax({
         url: "/api/memos",
         type: "POST",
         dataType: "json",
         data: {
-          title: $("#memo-new-title").val(),
-          content: $("#memo-new-textarea").val()
+          title: title,
+          content: content
         }
       }).done(function(data) {
         if(typeof data.memoID !== "undefined") {

@@ -17,6 +17,9 @@ Authentication.prototype._logoutQuery =
 Authentication.prototype._createUserQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
     "users VALUES (NULL, ?, ?, ?, ?, ?, strftime('%s', 'now'), 0)");
+Authentication.prototype._listUsersQuery =
+  db.prepare("SELECT id, username, name, userType FROM " + config.dbTablePrefix +
+    "users");
 
 Authentication.prototype.validateCookie = function(session, uid, onValid, onInvalid) {
   var validateCookieQuery = this._validateCookieQuery;
@@ -88,6 +91,16 @@ Authentication.prototype.createUser = function(username, name, password, userTyp
     var pwhash = self._generateHash(password, salt);
     createQuery.run(username, name, pwhash, salt, userType, function(err) {
       onResult({uid: createQuery.lastID});
+    });
+  });
+}
+
+Authentication.prototype.listUsers = function(onResults) {
+  var self = this;
+  var listQuery = this._listUsersQuery;
+  db.serialize(function() {
+    listQuery.all(function(err, rows) {
+      onResults(rows);
     });
   });
 }
