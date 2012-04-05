@@ -26,3 +26,15 @@ exports.logout = function(req, res) {
   });
   res.json({});
 }
+
+exports.createUser = function(req, res) {
+  var authenticator = new models.Authentication();
+  var username = req.body.username;
+  var name = req.body.name;
+  var password = req.body.password;
+  var userType = req.body.userType;
+  
+  authenticator.createUser(username, name, password, userType, function(data) {
+    res.json({uid: data.uid});
+  });
+}

@@ -1,4 +1,5 @@
 var models = require('../models');
+var util = require('./util');
 
 exports.listDiscussions = function(req, res) {
   util.checkToken(req, res, function() {  

@@ -14,6 +14,9 @@ Authentication.prototype._validateCookieQuery =
   db.prepare('SELECT COUNT(token) AS tokenCount FROM ' + config.dbTablePrefix + 'sessions WHERE token = ? AND userID = ?');
 Authentication.prototype._logoutQuery =
   db.prepare('DELETE FROM sessions WHERE token = ?');
+Authentication.prototype._createUserQuery =
+  db.prepare("INSERT INTO " + config.dbTablePrefix +
+    "users VALUES (NULL, ?, ?, ?, ?, ?, strftime('%s', 'now'), 0)");
 
 Authentication.prototype.validateCookie = function(session, uid, onValid, onInvalid) {
   var validateCookieQuery = this._validateCookieQuery;
@@ -76,6 +79,19 @@ Authentication.prototype.logout = function(session) {
   });
 };
 
+Authentication.prototype.createUser = function(username, name, password, userType, onResult) {
+  var self = this;
+  var createQuery = this._createUserQuery;
+  db.serialize(function() {
+    /* Reuse the `generate token' function to create a salt. */
+    var salt = self._generateToken();
+    var pwhash = self._generateHash(password, salt);
+    createQuery.run(username, name, pwhash, salt, userType, function(err) {
+      onResult({uid: createQuery.lastID});
+    });
+  });
+}
+
 Authentication.prototype._generateHash = function(password, salt) {
   var hasher = crypto.createHash('sha512');
   hasher.update(salt + password);
@@ -87,3 +103,4 @@ Authentication.prototype._generateToken = function() {
   hasher.update("" + (new Date()).getTime());
   return hasher.digest('hex');
 };
+

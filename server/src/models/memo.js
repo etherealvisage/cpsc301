@@ -86,7 +86,7 @@ Memo.prototype.create = function(params, onResult) {
   var q = this._createQuery;
   var usersQuery = this._userListQuery;
   var unreadQuery = this._markUnreadQuery;
-  db.parallelize(function() {
+  db.serialize(function() {
     q.run(params.title, params.uid, params.content, function(err) {
       if(err !== null)
         throw err;
