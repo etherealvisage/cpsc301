@@ -7,7 +7,7 @@ var HappyRouter = Backbone.Router.extend({
     'login': 'login_page',
     'logout': 'logout_page',
     'discussions': 'list_discussions',
-    'discussions/:thread_id': 'show_discussion',
+    'discussions/:id': 'show_discussion',
     'discussions/new': 'new_discussion',
     'memos/new': 'new_memo',
     'memos': 'list_memos',
@@ -24,10 +24,10 @@ var HappyRouter = Backbone.Router.extend({
     new Authentication.LogoutView();
   },
   list_discussions: function() {
-    //new Discussion.CollectionView();
+    new Discussion.ListView();
   },
-  show_discussion: function(thread_id) {
-
+  show_discussion: function(id) {
+    new Discussion.View({id: id});
   },
   new_discussion: function() {
     new Discussion.NewView();

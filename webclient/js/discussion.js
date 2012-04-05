@@ -10,7 +10,7 @@ Discussion.ListItemView = Backbone.View.extend({
 
   render: function() {
     var tmpl = _.template(this.template);
-    $(this.el).html(templ(this.model.toJSON()));
+    $(this.el).html(tmpl(this.model.toJSON()));
     return this;
   }
 });
@@ -47,7 +47,7 @@ Discussion.ListView = Backbone.View.extend({
       model: item
     });
 
-    this.$el.prepend(listItemView.render().el);
+    this.$el.prepend(itemView.render().el);
   },
 });
 

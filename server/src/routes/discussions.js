@@ -3,8 +3,8 @@ var util = require('./util');
 
 exports.listDiscussions = function(req, res) {
   util.checkToken(req, res, function() {  
-    var discussion = new models.DiscussionRegistry();
-    discussion.list(function(rows) {
+    var discussion = new models.Discussion();
+    discussion.list(req.cookies.uid, function(rows) {
       res.json(rows);
     });
   });

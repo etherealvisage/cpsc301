@@ -30,6 +30,11 @@ Discussion.prototype.list = function(uid, onResults) {
   var namesQuery = this._userNamesQuery;
   db.serialize(function() {
     listQuery.all(function(err, rows) {
+      for(var i = 0; i < rows.length; i ++) {
+        console.log(rows[i]);
+        rows[i].unread = false;
+        rows[i].authorName = "placeholder";
+      }
       onResults(rows);
     });
   });
