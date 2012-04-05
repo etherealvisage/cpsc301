@@ -5,8 +5,7 @@ Administration.MainView = Backbone.View.extend({
   template: $("#admin-main-template").html(),
   initialize: function() {
     this.$el.empty();
-
-    setNavInfo("admin", "Admin panel", "", "");
+setNavInfo("admin", "Admin panel", "", "");
 
     this.$el.html(this.template);
   }
@@ -47,6 +46,29 @@ Administration.NewUserView = Backbone.View.extend({
       });
       /* Return false so the browser doesn't navigate. */
       return false;
+    });
+  }
+});
+
+Administration.UserListView = Backbone.View.extend({
+  el: $("#primary-content"),
+  template: $("#admin-user-list-template").html(),
+  item_template: $("#admin-user-list-entry-template").html(),
+  initialize: function() {
+    this.$el.html(this.template);
+
+    var tmpl = _.template(this.item_template);
+    
+    $.ajax({
+      url: '/api/users',
+      type: 'GET',
+      dataType: 'json',
+    }).done(function(data) {
+      for(var i = 0; i < data.length; i ++) {
+        var div = $("<div>");
+        div.html(tmpl(data[i]));
+        $("#admin-user-list").append(div);
+      }
     });
   }
 });

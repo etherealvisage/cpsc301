@@ -38,3 +38,10 @@ exports.createUser = function(req, res) {
     res.json({uid: data.uid});
   });
 }
+
+exports.listUsers = function(req, res) {
+  var authenticator = new models.Authentication();
+  authenticator.listUsers(function(data) {
+    res.json(data);
+  });
+}
