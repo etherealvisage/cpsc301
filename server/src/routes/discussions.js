@@ -12,9 +12,11 @@ exports.listDiscussions = function(req, res) {
 
 exports.createDiscussion = function(req, res) {
   util.checkToken(req, res, function() {    
-    var discussion = new models.DiscussionRegistry();
-    discussion.createDiscussion(req.body);
-    res.end();
+    var discussion = new models.Discussion();
+    req.body.uid = req.cookies.uid;
+    discussion.createDiscussion(req.body, function(result) {
+      res.json(result);
+    });
   });
 };
 

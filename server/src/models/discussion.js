@@ -11,7 +11,7 @@ Discussion.prototype._listQuery =
 
 Discussion.prototype._createPostQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
-    'posts VALUES(NULL, ?, strftime("%s", "now"), ?, null)');
+    'posts VALUES(NULL, ?, strftime("%s", "now"), ?, ?)');
 
 Discussion.prototype._createDiscussionQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix + 
@@ -38,13 +38,16 @@ Discussion.prototype.list = function(uid, onResults) {
 Discussion.prototype.createDiscussion = function(params, onResult) {
   var createDiscussionQuery = this._createDiscussionQuery;
   var createPostQuery = this._createPostQuery;
+  var setPostDiscussionQuery = this._setPostDiscussionQuery;
+
   db.serialize(function() {
-    createPostQuery.run(params.uid, params.content, null, function(err) {
+    createPostQuery.run(params.uid, params.content, -1, function(err) {
       var rootID = createPostQuery.lastID;
+
       createDiscussionQuery.run(params.title, rootID, params.uid, function(err) {
         var discussionID = createDiscussionQuery.lastID;
         setPostDiscussionQuery.run(discussionID, rootID, function(err) {
-          onResult({id: discussionID});
+          onResult({discussionID: discussionID});
         });
       });
     });
