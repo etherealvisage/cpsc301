@@ -46,7 +46,6 @@ Discussion.prototype.list = function(uid, onResults) {
       for(var i = 0; i < rows.length; i ++) {
         rows[i].unread = false;
       }
-      console.log(rows);
       onResults(rows);
     });
   });

@@ -148,9 +148,17 @@ Discussion.NewView = Backbone.View.extend({
 
     var self = this;
     $("#discussion-new-submit").click(function() {
-      // TODO: insert data validation.
       var title = $("#discussion-new-title").val();
       var content = $("#discussion-new-textarea").val();
+
+      if(!validateStringLength(title, 3, 1024, "Discussion title",
+        "<p>Please enter a title of at least three characters.</p>",
+        "<p>Please enter a title of at most 1024 characters.</p>")) return false;
+
+      if(!validateStringLength(content, 10, 1048576, "Discussion content",
+        "<p>The initial post you have provided is too short. Please make it longer.</p>",
+        "<p>The post you have provided is too long -- including formatting, " +
+        "it was more than 1MB.</p>")) return false;
 
       $.ajax({
         url: "/api/discussions",
