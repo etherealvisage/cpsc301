@@ -221,7 +221,7 @@
             ><%= title %></a>
           </h4>
           <div style="text-align: right">
-            started by <% authorName %> <% formatTimestamp(startTimestamp) %>
+            started by <%= authorName %> <% print(formatTimestamp(postDate)) %>
           </div>
           <hr />
         </div>
@@ -295,7 +295,10 @@
             %>
             ><%= title %></a>
           </h4>
-          <div style="text-align:right">posted by <%= posterName %> <% formatTimestamp(postDate) %></div>
+          <div style="text-align:right">
+            posted by <%= posterName %>
+            <% print(formatTimestamp(postDate)) %>
+          </div>
           <hr />
         </div>
       </div>
