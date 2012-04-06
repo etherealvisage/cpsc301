@@ -220,8 +220,11 @@ Memo.NewView = Backbone.View.extend({
         if(typeof data.memoID !== "undefined") {
           router.navigate("/memos/" + data.memoID, {trigger: true});
         }
+        else if(data.error == "perm") {
+          displayWarning("Permissions", "You're not allowed to do that.");
+        }
+        /* There was an error. */
         else {
-          /* There was an error. */
           console.log("Error. Data returned from server:");
           console.log(data);
         }

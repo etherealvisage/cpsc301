@@ -85,6 +85,8 @@ Backbone.Model.prototype.parse = function(response) {
       keyboard: false
     });
   }
+  else if(response.error == "perm") {
+    displayWarning("Permissions", "<p>You tried to do something you weren't supposed to. Nice try.</p>");
+  }
   return response;
 }
-

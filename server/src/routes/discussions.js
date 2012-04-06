@@ -24,7 +24,7 @@ exports.getDiscussion = function(req, res) {
   util.checkToken(req, res, function() {  
     var discussionID = parseInt(req.params.id, 10);
     var discussion = new models.Discussion;
-    discussion.get(discussionID, function(result) {
+    discussion.getDiscussion(discussionID, function(result) {
       res.json(result);
     });
   });

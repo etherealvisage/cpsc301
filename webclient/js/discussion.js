@@ -78,6 +78,8 @@ Discussion.View = Backbone.View.extend({
 
   render: function() {
     this.$el.empty();
+    var self = this;
+
     var tmpl = _.template(this.template);
     this.$el.html(tmpl(this.model.toJSON()));
     _.each(this.model.get("posts"), function(item) {

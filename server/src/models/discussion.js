@@ -25,6 +25,14 @@ Discussion.prototype._userNameQuery =
   db.prepare("SELECT name FROM " + config.dbTablePrefix +
     "users WHERE id = ?");
 
+Discussion.prototype._listPostsQuery =
+  db.prepare("SELECT * FROM " + config.dbTablePrefix +
+    "posts WHERE discussionID = ?");
+
+Discussion.prototype._getDiscussionQuery = 
+  db.prepare("SELECT * FROM " + config.dbTablePrefix +
+    "discussions WHERE id = ?");
+
 Discussion.prototype.list = function(uid, onResults) {
   var listQuery = this._listQuery;
   var namesQuery = this._userNamesQuery;
@@ -66,5 +74,21 @@ Discussion.prototype.addPost = function(params, onResult) {
 }
 
 Discussion.prototype.getDiscussion = function(id, onResult) {
-  
+  var listPostsQuery = this._listPostsQuery;
+  var getDiscussionQuery = this._getDiscussionQuery;
+  var result = {
+    posts: new Array()
+  };
+  db.serialize(function() {
+    getDiscussionQuery.get(id, function(err, row) {
+      result.title = row.title;
+      listPostsQuery.all(id, function(err, rows) {
+        for(var i = 0; i < rows.length; i ++) {
+          rows[i].authorName = "placeholder";
+          result.posts.push(rows[i]);
+        }
+        onResult(result);
+      });
+    });
+  });
 }
