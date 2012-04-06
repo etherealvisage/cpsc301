@@ -107,7 +107,11 @@ Discussion.View = Backbone.View.extend({
           body: body
         }
       }).done(function(data) {
-        self.render();
+        self.model.fetch({
+          success: function(model) {
+            self.render();
+          }
+        });
       });
 
       return false;
