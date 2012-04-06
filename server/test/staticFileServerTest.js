@@ -1,8 +1,13 @@
 var assert = require('assert');
 var http = require('http');
 var config = require('../src/config');
+var fixtures = require('../lib/fixtures');
 
 describe('Static file server', function() {
+  beforeEach(function() {
+    fixtures.load('users');
+  });
+
   it('should serve an existing static file with HTTP 200 response code', function(done) {
     make_get_request('/static.test', function(res) {
       var resCode = res.statusCode;
@@ -74,16 +79,6 @@ describe('Static file server', function() {
       done();
     });
   });
-  
-    it('should do something', function(done) {
-    make_post_request('/does_not_exist', function(res) {
-      var resCode = res.statusCode;
-      var expectedCode = 404;
-      assert.equal(resCode, expectedCode);
-      done();
-    });
-  });
-  
 });
 
 function make_get_request(path, on_response) {

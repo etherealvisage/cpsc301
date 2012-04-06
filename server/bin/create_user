@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var models = require('../src/models');
+
+if(process.argv.length != 4) {
+  console.log('Usage: create_user [username] [password]');
+  process.exit(1);
+}
+
+var username = process.argv[2];
+var password = process.argv[3];
+var userLevel = 2;
+var auth = new models.Authentication();
+auth.createUser(username, username, password, userLevel, function() { });
