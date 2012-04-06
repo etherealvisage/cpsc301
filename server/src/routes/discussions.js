@@ -29,3 +29,15 @@ exports.getDiscussion = function(req, res) {
     });
   });
 };
+
+exports.addDiscussionPost = function(req, res) {
+  util.checkToken(req, res, function() {
+    var discussionID = req.params.id;
+    req.body.discussionID = discussionID;
+    req.body.uid = req.cookies.uid;
+    var discussion = new models.Discussion();
+    discussion.addPost(req.body, function(data) {
+      res.json(data);
+    });
+  });
+}

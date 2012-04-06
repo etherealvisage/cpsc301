@@ -188,6 +188,21 @@
       </div>
     </script>
 
+    <script type="text/template" id="discussion-list-template">
+      <div class="row">
+        <div class="span2 offset5">
+          <a class="btn" id="discussion-list-new"><i class="icon-pencil" />New discussion</a>
+        </div>
+        <br />
+        <hr />
+      </div>
+
+      <div id="discussion-list"></div>
+        
+      <div class="row">
+      </div>
+    </script>
+
     <script type="text/template" id="discussion-list-item-template">
       <div class="row">
         <div class="span6 offset3">
@@ -213,11 +228,18 @@
 
     <script type="text/template" id="discussion-view-template">
       <div class="row">
-        
       </div>
+
       <div id="discussion-view-list"></div>
         
-      <div>
+      <div class="row">
+        <div class="span8 offset2 well">
+          <form id="discussion-view-form" style="text-align: center" method="POST">
+            <textarea id="discussion-view-textarea" class="span8" style="height: 30em;" />
+            <input type="submit" id="discussion-view-submit" name="discussion-view-submit"
+                   value="Reply" style="width: 30%;"/>
+          </form>
+        </div>
       </div>
     </script>
 

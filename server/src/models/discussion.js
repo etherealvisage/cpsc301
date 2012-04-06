@@ -33,13 +33,16 @@ Discussion.prototype._getDiscussionQuery =
   db.prepare("SELECT * FROM " + config.dbTablePrefix +
     "discussions WHERE id = ?");
 
+Discussion.prototype._addPostQuery =
+  db.prepare("INSERT INTO " + config.dbTablePrefix +
+    'posts VALUES (NULL, ?, strftime("%s", "now"), ?, ?)');
+
 Discussion.prototype.list = function(uid, onResults) {
   var listQuery = this._listQuery;
   var namesQuery = this._userNamesQuery;
   db.serialize(function() {
     listQuery.all(function(err, rows) {
       for(var i = 0; i < rows.length; i ++) {
-        console.log(rows[i]);
         rows[i].unread = false;
         rows[i].authorName = "placeholder";
       }
@@ -68,8 +71,13 @@ Discussion.prototype.createDiscussion = function(params, onResult) {
 }
 
 Discussion.prototype.addPost = function(params, onResult) {
+  var addPostQuery = this._addPostQuery;
   db.serialize(function() {
-    
+    console.log("Running query.");
+    console.log(params);
+    addPostQuery.run(params.uid, params.body, params.discussionID, function(err) {
+      onResult({});
+    });
   });
 }
 

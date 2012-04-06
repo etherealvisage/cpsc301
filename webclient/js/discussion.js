@@ -23,6 +23,8 @@ Discussion.ListCollection = Backbone.Collection.extend({
 Discussion.ListView = Backbone.View.extend({
   el: $("#primary-content"),
 
+  template: $("#discussion-list-template").html(),
+
   initialize: function() {
     setNavInfo("discussion", "Discussion List", "");
 
@@ -37,6 +39,13 @@ Discussion.ListView = Backbone.View.extend({
   render: function() {
     var self = this;
     this.$el.empty();
+
+    this.$el.html(this.template);
+
+    $("#discussion-list-new").click(function() {
+      router.navigate("/discussions/new", {trigger: true});
+    });
+
     _.each(this.collection.models, function(item) {
       self.renderListItem(item);
     }, this);
@@ -47,7 +56,7 @@ Discussion.ListView = Backbone.View.extend({
       model: item
     });
 
-    this.$el.prepend(itemView.render().el);
+    $("#discussion-list").prepend(itemView.render().el);
   },
 });
 
@@ -82,6 +91,28 @@ Discussion.View = Backbone.View.extend({
 
     var tmpl = _.template(this.template);
     this.$el.html(tmpl(this.model.toJSON()));
+
+    $("#discussion-view-textarea").wysihtml5();
+
+    var self = this;
+    $("#discussion-view-submit").click(function() {
+      // data checking
+      var body = $("#discussion-view-textarea").val();
+
+      $.ajax({
+        url: "/api/discussions/" + self.id,
+        type: "POST",
+        dataType: "json",
+        data: {
+          body: body
+        }
+      }).done(function(data) {
+        self.render();
+      });
+
+      return false;
+    });
+
     _.each(this.model.get("posts"), function(item) {
       $("#discussion-view-list").append(self.renderPost(item));
     });
@@ -100,7 +131,7 @@ Discussion.NewView = Backbone.View.extend({
 
   initialize: function() {
     console.log("Initializing NewView for discussions");
-    setNavInfo("discussions", "New Discussion", "");
+    setNavInfo("discussion", "New Discussion", "");
     this.$el.empty();
     this.$el.html(this.template);
     
@@ -122,8 +153,14 @@ Discussion.NewView = Backbone.View.extend({
           content: content
         }
       }).done(function(data) {
-        console.log("Data received:");
         console.log(data);
+        console.log(typeof data.discussionID);
+        if(typeof data.discussionID !== "undefined") {
+          router.navigate("/discussions/" + data.discussionID, {trigger: true});
+        }
+        else {
+          displayWarning("Warning", "Something happened that should not have. Try resubmitting?");
+        }
       });
       return false;
     });
