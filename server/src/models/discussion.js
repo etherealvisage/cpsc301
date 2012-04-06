@@ -22,12 +22,19 @@ Discussion.prototype._setPostDiscussionQuery =
     "posts SET discussionID=? WHERE id=?");
 
 Discussion.prototype._userNameQuery =
+  db.prepare("SELECT id, name FROM " + config.dbTablePrefix + "users");
+
+Discussion.prototype._userNameQuery =
   db.prepare("SELECT name FROM " + config.dbTablePrefix +
     "users WHERE id = ?");
 
 Discussion.prototype._listPostsQuery =
   db.prepare("SELECT * FROM " + config.dbTablePrefix +
     "posts WHERE discussionID = ?");
+
+Discussion.prototype._getPostQuery = 
+  db.prepare("SELECT * FROM " + config.dbTablePrefix +
+    "posts WHERE id = ?");
 
 Discussion.prototype._getDiscussionQuery = 
   db.prepare("SELECT * FROM " + config.dbTablePrefix +

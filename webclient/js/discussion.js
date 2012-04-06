@@ -98,6 +98,10 @@ Discussion.View = Backbone.View.extend({
     $("#discussion-view-submit").click(function() {
       // data checking
       var body = $("#discussion-view-textarea").val();
+      if(!validateStringLength(body, 3, 1048576, "Reply body",
+        "<p>Please enter a reply of at least three characters.</p>",
+        "<p>Your reply is too long -- please enter a reply " +
+        "less than 1MB, including formatting.</p>")) return false
 
       $.ajax({
         url: "/api/discussions/" + self.id,

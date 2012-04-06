@@ -179,34 +179,18 @@ Memo.NewView = Backbone.View.extend({
     /* Handle form submission. */
     var self = this;
     $("#memo-new-submit").click(function() {
-      /* Data validation. */
       var title = $("#memo-new-title").val();
       var content = $("#memo-new-textarea").val();
 
-      if(title.length < 3) {
-        displayWarning("Title",
-          "<p>The title must be at least three characters long.</p>"
-        );
-        return false;
-      }
-      else if(title.length > 1024) {
-        displayWarning("Title",
-          "<p>. . . nice try. Title has to be at most 1024 characters long."
-        );
-        return false;
-      }
-      else if(content.length < 10) {
-        displayWarning("Content",
-          "<p>The memo is a touch too small -- at least ten characters, please."
-        );
-        return false;
-      }
-      else if(content.length > 1048576) {
-        displayWarning("Content",
-          "<p>The memo is a bit too long; try to keep it under 500,000 characters.</p>"
-        );
-        return false;
-      }
+      /* Validate the title length. */
+      if(!validateStringLength(title, 3, 1024, "Memo title",
+        "<p>Please enter a title of at least three characters.</p>",
+        "<p>Please enter a title of at most 1024 characters.</p>")) return false;
+
+      if(!validateStringLength(content, 10, 1048576, "Memo content",
+        "<p>The memo you have typed is too short.</p>",
+        "<p>The memo you have typed is too long -- " + 
+        "including formatting, it was more than 1MB.</p>")) return false;
 
       $.ajax({
         url: "/api/memos",

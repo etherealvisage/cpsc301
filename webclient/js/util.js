@@ -102,6 +102,7 @@ function relativeTime(time) {
   else return "a second";
 }
 
+/* Displays a modal warning dialog. */
 function displayWarning(header, message) {
   var w = $("#warning");
   $("#warning-header").html(header);
@@ -112,4 +113,22 @@ function displayWarning(header, message) {
     show: true,
     keyboard: false
   });
+}
+
+/* Nicely formats a UNIX timestamp in the local timezone. */
+function formatTimestamp(timestamp) {
+  return relativeTime(timestamp);
+}
+
+/* Validates that a string is within [min, max]. */
+function validateStringLength(string, min, max, title, shortMessage, longMessage) {
+  if(string.length < min) {
+    displayWarning(title, shortMessage);
+    return false;
+  }
+  else if(string.length > max) {
+    displayWarning(title, longMessage);
+    return false;
+  }
+  return true;
 }
