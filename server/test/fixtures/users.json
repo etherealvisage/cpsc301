@@ -1,0 +1,12 @@
+{
+  "margot": {
+    "id": 1,
+    "username": "Margot",
+    "name": "Margot & the Nuclear So-Sos",
+    "pwhash": "hash",
+    "pwsalt": "salty",
+    "userType": 2,
+    "creationDate": 1333740076,
+    "locked": 0
+  }
+}

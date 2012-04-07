@@ -4,10 +4,6 @@ var config = require('../src/config');
 var fixtures = require('../lib/fixtures');
 
 describe('Static file server', function() {
-  beforeEach(function() {
-    fixtures.load('users');
-  });
-
   it('should serve an existing static file with HTTP 200 response code', function(done) {
     make_get_request('/static.test', function(res) {
       var resCode = res.statusCode;
@@ -83,16 +79,6 @@ describe('Static file server', function() {
 
 function make_get_request(path, on_response) {
   http.get({
-    host: 'localhost',
-    port: config.serverPort,
-    path: path,
-  }, on_response).on('error', function(err) {
-    throw err;
-  });
-}
-
-function make_post_request(path, on_response) {
-  http.request({
     host: 'localhost',
     port: config.serverPort,
     path: path,
