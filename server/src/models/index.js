@@ -3,6 +3,8 @@ var config = require('../config');
 
 var db = new sqlite3.Database(config.dbPath);
 db.run("PRAGMA foreign_keys = ON");
+// See https://github.com/developmentseed/node-sqlite3/issues/9#issuecomment-1977744.
+db.run("PRAGMA journal_mode = WAL");
 exports.db = db;
 
 /* TODO: call dbCleanup on SIG{INT,KILL,TERM}. */
