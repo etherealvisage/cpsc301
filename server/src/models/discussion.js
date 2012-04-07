@@ -89,10 +89,8 @@ Discussion.prototype.getDiscussion = function(id, onResult) {
     getDiscussionQuery.get(id, function(err, row) {
       result.title = row.title;
       listPostsQuery.all(id, function(err, rows) {
-        for(var i = 0; i < rows.length; i ++) {
-          console.log(rows[i]);
+        for(var i = 0; i < rows.length; i ++)
           result.posts.push(rows[i]);
-        }
         onResult(result);
       });
     });
