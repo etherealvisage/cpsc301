@@ -3,6 +3,11 @@
 var router = undefined;
 (function($) {
   router = new HappyRouter();
+  // Internet Explorer hash-based history relies on iframe, so call start()
+  // only after DOM is ready.
+  $(function() {
+    Backbone.history.start({pushState: true});
+  });
 
   // Prevent browser from navigating to new page when link activated.
   $('body').on('click', 'a', function(evt) {
@@ -15,6 +20,4 @@ var router = undefined;
     // this should not be a problem.
     router.navigate(evt.currentTarget.pathname, true);
   });
-
-  Backbone.history.start({pushState: true});
 }(jQuery));

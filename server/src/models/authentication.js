@@ -30,9 +30,9 @@ Authentication.prototype.validateCookie = function(session, uid, onValid, onInva
         throw err;
 
       if(row.tokenCount > 0 && typeof onValid !== 'undefined')
-        onValid();
+        onValid(uid);
       else if(typeof onInvalid !== 'undefined')
-        onInvalid();
+        onInvalid(uid);
     });
   });
 };

@@ -2,9 +2,8 @@ var express = require('express')
   , path = require('path')
   , config = require('./config')
   , routes = require('./routes');
-
 var app = module.exports = express.createServer();
-
+var webClientRoutes = require('../../webclient/js/router');
 
 /*=============
   Configuration
@@ -30,10 +29,10 @@ app.configure('production', function(){
 /*======
   Routes
   ======*/
-app.get('/', routes.index);
-
 app.post('/api/authenticate', routes.login);
 app.post('/api/logout', routes.logout);
+
+app.get('/api/users/current', routes.getUser);
 app.get('/api/users', routes.listUsers);
 app.post('/api/users', routes.createUser);
 
@@ -46,6 +45,22 @@ app.get('/api/discussions', routes.listDiscussions);
 app.get('/api/discussions/:id([0-9]+)', routes.getDiscussion);
 app.post('/api/discussions/:id([0-9]+)', routes.addDiscussionPost);
 app.post('/api/discussions', routes.createDiscussion);
+
+// This route isn't strictly necessary, as Express' static-file-handling code
+// seems to automaticaly serve a static file named index.html if no "root"
+// route is provided. Nevertheless, I feel more comfortable making this
+// behaviour explicit.
+app.get('/', routes.index);
+
+// If user tries to navigate to URL that is valid for Backbone client, redirect
+// him to the index so that Backbone may take over.
+for(var clientRoute in webClientRoutes.routeMap) {
+  // Ignore the "root" route, which we handle above.
+  if(clientRoute === '')
+    continue;
+
+  app.get('/' + clientRoute, routes.redirectToIndex);
+}
 
 /*=====================
   Server initialization

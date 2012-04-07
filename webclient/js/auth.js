@@ -1,10 +1,5 @@
 var Authentication = {};
 
-/* Handle the first login specially; the auth page has been preloaded
-  into the primary-content div; don't bother reloading it.
-*/
-Authentication.firstLogin = true;
-
 Authentication.LoginView = Backbone.View.extend({
   tagName: "div",
   el: $("#primary-content"),
@@ -17,11 +12,8 @@ Authentication.LoginView = Backbone.View.extend({
   },
 
   render: function() {
-    if(Authentication.firstLogin == false) {
-      $(this.el).empty();
-      $(this.el).html(this.template);
-    }
-    else Authentication.firstLogin = false;
+    $(this.el).empty();
+    $(this.el).html(this.template);
     
     /* Initialize page elements. */
     var self = this;
@@ -48,7 +40,7 @@ Authentication.LoginView = Backbone.View.extend({
         else if(data.state == "success") {
           setNavbarState(data.userType || 1);
           setNavbarUsername(data.name);
-          router.navigate("/memos", {trigger: true});
+          router.navigate("/", {trigger: true});
         }
         else {
           msg.html("state: " + data.state);
