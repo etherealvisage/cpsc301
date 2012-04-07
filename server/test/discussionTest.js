@@ -5,7 +5,7 @@ var config = require('../src/config');
 
 describe('Discussions', function() {
   beforeEach(function(done) {
-    fixtures.load('users', 'sessions', 'discussions', done);
+    fixtures.load('users', 'sessions', 'discussions', 'posts', done);
   });
 
   describe('Discussion listing', function() {
@@ -16,23 +16,22 @@ describe('Discussions', function() {
       });
     });
 
-    /*
     it('should list a single discussion', function(done) {
       makeGetReq('/api/discussions', function(res) { }, function(body) {
         var expected = [{
           "id": 1,
           "title": "A happy discussion",
-          "rootPostID": 5,
-          "authorID": 5,
-          "unread": false,
-          "authorName": "placeholder"
+          "rootPostID": 1,
+          "authorID": 1,
+          "postDate": 1333740076,
+          "authorName": "Margot & the Nuclear So-Sos",
+          "unread": false
         }];
         var actual = JSON.parse(body);
-        assert.deepEqual(expected, actual, 'Improper discussion returned');
+        assert.deepEqual(expected, actual, 'Discussions do not match');
         done();
       });
     });
-    */
   });
 });
 
