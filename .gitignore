@@ -1,4 +1,6 @@
 server/misc/database.sqlite
+server/misc/database.sqlite-shm
+server/misc/database.sqlite-wal
 server/node_modules
 .*.swp
 .vimrc
