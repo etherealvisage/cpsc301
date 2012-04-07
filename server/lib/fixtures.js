@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var db = require('../src/models').db;
 var config = require('../src/config');
 
 var loadedFixtures = {};
