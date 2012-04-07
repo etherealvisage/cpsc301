@@ -220,7 +220,9 @@
             %>
             ><%= title %></a>
           </h4>
-          <div style="text-align: right">started by <% authorName %> ...</div>
+          <div style="text-align: right">
+            started by <%= authorName %> <% print(formatTimestamp(postDate)) %>
+          </div>
           <hr />
         </div>
       </div>
@@ -249,7 +251,7 @@
           <%= authorName %>
         </div>
         <div class="span3 offset2" style="text-align: right; font-weight: bold">
-          <%= postDate %>
+          <% print(formatTimestamp(postDate)) %>
         </div>
       </div>
       <div class="row">
@@ -293,7 +295,10 @@
             %>
             ><%= title %></a>
           </h4>
-          <div style="text-align:right">posted by <%= posterName %> <%= postDateFormatted %></div>
+          <div style="text-align:right">
+            posted by <%= posterName %>
+            <% print(formatTimestamp(postDate)) %>
+          </div>
           <hr />
         </div>
       </div>
@@ -308,7 +313,7 @@
           <a class="icon-edit" id="memo-view-edit" href="/"></a>
         </div>
         <div class="span4" style="text-align: right; font-weight: bold; font-size: 8pt;">
-          <%= postDateFormatted %>
+          <%= formatTimestamp(postDate) %>
         </div>
       </div>
       <div class="row">

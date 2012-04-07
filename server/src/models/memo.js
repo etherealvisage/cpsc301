@@ -5,63 +5,50 @@ var Memo = function() {
 };
 exports.Memo = Memo;
 
+// select title, min(1, ifnull(unreadMemos.userID, 0)) from memos LEFT OUTER JOIN unreadMemos ON memos.id = unreadMemos.memoID WHERE (unreadMemos.userID IS NULL OR unreadMemos.userID = 3);
+
 Memo.prototype._listQuery =
-  db.prepare("SELECT id, title, postDate, posterID FROM " + config.dbTablePrefix + "memos");
+  db.prepare("SELECT m.*, u.name AS posterName, " + 
+    "(SELECT COUNT() FROM " + config.dbTablePrefix + "unreadMemos AS ur WHERE " +
+    "ur.userID = ? AND ur.memoID = m.id) AS unread FROM " + 
+    config.dbTablePrefix + "memos AS m LEFT OUTER JOIN " + config.dbTablePrefix +
+    "users AS u " + "ON m.posterID = u.id");
+
 Memo.prototype._getQuery =
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "memos WHERE id = ?");
+
 Memo.prototype._createQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
     "memos VALUES (NULL, ?, ?, strftime('%s', 'now'), ?)");
+
 Memo.prototype._updateQuery =
   db.prepare("UPDATE memos SET content=?, title=? WHERE id=?");
+
 Memo.prototype._checkReadQuery = 
   db.prepare("SELECT * FROM unreadMemos WHERE userID = ?");
+
 Memo.prototype._markUnreadQuery = 
   db.prepare("INSERT INTO " + config.dbTablePrefix +
     "unreadMemos VALUES (?, ?)");
+
 Memo.prototype._markReadQuery = 
   db.prepare("DELETE FROM " + config.dbTablePrefix +
     "unreadMemos WHERE memoID = ? AND userID = ?");
+
 Memo.prototype._userListQuery =
   db.prepare("SELECT id FROM " + config.dbTablePrefix +
     "users");
-Memo.prototype._userNamesQuery =
-  db.prepare("SELECT id, name FROM " + config.dbTablePrefix +
-    "users");
-Memo.prototype._userNameQuery =
-  db.prepare("SELECT name FROM " + config.dbTablePrefix +
-    "users WHERE id = ?");
 
 Memo.prototype.list = function(uid, onResults) {
   var listQuery = this._listQuery;
   var checkQuery = this._checkReadQuery;
-  var namesQuery = this._userNamesQuery;
   db.serialize(function() {
     checkQuery.all(uid, function(err, rows) {
       if(err !== null)
         throw err;
 
-      var unread = {};
-      for(var i = 0; i < rows.length; i ++) {
-        unread[rows[i].memoID] = true;
-      }
-      listQuery.all(function(err, rows) {
-        for(var i = 0; i < rows.length; i ++) {
-          if(unread[rows[i].id] == true) rows[i].unread = true;
-          else rows[i].unread = false;
-        }
-        var lrows = rows;
-        namesQuery.all(function(err, rows) {
-          var usernames = {};
-          for(var i = 0; i < rows.length; i ++) {
-            usernames[rows[i].id] = rows[i].name;
-          }
-
-          for(var i = 0; i < lrows.length; i ++) {
-            lrows[i].posterName = usernames[lrows[i].posterID] || "someone";
-          }
-          onResults(lrows);
-        });
+      listQuery.all(uid, function(err, rows) {
+        onResults(rows);
       });
     });
   });

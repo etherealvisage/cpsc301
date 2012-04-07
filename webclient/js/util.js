@@ -48,60 +48,7 @@ function setNavbarUsername(username) {
   $("#navbar-username").html(username);
 }
 
-/* Generates a relative time/date string from the current time.
-  If argument is a Date, uses that. If argument is an integer,
-  the time is treated as a UNIX-epoch seconds offset.
-
-  NOTE: `months' may be occasionally off.
-*/
-function relativeTime(time) {
-  var d = null;
-  if(typeof time == "integer") {
-    d = new Date();
-    d.setTime(time * 1000);
-  }
-  else {
-    /* Assume argument is a Date object. */
-    d = time;
-  }
-
-  var current = new Date();
-  var delta = new Date();
-  delta.setTime(Math.abs(current - d));
-  
-  var years = delta.getUTCFullYear() - 1970;
-  var months = delta.getUTCMonth();
-  var days = delta.getUTCDate() - 1;
-  var hours = delta.getUTCHours();
-  var minutes = delta.getUTCMinutes();
-  var seconds = delta.getUTCSeconds();
-    
-  if(years > 0) {
-    if(years == 1) return "a year";
-	  else return years + " years";
-  }
-  else if(months > 0) {
-	  if(months == 1) return "a month";
-	  else return months + " months";
-  }
-  else if(days > 0) {
-	  if(days == 1) return "a day";
-	  else return days + " days";
-  }
-  else if(hours > 0) {
-	  if(hours == 1) return "an hour";
-	  else return hours + " hours";
-  }
-  else if(minutes > 0) {
-	  if(minutes == 1) return "a minute";
-	  else return minutes + " minutes";
-  }
-  else if(seconds > 1) {
-	  return seconds + " seconds";
-  }
-  else return "a second";
-}
-
+/* Displays a modal warning dialog. */
 function displayWarning(header, message) {
   var w = $("#warning");
   $("#warning-header").html(header);
@@ -112,4 +59,54 @@ function displayWarning(header, message) {
     show: true,
     keyboard: false
   });
+}
+
+/* Nicely formats a UNIX timestamp in the local timezone. */
+function formatTimestamp(timestamp) {
+  var d = new Date();
+
+  d.setTime(timestamp * 1000);
+  var current = new Date();
+  var delta = new Date();
+  delta.setTime(Math.abs(current - d));
+  
+  var years = delta.getUTCFullYear() - 1970;
+  var months = delta.getUTCMonth();
+  var days = delta.getUTCDate() - 1;
+  var hours = delta.getUTCHours();
+  var minutes = delta.getUTCMinutes();
+  var seconds = delta.getUTCSeconds();
+
+  if(years > 0 || months > 0 || days > 7) {
+    return d.toLocaleTimeString() + " " + d.toLocaleDateString();
+  }
+  else if(days > 0) {
+	  if(days == 1) return "a day ago";
+	  else return days + " days ago";
+  }
+  else if(hours > 0) {
+	  if(hours == 1) return "an hour ago";
+	  else return hours + " hours ago";
+  }
+  else if(minutes > 0) {
+	  if(minutes == 1) return "a minute ago";
+	  else return minutes + " minutes ago";
+  }
+  else if(seconds > 15) {
+	  return seconds + " seconds ago";
+  }
+  else return "seconds ago";
+}
+
+/* Validates that a string is within [min, max]. */
+function validateStringLength(string, min, max, title, shortMessage, longMessage) {
+  if(string.length < min) {
+    displayWarning(title, shortMessage);
+    return false;
+  }
+  else if(string.length > max) {
+    displayWarning(title, longMessage);
+    return false;
+  }
+  return true;
 }
