@@ -50,7 +50,7 @@ describe('Discussions', function() {
 
   describe('Single', function() {
     it('should load one discussion', function(done){ 
-      testHelpers.makeGetReq('/api/discussions/1', 
+      testHelpers.makeGetReq('/api/discussions/2', 
         function(res){
 	  //console.log(res)
         }, 
