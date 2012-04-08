@@ -54,7 +54,19 @@ exports.makePostReq = function(path, data, onResponse, onComplete) {
 
   var request = http.request(params, _handleResponse(onResponse, onComplete));
   var encoded = querystring.stringify(data);
-  console.log(encoded);
+  request.end(encoded, 'utf8');
+  request.on('error', function(err) {
+    throw err;
+  });
+};
+
+exports.makePutReq = function(path, data, onResponse, onComplete) {
+  var params = _prepareReqParams(path);
+  params.method = 'PUT';
+  params.headers['Content-Type'] = 'application/json';
+
+  var request = http.request(params, _handleResponse(onResponse, onComplete));
+  var encoded = JSON.stringify(data);
   request.end(encoded, 'utf8');
   request.on('error', function(err) {
     throw err;
