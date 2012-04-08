@@ -1,0 +1,8 @@
+{ 
+  "happy_discussion2": {
+    "id": 2,
+    "title": "A happy discussion",
+    "rootPostId": 1,
+    "authorId": 2
+  }
+}

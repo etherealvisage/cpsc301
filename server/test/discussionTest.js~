@@ -61,7 +61,13 @@ describe('Discussions', function() {
        postDate: 1333740076,
        body: 'This is my body. There are many like it, but this is mine.',
        discussionID: 1,
-       authorName: 'Margot & the Nuclear So-Sos' } ],
+       authorName: 'Margot & the Nuclear So-Sos' },
+     { id: 2,
+       posterID: 3,
+       postDate: 1333911855,
+       body: 'list of all?',
+       discussionID: 1,
+       authorName: 'mike' }  ],
   title: 'title' };
 	  var actual = JSON.parse(body);
 	  console.log('\n The expected body recieved \n');

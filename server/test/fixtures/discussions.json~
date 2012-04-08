@@ -5,7 +5,7 @@
     "rootPostId": 1,
     "authorId": 2 
   },
-  "second_discussion": {
+  "second discussion": {
     "id": 2,
     "title": "post",
     "rootPostId": 2,
