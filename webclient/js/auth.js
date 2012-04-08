@@ -20,6 +20,8 @@ Authentication.LoginView = Backbone.View.extend({
       msg.html(error).css('color', '#f00');
     };
 
+    $('#authentication-login-username').focus();
+
     $("#authentication-login-submit").click(function(evt) {
       evt.preventDefault();
       msg.html("Sending login request ...").css('color', '#888');
