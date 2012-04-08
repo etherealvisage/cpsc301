@@ -31,7 +31,7 @@ Authentication.LoginView = Backbone.View.extend({
         url: "/api/authenticate",
         type: "POST",
         dataType: "json",
-        data: this.serialize()
+        data: $(this).serialize()
       }).done(function(data) { 
         if(data.state == "notFound")
           showError('Unknown username.');
