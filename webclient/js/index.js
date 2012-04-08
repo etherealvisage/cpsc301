@@ -6,7 +6,6 @@ Index.View = Backbone.View.extend({
   template: $('#index-template').html(),
 
   initialize: function() {
-    console.log('le index ' + window.location.hash);
     $.ajax({
       url: '/api/users/current',
       type: 'GET',
