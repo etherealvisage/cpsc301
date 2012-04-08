@@ -1,7 +1,7 @@
 {
   "happy_post": {
     "id": 1,
-    "posterId": 1,
+    "posterId": 2,
     "postDate": 1333740076,
     "body": "This is my body. There are many like it, but this is mine.",
     "discussionID": 1

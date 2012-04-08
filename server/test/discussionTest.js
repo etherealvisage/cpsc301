@@ -7,7 +7,7 @@ describe('Discussions', function() {
     fixtures.load('users', 'sessions', 'discussions', 'posts', done);
   });
 
-  describe('Discussion listing', function() {
+  describe('Listing', function() {
     it('should return the correct MIME type', function(done) {
       testHelpers.makeGetReq('/api/discussions', function(res) {
         assert.equal(res.headers['content-type'], 'application/json; charset=utf-8');
@@ -15,8 +15,10 @@ describe('Discussions', function() {
       });
     });
 
-    it('should list a single discussion', function(done) {
-      testHelpers.makeGetReq('/api/discussions', function(res) { }, function(body) {
+    it('should list a single discussion with null title', function(done) {
+      testHelpers.makeGetReq('/api/discussions', function(res) { 
+	//console.log(res);
+      }, function(body) {
         var expected = [{
           "id": 1,
           "title": "",
@@ -27,57 +29,42 @@ describe('Discussions', function() {
           "unread": false
         }];
         var actual = JSON.parse(body);
+	console.log('\n The expected body recieved \n');
+	console.log(expected);
+
+	console.log('\n And now the actual body recieved \n');
+	console.log(actual);
         assert.deepEqual(expected, actual, 'Discussions do not match');
         done();
       });
     });
-    it('should list a single discussion', function(done) {
-      testHelpers.makeGetReq('/api/discussions', function(res) { }, function(body) {
-        var expected = [{
-          "id": 1,
-          "title": "A happy discussion",
-          "rootPostID": 1,
-          "authorID": 2,
-          "postDate": 1333740076,
-          "authorName": "Margot & the Nuclear So-Sos",
-          "unread": false
-        }];
-        var actual = JSON.parse(body);
-        assert.deepEqual(expected, actual, 'Discussions do not match');
-        done();
-      });
-    });
-    it('should list a single discussion', function(done) {
-      testHelpers.makeGetReq('/api/discussions', function(res) { }, function(body) {
-        var expected = [{
-          "id": 1,
-          "title": "A happy discussion",
-          "rootPostID": 1,
-          "authorID": 2,
-          "postDate": 1333740076,
-          "authorName": "Margot & the Nuclear So-Sos",
-          "unread": false
-        }];
-        var actual = JSON.parse(body);
-        assert.deepEqual(expected, actual, 'Discussions do not match');
-        done();
-      });
-    });
-    it('should list a single discussion', function(done) {
-      testHelpers.makeGetReq('/api/discussions', function(res) { }, function(body) {
-        var expected = [{
-          "id": 1,
-          "title": "A happy discussion",
-          "rootPostID": 1,
-          "authorID": 2,
-          "postDate": 1333740076,
-          "authorName": "Margot & the Nuclear So-Sos",
-          "unread": false
-        }];
-        var actual = JSON.parse(body);
-        assert.deepEqual(expected, actual, 'Discussions do not match');
-        done();
-      });
+  });
+
+  describe('Single', function() {
+    it('should load one discussion', function(done){ 
+      testHelpers.makeGetReq('/api/discussions/1', 
+        function(res){
+	  //console.log(res)
+        }, 
+        function(body) {
+          var expected = { posts: 
+   [ { id: 1,
+       posterID: 2,
+       postDate: 1333740076,
+       body: 'This is my body. There are many like it, but this is mine.',
+       discussionID: 1,
+       authorName: 'Margot & the Nuclear So-Sos' } ],
+  title: '' };
+	  var actual = JSON.parse(body);
+	  console.log('\n The expected body recieved \n');
+	  console.log(expected);
+
+	  console.log('\n And now the actual body recieved \n');
+	  console.log(actual);
+          assert.deepEqual(expected, actual, 'Discussions do not match');
+          done();
+	}
+      );
     });
   });
 });
