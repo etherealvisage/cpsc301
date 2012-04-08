@@ -28,5 +28,45 @@
     "userType": 1,
     "creationDate": 133374076,
     "locked": 0
+  },
+    "user4": {
+    "id": 4,
+    "username": "user4",
+    "name": "User 4",
+    "pwhash":"wronghash",
+    "pwsalt": "poorsalt",
+    "userType": 0,
+    "creationDate": 133374076,
+    "locked": 0
+  },
+    "user5": {
+    "id": 5,
+    "username": "",
+    "name": "Empty Username",
+    "pwhash":"b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86",
+    "pwsalt": "",
+    "userType": 1,
+    "creationDate": 133374076,
+    "locked": 0
+  },
+    "user6": {
+    "id": 6,
+    "username": "emptyname",
+    "name": "",
+    "pwhash":"cd948366d97dcd4b81dba27cdd90aa74341c1bd7c192ad6464395f734c54c1058ee9f670a298f397c05f3d2364693e584fcc9acd65f0bc211062f85657c3cb08",
+    "pwsalt": "",
+    "userType": 1,
+    "creationDate": 133374076,
+    "locked": 0
+  },
+    "user7": {
+    "id": 7,
+    "username": "user7",
+    "name": "User7",
+    "pwhash":"cd948366d97dcd4b81dba27cdd90aa74341c1bd7c192ad6464395f734c54c1058ee9f670a298f397c05f3d2364693e584fcc9acd65f0bc211062f85657c3cb08",
+    "pwsalt": "",
+    "userType": 4,
+    "creationDate": 133374076,
+    "locked": 0
   }
 }
