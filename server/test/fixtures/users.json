@@ -1,12 +1,32 @@
 {
-  "margot": {
-    "id": 2,
-    "username": "Margot",
-    "name": "Margot & the Nuclear So-Sos",
+  "mike": {
+    "id": 1,
+    "username": "mike",
+    "name": "mike",
     "pwhash":"b109f3bbbc244eb82441917ed06d618b9008dd09b3befd1b5e07394c706a8bb980b1d7785e5976ec049b46df5f1326af5a2ea6d103fd07c95385ffab0cacbc86",
     "pwsalt": "",
     "userType": 2,
     "creationDate": 1333740076,
+    "locked": 0
+  },
+  "evan": {
+    "id": 2,
+    "username": "evan",
+    "name": "Evan",
+    "pwhash":"e13efc991a9bf44bbb4da87cdbb725240184585ccaf270523170e008cf2a3b85f45f86c3da647f69780fb9e971caf5437b3d06d418355a68c9760c70a31d05c7",
+    "pwsalt": "",
+    "userType": 0,
+    "creationDate": 13337406,
+    "locked": 0
+  },
+  "stephen": {
+    "id": 3,
+    "username": "banana",
+    "name": "Dr. Banana",
+    "pwhash":"cd948366d97dcd4b81dba27cdd90aa74341c1bd7c192ad6464395f734c54c1058ee9f670a298f397c05f3d2364693e584fcc9acd65f0bc211062f85657c3cb08",
+    "pwsalt": "",
+    "userType": 1,
+    "creationDate": 133374076,
     "locked": 0
   }
 }
