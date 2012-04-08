@@ -22,7 +22,8 @@ Authentication.LoginView = Backbone.View.extend({
 
     $('#authentication-login-username').focus();
 
-    $("#authentication-login-submit").click(function(evt) {
+    var form = $('#authentication-login-form');
+    form.submit(function(evt) {
       evt.preventDefault();
       msg.html("Sending login request ...").css('color', '#888');
 
@@ -30,25 +31,19 @@ Authentication.LoginView = Backbone.View.extend({
         url: "/api/authenticate",
         type: "POST",
         dataType: "json",
-        data: {
-          username: $("#authentication-login-username").val(),
-          password: $("#authentication-login-password").val()
-        }
+        data: form.serialize()
       }).done(function(data) { 
-        if(data.state == "notFound") {
+        if(data.state == "notFound")
           showError('Unknown username.');
-        }
-        else if(data.state == "failed") {
+        else if(data.state == "failed")
           showError('Incorrect password.');
-        }
         else if(data.state == "success") {
           setNavbarState(data.userType || 1);
           setNavbarUsername(data.name);
           router.navigate("/", {trigger: true});
         }
-        else {
-          msg.html("state: " + data.state);
-        }
+        else
+          msg.html("State: " + data.state);
       }).error(function(jqXHR, textStatus) {
         showError('Error sending login request. Perhaps the server is down?');
       });
