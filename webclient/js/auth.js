@@ -22,16 +22,16 @@ Authentication.LoginView = Backbone.View.extend({
 
     $('#authentication-login-username').focus();
 
-    var form = $('#authentication-login-form');
-    form.submit(function(evt) {
+    $('#authentication-login-form').submit(function(evt) {
       evt.preventDefault();
       msg.html("Sending login request ...").css('color', '#888');
 
+      console.log(this);
       $.ajax({
         url: "/api/authenticate",
         type: "POST",
         dataType: "json",
-        data: form.serialize()
+        data: this.serialize()
       }).done(function(data) { 
         if(data.state == "notFound")
           showError('Unknown username.');
