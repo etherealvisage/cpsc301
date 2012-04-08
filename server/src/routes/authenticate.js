@@ -20,8 +20,7 @@ exports.login = function(req, res) {
 
 exports.logout = function(req, res) {
   var authenticator = new models.Authentication();
-  var session = req.cookies.session;
-  authenticator.validateCookie(session, function() {
+  util.checkToken(req, res, function(uid, session) {
     authenticator.logout(session);
   });
   res.json({});
