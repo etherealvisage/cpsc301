@@ -12,14 +12,18 @@ Authentication.LoginView = Backbone.View.extend({
   },
 
   render: function() {
-    $(this.el).empty();
-    $(this.el).html(this.template);
+    $(this.el).empty().html(this.template);
     
     /* Initialize page elements. */
-    var self = this;
     var msg = $("#authentication-login-message");
-    $("#authentication-login-message").html("<h5>Enter username/password to login.</h5>");
-    $("#authentication-login-submit").click(function() {
+    var showError = function(error) {
+      msg.html(error).css('color', '#f00');
+    };
+
+    $("#authentication-login-submit").click(function(evt) {
+      evt.preventDefault();
+      msg.html("Sending login request ...").css('color', '#888');
+
       $.ajax({
         url: "/api/authenticate",
         type: "POST",
@@ -30,12 +34,10 @@ Authentication.LoginView = Backbone.View.extend({
         }
       }).done(function(data) { 
         if(data.state == "notFound") {
-          msg.css("color", "red");
-          msg.html("Unknown username.");
+          showError('Unknown username.');
         }
         else if(data.state == "failed") {
-          msg.css("color", "red");
-          msg.html("Incorrect password.");
+          showError('Incorrect password.');
         }
         else if(data.state == "success") {
           setNavbarState(data.userType || 1);
@@ -46,12 +48,8 @@ Authentication.LoginView = Backbone.View.extend({
           msg.html("state: " + data.state);
         }
       }).error(function(jqXHR, textStatus) {
-        msg.html("Error sending login request. Perhaps the server is down?");
-        msg.css("color", "red");
+        showError('Error sending login request. Perhaps the server is down?');
       });
-      msg.html("Sending login request . . .");
-      msg.css("color", "#888");
-      return false;
     });
   }
 });
