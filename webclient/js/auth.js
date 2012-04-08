@@ -26,7 +26,6 @@ Authentication.LoginView = Backbone.View.extend({
       evt.preventDefault();
       msg.html("Sending login request ...").css('color', '#888');
 
-      console.log(this);
       $.ajax({
         url: "/api/authenticate",
         type: "POST",
