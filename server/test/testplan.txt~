@@ -35,8 +35,8 @@ Memos
 	check unread
 	check read
 Discussions
-	load all discussions
-	load single discussion
+~	load all discussions
+-	load single discussion
 	create disccusion
 	create existing discussion
 	create discussion with empty body

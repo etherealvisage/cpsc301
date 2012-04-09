@@ -74,22 +74,38 @@ describe('Discussions', function() {
     });
   });
   
-  describe('Create Discussion', function() {
-     it('should succesfully create a discussion', function(done){ 
-         testHelpers.makePostReq('/api/discussions', {
-         title: 'LOL this is a title',
-         content: 'And this is the corresponding body.'
-       }, function(res) {
-           console.log(res.statusCode);
-           assert.equal(res.statusCode,200);
-       }, function(body) {
-           console.log(" THIS IS THE BODY", body);         
-           done();
-     });
-  	 });
+  describe('Discussion creation', function() {
+    it('should succesfully create a discussion given valid title and body', function(done) {
+      var title = 'LOL this is a title';
+      var content = 'And this is the corresponding body.';
+
+      testHelpers.makePostReq('/api/discussions', {
+        title: title,
+        content: content
+      }, function(res) {
+        assert.equal(res.statusCode, 200);
+      }, function(body) {
+        body = JSON.parse(body);
+        testHelpers.makeGetReq('/api/discussions/' + body.discussionID, function(res) {
+          assert.equal(res.statusCode, 200);
+        }, function(body) {
+          var actual = JSON.parse(body);
+          var expected = {
+            "title":"LOL this is a title",
+            "posts":[{
+              "id":3,
+              "posterID":2,
+              "body":"And this is the corresponding body.",
+              "discussionID":3,
+              "authorName":"Margot"
+            }]
+          };
+          // Ignore post date, since we don't know exactly what timestamp of post will be.
+          delete actual.posts[0].postDate;
+          assert.deepEqual(actual, expected, "Discussions aren't equal");
+          done();
+        });
+      });
     });
+  });
 });
-
-
-  
-
