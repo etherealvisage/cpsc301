@@ -4,14 +4,31 @@ var db = require('../src/models').db;
 var config = require('../src/config');
 
 var loadedFixtures = {};
+exports.loaded = loadedFixtures;
+
 var errReporter = function(err) {
   if(err !== null)
     throw err;
 };
 
-var _readFixture = function(fixtureName) {
-  var fixtureFilename = path.resolve(config.fixturesPath, fixtureName + '.json');
-  var contents = fs.readFileSync(fixtureFilename, 'utf8');
+function FixtureDoesNotExistError(name) {
+  this.name = 'FixtureDoesNotExistError';
+  this.message = 'Fixture ' + name + ' does not exist.';
+};
+FixtureDoesNotExistError.prototype = new Error();
+FixtureDoesNotExistError.prototype.constructor = FixtureDoesNotExistError;
+
+exports.readFixture = function(fixtureName) {
+  // config.fixturesPath is relative to config.js, which is in ../src.
+  var fixturesDir = path.resolve(__dirname, '..', 'src', config.fixturesPath);
+  var fixturePath = path.resolve(path.join(fixturesDir, fixtureName + '.json'));
+  if(
+      fixturePath.indexOf(fixturesDir) !== 0 ||
+      !path.existsSync(fixturePath)
+    )
+    throw new FixtureDoesNotExistError(fixtureName);
+
+  var contents = fs.readFileSync(fixturePath, 'utf8');
   return JSON.parse(contents);
 };
 
@@ -43,15 +60,19 @@ var _insertRows = function(fixture, fixtureName) {
   }
 };
 
-exports.load = function() {
-  var desiredFixtures = Array.prototype.slice.call(arguments, 0);
-  var onDone = desiredFixtures.pop();
-
+exports.load = function(fixtureNames, onDone) {
   db.serialize(function() {
     // Nest in transaction to potentially enhance DB performance.
     db.run('BEGIN', errReporter);
-    desiredFixtures.forEach(function(fixtureName) {
-      var fixture = _readFixture(fixtureName);
+    fixtureNames.forEach(function(fixtureName) {
+      try {
+        var fixture = exports.readFixture(fixtureName);
+      } catch(e) {
+        if(!(e instanceof FixtureDoesNotExistError))
+          throw e;
+        console.log(e.message);
+        return;
+      }
       _insertRows(fixture, fixtureName);
     });
     db.run('COMMIT', function(err) {
@@ -59,10 +80,4 @@ exports.load = function() {
       onDone();
     });
   });
-};
-
-exports.fetch = function(fixtureName, rowName) {
-  if(fixtureName in loadedFixtures)
-    return loadedFixtures[fixtureName][rowName];
-  return undefined;
 };

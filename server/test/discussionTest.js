@@ -3,8 +3,12 @@ var assert = require('assert');
 var testHelpers = require('../lib/test_helpers.js');
 
 describe('Discussions', function() {
+  var fixtureData = null;
   beforeEach(function(done) {
-    fixtures.load('users', 'sessions', 'discussions', 'posts', done);
+    testHelpers.loadFixturesRemotely(['users', 'sessions', 'discussions', 'posts'], function(fixData) {
+      fixtureData = fixData;
+      done();
+    });
   });
 
   describe('Listing', function() {

@@ -8,7 +8,7 @@ var webClientRoutes = require('../../webclient/js/router');
 /*=============
   Configuration
   =============*/
-app.configure(function(){
+app.configure(function() {
   app.use(express.cookieParser());
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -17,11 +17,11 @@ app.configure(function(){
   app.use(express.static(config.staticDocPath, { maxAge: config.staticDocMaxAge }));
 });
 
-app.configure('development', function(){
+app.configure('development', function() {
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.configure('production', function(){
+app.configure('production', function() {
   app.use(express.errorHandler());
 });
 
@@ -45,6 +45,12 @@ app.get('/api/discussions', routes.listDiscussions);
 app.get('/api/discussions/:id([0-9]+)', routes.getDiscussion);
 app.post('/api/discussions/:id([0-9]+)', routes.addDiscussionPost);
 app.post('/api/discussions', routes.createDiscussion);
+
+// Only permit fixtures to be loaded remotely when NODE_ENV=test environment
+// variable is set.
+app.configure('test', function() {
+  app.post('/api/fixtures', routes.loadFixtures);
+});
 
 // This route isn't strictly necessary, as Express' static-file-handling code
 // seems to automaticaly serve a static file named index.html if no "root"

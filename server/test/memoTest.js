@@ -1,10 +1,13 @@
-var fixtures = require('../lib/fixtures');
 var assert = require('assert');
 var testHelpers = require('../lib/test_helpers.js');
 
 describe('Memos', function() {
+  var fixtureData = null;
   beforeEach(function(done) {
-    fixtures.load('users', 'sessions', 'memos', done); 
+    testHelpers.loadFixturesRemotely(['users', 'sessions', 'memos'], function(fixData) {
+      fixtureData = fixData;
+      done();
+    });
   });
 	
   //List all memos
@@ -54,12 +57,14 @@ describe('Memos', function() {
       });
     });
 
-    /*it('should fail to list the non-existent memo', function(done) {
-      testHelpers.makeGetReq('/api/memos/1', function(res) { 
+    it('should fail to list the non-existent memo', function(done) {
+      testHelpers.makeGetReq('/api/memos/999999', function(res) {
+        assert.equal(res.statusCode, 204);
       }, function(body) {
+        assert.equal(body, '');
         done();
       });
-    });*/
+    });
   });
 		/////////////for create with the post request, use the info here https://gist.github.com/7f4ba4fbad8a63a86183
 });

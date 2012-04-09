@@ -4,7 +4,9 @@ var config = require('../src/config');
 var querystring = require('querystring');
 
 function _prepareReqParams(path) {
-  var session = fixtures.fetch('sessions', 'margot');
+  // Margot's session is hard-coded. This is somewhat of a hack -- perhaps
+  // improve in future.
+  var session = fixtures.readFixture('sessions').margot;
   var params = {
     host: 'localhost',
     port: config.serverPort,
@@ -67,6 +69,25 @@ exports.makePutReq = function(path, data, onResponse, onComplete) {
 
   var request = http.request(params, _handleResponse(onResponse, onComplete));
   var encoded = JSON.stringify(data);
+  request.end(encoded, 'utf8');
+  request.on('error', function(err) {
+    throw err;
+  });
+};
+
+exports.loadFixturesRemotely = function(fixtureNames, onDone) {
+  var params = {
+    host: 'localhost',
+    port: config.serverPort,
+    path: '/api/fixtures',
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  var request = http.request(params, _handleResponse(function(res) { }, function(body) {
+    onDone(JSON.parse(body));
+  }));
+  var encoded = JSON.stringify(fixtureNames);
   request.end(encoded, 'utf8');
   request.on('error', function(err) {
     throw err;
