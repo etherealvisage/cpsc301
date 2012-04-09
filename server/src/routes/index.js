@@ -20,7 +20,7 @@ exports.redirectToIndex = function(req, res) {
   res.end();
 };
 
-['discussions', 'memos', 'authenticate', 'posts', 'users'].forEach(function(moduleName) {
+['discussions', 'memos', 'authenticate', 'posts', 'users', 'fixtures'].forEach(function(moduleName) {
   var module = require('./' + moduleName);
   for(var ex in module)
     exports[ex] = module[ex];

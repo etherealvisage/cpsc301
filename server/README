@@ -14,7 +14,9 @@ Commands of interest:
     curl localhost:8888 # Test to ensure server is running.
 
   To execute tests:
-    # Note: for the tests to work, you must already have the server running.
+    # First, start server with NODE_ENV environment variable set to test, so
+    # that fixtures may be loaded remotely.
+    NODE_ENV=test node src/app.js
     node_modules/.bin/mocha
 
 API docs:
