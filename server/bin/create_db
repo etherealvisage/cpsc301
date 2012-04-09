@@ -3,5 +3,8 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" # Get directory in which
 MISC_PATH="$DIR"/../misc
 DB_PATH="$MISC_PATH"/database.sqlite
 
-test -f "$DB_PATH" && rm "$DB_PATH"
+for foo in '' "-shm" "-wal"; do
+  test -f "$DB_PATH"$foo && rm "$DB_PATH"$foo
+done
+
 sqlite3 "$DB_PATH" ".read '$MISC_PATH/create_db.sql'"
