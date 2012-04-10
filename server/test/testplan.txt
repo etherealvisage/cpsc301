@@ -15,21 +15,20 @@ Login/Authentication
 	access admin commands from resident account(may need to be tested on the website and accessed via developer cammands)
 	
 Memos
-	Load memo
-	Load non-existant memo
-	Create memo
-	create existing memo
-	create memo with empty body
-	create memo with empty title
-	create memo with no author
++	Load memo
++	Load non-existant memo
++	Create memo
+--------create existing memo---------since IDs are dynamically assigned there is no need for this one
++	create memo with empty body
++	create memo with empty title
+--------create memo with no author---------since author is taken from session, unless session is compromised, then this cannot be modified
 	create memo with war and peace title
 	create memo with war and peace body
 	access the poorly formed memos from above several lines
 	do above create manually and via proper commands
 	edit memo
 	edit memo with not enough user privlidges
-	read wrong id
-	read wrong title but right id
+	edit wrong memo ID
 	mess with one or two things in the call
 	create memo with javascript body, make an annoying pop up
 	check unread
