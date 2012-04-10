@@ -7,6 +7,7 @@ exports.Memo = Memo;
 
 // select title, min(1, ifnull(unreadMemos.userID, 0)) from memos LEFT OUTER JOIN unreadMemos ON memos.id = unreadMemos.memoID WHERE (unreadMemos.userID IS NULL OR unreadMemos.userID = 3);
 
+// Prepares memo queries for SQL
 Memo.prototype._listQuery =
   db.prepare("SELECT m.*, u.name AS posterName, " + 
     "(SELECT COUNT() FROM " + config.dbTablePrefix + "unreadMemos AS ur WHERE " +
@@ -54,6 +55,7 @@ Memo.prototype.list = function(uid, onResults) {
   });
 }
 
+// Attempts to access a memo from given id inside the parameters. If not found, and error is thrown.
 Memo.prototype.get = function(params, onResults) {
   var q = this._getQuery;
   var readQuery = this._markReadQuery;
@@ -72,6 +74,7 @@ Memo.prototype.get = function(params, onResults) {
   });
 }
 
+// Attempts to create a new memo given appropriate parameters. Marks this memo as unread for all users
 Memo.prototype.create = function(params, onResult) {
   var q = this._createQuery;
   var usersQuery = this._userListQuery;
@@ -100,6 +103,7 @@ Memo.prototype.create = function(params, onResult) {
   });
 }
 
+// Allowance of memo editing. Takes in new title and content for a specific memo and attempts to update the information 
 Memo.prototype.update = function(params, onResult) {
   var q = this._updateQuery;
   db.serialize(function() {
