@@ -37,7 +37,7 @@ Memos
 Discussions
 ~	load all discussions
 -	load single discussion
-	create disccusion
+-	create disccusion
 	create existing discussion
 	create discussion with empty body
 	create discussion with empty title

@@ -90,7 +90,9 @@ Discussion.View = Backbone.View.extend({
     var self = this;
 
     var tmpl = _.template(this.template);
-    this.$el.html(tmpl(this.model.toJSON()));
+    var model = this.model.toJSON();
+    setNavInfo("discussion", model.title, "");
+    this.$el.html(tmpl(model));
 
     $("#discussion-view-textarea").wysihtml5();
 
