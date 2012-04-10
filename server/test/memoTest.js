@@ -66,5 +66,87 @@ describe('Memos', function() {
       });
     });
   });
+
+
+  describe('\nMemo Creation', function() {
+    it('should successfully create a new memo', function(done) {
+      var title = 'LOL this is a title';
+      var content = 'And this is the corresponding body.';
+        testHelpers.makePostReq('/api/memos', {
+          title: title,
+          content: content
+        }, function(res) {
+          assert.equal(res.statusCode, 200);
+        }, function(body) {
+          body = JSON.parse(body);
+          testHelpers.makeGetReq('/api/memos/' + body.memoID, function(res) {
+            assert.equal(res.statusCode, 200);
+          }, function(body) {
+            var actual = JSON.parse(body);
+            var expected = {
+              "id": 2,
+              "title": "LOL this is a title",
+              "posterID": 2,
+              "content": "And this is the corresponding body."
+            };
+            // Ignore post date, since we don't know exactly what timestamp of post will be.
+            delete actual.postDate;
+            assert.deepEqual(actual, expected, "Memos aren't equal");
+            done();
+          });
+      });    
+    });
+
+    it('should successfully create a new memo with an empty body', function(done) {
+      var title = 'Look I made a memo';
+      var content = '';
+        testHelpers.makePostReq('/api/memos', {
+          title: title,
+          content: content
+        }, function(res) {
+          assert.equal(res.statusCode, 200);
+        }, function(body) {
+          body = JSON.parse(body);
+          testHelpers.makeGetReq('/api/memos/' + body.memoID, function(res) {
+            assert.equal(res.statusCode, 200);
+          }, function(body) {
+            var actual = JSON.parse(body);
+            var expected = {
+              "id": 2,
+              "title": "Look I made a memo",
+              "posterID": 2,
+              "content": ""
+            };
+            // Ignore post date, since we don't know exactly what timestamp of post will be.
+            delete actual.postDate;
+	   // console.log(expected);
+	   // console.log(actual);
+            assert.deepEqual(actual, expected, "Memos aren't equal");
+            done();
+          });
+      });    
+    });
+
+
+    it('should fail to create a memo with an empty title', function(done) {
+      var title = '';
+      var content = 'Look I made a bad memo';
+        testHelpers.makePostReq('/api/memos', {
+          title: title,
+          content: content
+        }, function(res) {
+          assert.equal(res.statusCode, 500, 'Error code should return 500 for fail, returned ' + res.statusCode);
+        }, function(body) {
+          done();
+      });    
+    });
+
+  });
+
+
+
+
+
+
 		/////////////for create with the post request, use the info here https://gist.github.com/7f4ba4fbad8a63a86183
 });
