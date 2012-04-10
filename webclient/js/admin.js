@@ -5,7 +5,7 @@ Administration.MainView = Backbone.View.extend({
   template: $("#admin-main-template").html(),
   initialize: function() {
     this.$el.empty();
-setNavInfo("admin", "Admin panel", "", "");
+    setNavInfo("admin", "Admin panel");
 
     this.$el.html(this.template);
   }
@@ -17,7 +17,7 @@ Administration.NewUserView = Backbone.View.extend({
   initialize: function() {
     this.$el.empty();
 
-    setNavInfo("admin", "New User", "", "");
+    setNavInfo("admin", "New User");
 
     this.$el.html(this.template);
 

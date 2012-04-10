@@ -30,9 +30,12 @@ Memo.ListCollection = Backbone.Collection.extend({
 
 Memo.ListCollectionView = Backbone.View.extend({
   el: $("#primary-content"),
+  list: null,
+
+  template: $("#memo-list-template").html(),
 
   initialize: function() {
-    setNavInfo("memo", "Memo List", "");
+    setNavInfo("memo", "Memo List");
 
     var self = this;
     this.collection = new Memo.ListCollection;
@@ -45,6 +48,20 @@ Memo.ListCollectionView = Backbone.View.extend({
   render: function() {
     var self = this;
     this.$el.empty();
+
+    this.$el.html(this.template);
+    this.list = $("#memo-list");
+
+    if(getNavbarState() == 2) {
+      $("#memo-list-new-div").show();
+      $("#memo-list-new").click(function() {
+        router.navigate("/memos/new", {trigger: true});
+      });
+    }
+    else {
+      $("#memo-list-new-div").hide();
+    }
+
     _.each(this.collection.models, function(listitem) {
       self.renderListItem(listitem);
     }, this);
@@ -56,7 +73,7 @@ Memo.ListCollectionView = Backbone.View.extend({
       model: listitem
     });
 
-    this.$el.prepend(listItemView.render().el);
+    this.list.prepend(listItemView.render().el);
   },
 });
 
@@ -78,7 +95,7 @@ Memo.MemoView = Backbone.View.extend({
   template: $("#memo-view-template").html(),
 
   initialize: function() {
-    setNavInfo("memo", "View Memo", "");
+    setNavInfo("memo", "View Memo");
     this.model = new Memo.MemoModel();
     this.model.id = this.id;
     var self = this;
@@ -95,7 +112,13 @@ Memo.MemoView = Backbone.View.extend({
     this.$el.empty();
     var tmpl =_.template(this.template);
     $(this.el).html(tmpl(this.model.toJSON()));
-    $("#memo-view-edit").attr("href", "/memos/" + this.model.get("id") + "/edit");
+    if(getNavbarState() == 2) {
+      $("#memo-view-edit").show();
+      $("#memo-view-edit").attr("href", "/memos/" + this.model.get("id") + "/edit");
+    }
+    else {
+      $("#memo-view-edit").hide();
+    }
   }
 });
 
@@ -106,7 +129,7 @@ Memo.EditView = Backbone.View.extend({
   template: $("#memo-edit-template").html(),
 
   initialize: function() {
-    setNavInfo("memo", "Edit Memo", "");
+    setNavInfo("memo", "Edit Memo");
     this.model = new Memo.MemoModel();
     this.model.id = this.id;
     var self = this;
@@ -152,7 +175,7 @@ Memo.NewView = Backbone.View.extend({
   template: $("#memo-new-template").html(),
   
   initialize: function() {
-    setNavInfo("memo", "New Memo", "");
+    setNavInfo("memo", "New Memo");
     this.render();
   },
 

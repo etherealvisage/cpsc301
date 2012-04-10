@@ -1,7 +1,7 @@
 /* Sets up the `navigation info', that is, the main nav bar and the
   left/right navbase elements.
 */
-function setNavInfo(main, left, right) {
+function setNavInfo(main, header) {
   navElements = {
     "admin": $("#navbar-admin"),
     "memo": $("#navbar-memos"),
@@ -15,9 +15,10 @@ function setNavInfo(main, left, right) {
       navElements[element].removeClass("active");
     }
   }
-  $("#navbase-left").html("<h3>" + left + "</h3>");
-  $("#navbase-right").html("<h3>" + right + "</h3>");
+  $("#navbase-header").html("<h3>" + header + "</h3>");
 }
+
+var navbarState = 0;
 
 /* Sets navbar state:
   level = 0: nothing
@@ -41,6 +42,11 @@ function setNavbarState(level) {
     $("#navbar-auth").show();
     $("#navbar-admin").show();
   }
+  navbarState = level;
+}
+
+function getNavbarState() {
+  return navbarState;
 }
 
 /* Sets the username in the top navbar. */

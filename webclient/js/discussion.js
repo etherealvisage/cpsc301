@@ -26,7 +26,7 @@ Discussion.ListView = Backbone.View.extend({
   template: $("#discussion-list-template").html(),
 
   initialize: function() {
-    setNavInfo("discussion", "Discussion List", "");
+    setNavInfo("discussion", "Discussion List");
 
     var self = this;
     this.collection = new Discussion.ListCollection;
@@ -73,7 +73,7 @@ Discussion.View = Backbone.View.extend({
   postTemplate: $("#discussion-post-template").html(),
 
   initialize: function() {
-    setNavInfo("discussion", "View Discussion", "");
+    setNavInfo("discussion", "View Discussion");
     this.model = new Discussion.Model();
     this.model.id = this.id;
     var self = this;
@@ -91,7 +91,7 @@ Discussion.View = Backbone.View.extend({
 
     var tmpl = _.template(this.template);
     var model = this.model.toJSON();
-    setNavInfo("discussion", model.title, "");
+    setNavInfo("discussion", model.title);
     this.$el.html(tmpl(model));
 
     $("#discussion-view-textarea").wysihtml5();
@@ -141,7 +141,7 @@ Discussion.NewView = Backbone.View.extend({
 
   initialize: function() {
     console.log("Initializing NewView for discussions");
-    setNavInfo("discussion", "New Discussion", "");
+    setNavInfo("discussion", "New Discussion");
     this.$el.empty();
     this.$el.html(this.template);
     
