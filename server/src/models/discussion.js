@@ -87,6 +87,11 @@ Discussion.prototype.getDiscussion = function(id, onResult) {
   };
   db.serialize(function() {
     getDiscussionQuery.get(id, function(err, row) {
+      if(typeof row === 'undefined') {
+        onResult({error: 'request'});
+        return;
+      }
+
       result.title = row.title;
       listPostsQuery.all(id, function(err, rows) {
         for(var i = 0; i < rows.length; i ++)

@@ -72,6 +72,25 @@ describe('Discussions', function() {
       }
       );
     });
+
+    it('should return an error object when accessing a non-existent discussion', function(done) {
+      testHelpers.makeGetReq('/api/discussions/99999', function(res) {
+        assert.equal(res.statusCode, 200);
+      }, function(body) {
+        var expected = { error: 'request' };
+        var actual = JSON.parse(body);
+        assert.deepEqual(actual, expected, 'Improper error returned');
+        done();
+      });
+    });
+
+    it('should return an HTTP 404 error when accessing a non-numeric discussion ID', function(done) {
+      testHelpers.makeGetReq('/api/discussions/non-numeric', function(res) {
+        assert.equal(res.statusCode, 404);
+      }, function(body) {
+        done();
+      });
+    });
   });
   
   describe('Discussion creation', function() {
