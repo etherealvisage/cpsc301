@@ -1,11 +1,14 @@
+// This is the model for user authentication. Authenticates the user, deals with logins, password hashing and interaction with the database
 var config = require('../config');
 var db = require('./index').db;
 var crypto = require("crypto");
+
 
 var Authentication = function() {
 };
 exports.Authentication = Authentication;
 
+// SQL query preparation
 Authentication.prototype._getUserDetailsQuery = 
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE username = ? AND locked == 0");
 Authentication.prototype._addTokenQuery =
@@ -21,6 +24,7 @@ Authentication.prototype._listUsersQuery =
   db.prepare("SELECT id, username, name, userType FROM " + config.dbTablePrefix +
     "users");
 
+// Validates cookie for user session. Based on validation, calls appropriate methods
 Authentication.prototype.validateCookie = function(session, uid, onValid, onInvalid) {
   var validateCookieQuery = this._validateCookieQuery;
 
@@ -37,6 +41,7 @@ Authentication.prototype.validateCookie = function(session, uid, onValid, onInva
   });
 };
 
+// Attempts to login a user. If the password is correct, a token is generated. If not, the appropriate error is called.
 Authentication.prototype.login = function(username, password, onResult) {
   var getQuery = this._getUserDetailsQuery;
   var addQuery = this._addTokenQuery;
@@ -72,6 +77,7 @@ Authentication.prototype.login = function(username, password, onResult) {
   });
 };
 
+// Ends the current session for the user
 Authentication.prototype.logout = function(session) {
   var logoutQuery = this._logoutQuery;
   db.serialize(function() {
@@ -82,6 +88,7 @@ Authentication.prototype.logout = function(session) {
   });
 };
 
+// Attempts to add a new user to the database. Takes the given password and hashes it
 Authentication.prototype.createUser = function(username, name, password, userType, onResult) {
   var self = this;
   var createQuery = this._createUserQuery;
@@ -95,6 +102,7 @@ Authentication.prototype.createUser = function(username, name, password, userTyp
   });
 }
 
+// Lists all current users 
 Authentication.prototype.listUsers = function(onResults) {
   var self = this;
   var listQuery = this._listUsersQuery;
@@ -105,6 +113,7 @@ Authentication.prototype.listUsers = function(onResults) {
   });
 }
 
+// Takes the password and salt, and returns a hash function
 Authentication.prototype._generateHash = function(password, salt) {
   var hasher = crypto.createHash('sha512');
   hasher.update(salt + password);
