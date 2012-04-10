@@ -105,11 +105,11 @@
     </script>
 
     <script type="text/template" id="admin-main-template">
-      <ul>
-        <li><a href="/memos/new">New memo</a></li>
-        <li><a href="/admin/new_user">New user</a</li>
-        <li><a href="/admin/user_list">User list</a</li>
-      </ul>
+      <p id="admin-buttons">
+        <a href="/memos/new" class="btn btn-danger">New memo</a><br />
+        <a href="/admin/new_user" class="btn">New user</a><br />
+        <a href="/admin/user_list" class="btn">User list</a>
+      </p>
     </script>
 
     <script type="text/template" id="admin-new-user-template">
@@ -180,7 +180,7 @@
     <script type="text/template" id="discussion-list-template">
       <div class="row">
         <div class="span2 offset5">
-          <a class="btn" id="discussion-list-new"><i class="icon-pencil" />New discussion</a>
+          <a class="btn btn-danger" id="discussion-list-new"><i class="icon-pencil" />New discussion</a>
         </div>
         <br />
         <hr />

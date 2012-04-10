@@ -18,3 +18,7 @@ body {
 .navbar .nav .active > a, .navbar .nav .active > a:hover {
   color: #ff4444;
 }
+
+#admin-buttons > a{
+  margin-bottom: 1.1em;
+}
