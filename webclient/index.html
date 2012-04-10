@@ -32,9 +32,7 @@
 
     <div class="container hidden" id="navbase">
       <div class="row">
-        <div class="span4" id="navbase-left">
-        </div>
-        <div class="span4 offset4" style="text-align: right" id="navbase-right">
+        <div class="span10 offset1" id="navbase-header">
         </div>
         <div class="span10 offset1"><hr /></div>
       </div>
@@ -77,7 +75,7 @@
     <script type="text/template" id="authentication-login-template">
       <div class="span6 offset3">
         <div style="text-align: center">
-          <img src="/img/pynx-logo.png" />
+          <img src="/img/pynx-logo.png" style="padding-bottom: 2.5em" />
           <form id="authentication-login-form" style="text-align: center">
             <input type="textbox" name="username"
               id="authentication-login-username" style="width: 40%"
@@ -263,6 +261,19 @@
           </form>
         </div>
       </div>
+    </script>
+
+
+    <script type="text/template" id="memo-list-template">
+      <div class="row" id="memo-list-new-div">
+        <div class="span2 offset5">
+          <a class="btn btn-danger" id="memo-list-new"><i class="icon-pencil" />New memo</a>
+        </div>
+        <br />
+        <hr />
+      </div>
+
+      <div id="memo-list"></div>
     </script>
 
     <script type="text/template" id="memo-list-item-template">
