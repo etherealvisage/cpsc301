@@ -59,9 +59,11 @@ describe('Memos', function() {
 
     it('should fail to list the non-existent memo', function(done) {
       testHelpers.makeGetReq('/api/memos/999999', function(res) {
-        assert.equal(res.statusCode, 204);
+        assert.equal(res.statusCode, 200);
       }, function(body) {
-        assert.equal(body, '');
+        var actual = JSON.parse(body);
+        var expected = { error: 'request' };
+        assert.deepEqual(actual, expected, 'Improper error returned');
         done();
       });
     });
@@ -131,6 +133,20 @@ describe('Memos', function() {
         testHelpers.makePostReq('/api/memos', {
           title: '',
           content: 'Look, I made a bad memo!'
+        }, function(res) {
+          assert.equal(res.statusCode, 200, 'HTTP status code ' + res.statusCode + ' returned instead of 200');
+        }, function(body) {
+          var expected = { error: 'request' };
+          var actual = JSON.parse(body);
+          assert.deepEqual(actual, expected, 'Improper error returned');
+          done();
+      });    
+    });
+
+    it('should fail to create a memo with an empty body', function(done) {
+        testHelpers.makePostReq('/api/memos', {
+          title: 'Le title',
+          content: ''
         }, function(res) {
           assert.equal(res.statusCode, 200, 'HTTP status code ' + res.statusCode + ' returned instead of 200');
         }, function(body) {

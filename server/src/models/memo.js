@@ -61,9 +61,12 @@ Memo.prototype.get = function(params, onResults) {
     q.get(params.id, function(err, row) {
       if(err !== null)
         throw err;
+      if(typeof row === 'undefined') {
+        onResults({ error: 'request' });
+        return;
+      }
 
       readQuery.run(params.id, params.userID);
-
       onResults(row);
     });
   });
@@ -74,6 +77,11 @@ Memo.prototype.create = function(params, onResult) {
   var usersQuery = this._userListQuery;
   var unreadQuery = this._markUnreadQuery;
   db.serialize(function() {
+    if(params.title === '' || params.content === '') {
+      onResult({ error: 'request' });
+      return;
+    }
+
     q.run(params.title, params.uid, params.content, function(err) {
       if(err !== null)
         throw err;
