@@ -1,5 +1,6 @@
 var assert = require('assert');
 var testHelpers = require('../lib/test_helpers.js');
+var fs = require('fs');
 
 describe('Memos', function() {
   var fixtureData = null;
@@ -135,6 +136,48 @@ describe('Memos', function() {
           title: title,
           content: content
         }, function(res) {
+          assert.equal(res.statusCode, 500, 'Error code should return 500 for fail, returned ' + res.statusCode);
+        }, function(body) {
+          done();
+      });    
+    });
+
+    it('should fail to create a memo with a lot of Lorem Ipsum for the body', function(done) {
+      var title = 'alice';
+      var content = '';
+      fs.readFile('../server/test/alice.txt', function(err,data){
+	if(err) {
+	  console.error("Could not open file: %s", err);
+	  assert.equal(1,2,"File open fail")
+	  }
+	  content = data;
+      });
+      testHelpers.makePostReq('/api/memos', {
+          title: title,
+          content: content
+        }, function(res) {
+	//  console.log(res.statusCode);
+          assert.equal(res.statusCode, 500, 'Error code should return 500 for fail, returned ' + res.statusCode);
+        }, function(body) {
+          done();
+      });    
+    });
+
+    it('should fail to create a memo with a lot of Lorem Ipsum for the title', function(done) {
+      var title = '';
+      var content = 'a body';
+      fs.readFile('../server/test/alice.txt', function(err,data){
+	if(err) {
+	  console.error("Could not open file: %s", err);
+	  assert.equal(1,2,"File open fail")
+	  }
+	  title = data;
+      });
+      testHelpers.makePostReq('/api/memos', {
+          title: title,
+          content: content
+        }, function(res) {
+	//  console.log(res.statusCode);
           assert.equal(res.statusCode, 500, 'Error code should return 500 for fail, returned ' + res.statusCode);
         }, function(body) {
           done();
