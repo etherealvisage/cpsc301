@@ -41,6 +41,7 @@ function _handleResponse(onResponse, onComplete) {
   });
 }
 
+// Appropriately sends a 'Get' request using the node interface
 exports.makeGetReq = function(path, onResponse, onComplete) {
   var request = http.get(_prepareReqParams(path),
     _handleResponse(onResponse, onComplete));
@@ -49,6 +50,7 @@ exports.makeGetReq = function(path, onResponse, onComplete) {
   });
 }
 
+// Sends a post request and affiliated data to the server. 
 exports.makePostReq = function(path, data, onResponse, onComplete) {
   var params = _prepareReqParams(path);
   params.method = 'POST';
@@ -62,6 +64,7 @@ exports.makePostReq = function(path, data, onResponse, onComplete) {
   });
 };
 
+// Sends a put request and affiliated data to the server
 exports.makePutReq = function(path, data, onResponse, onComplete) {
   var params = _prepareReqParams(path);
   params.method = 'PUT';
@@ -74,6 +77,7 @@ exports.makePutReq = function(path, data, onResponse, onComplete) {
     throw err;
   });
 };
+
 
 exports.loadFixturesRemotely = function(fixtureNames, onDone) {
   var params = {
