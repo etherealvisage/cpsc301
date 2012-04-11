@@ -1,23 +1,3 @@
-* Major product decisions:
-  * Switched to server-side framework
-  * Cut a number of features:
-    * No memo pane UI
-    * No new notification of memos -- no Dashboard
-    * No pagination
-    * No tagging
-  * Changed test plan:
-    * Less formal client testing
-    * No performance testing
-* What we learned:
-  * Hard for new members to pick up technologies
-  * High overhead to working together
-    * Met almost every day
-    * Bandwidth much higher in person than online
-    * System evolved radically -- obsoleted knowledge
-  * Leadership important -- perhaps dictatorship better?
-  * Immaturity of Node
-
-
 Project Evolution
 =================
 
@@ -145,3 +125,23 @@ required to coordinate our efforts -- in our final analysis, we spent nearly hal
 simply designing and discussing the system as we did writing it. As little real-world software is
 written in isolation, however, these lessons, no matter how hard-won, will serve us well in our
 eventual careers.
+
+
+* Major product decisions:
+  * Switched to server-side framework
+  * Cut a number of features:
+    * No memo pane UI
+    * No new notification of memos -- no Dashboard
+    * No pagination
+    * No tagging
+  * Changed test plan:
+    * Less formal client testing
+    * No performance testing
+* What we learned:
+  * Hard for new members to pick up technologies
+  * High overhead to working together
+    * Met almost every day
+    * Bandwidth much higher in person than online
+    * System evolved radically -- obsoleted knowledge
+  * Leadership important -- perhaps dictatorship better?
+  * Immaturity of Node
