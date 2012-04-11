@@ -1,7 +1,7 @@
 Project Evolution
 =================
 
-While developing Pynx, the most surprising element was just how much interpersonal communication was
+While developing Pynx, our most surprising discovery was just how much interpersonal communication was
 required to coordinate development efforts, as will be discussed in the subsequent section. This in
 turn reduced the amount of time team members had to do work reflected directly in the end product,
 inhibiting our ability to deliver on the full set of features we planned for our first iteration.
@@ -28,7 +28,7 @@ lack of time and logistical concerns related to establishing acceptable performa
 prevented our doing so.
 
 Though we did experience success with our server-side unit testing, our coverage was less
-considerable than planned --- we ended up with tests focused on memo and discussion functionality,
+considerable than planned. We ended up with tests focused on memo and discussion functionality,
 largely ignoring authentication and the administration panel. This shortcoming resulted from the
 tremendous time investment required to develop our own testing infrastructure. While "full-stack"
 web development frameworks such as Ruby on Rails and Django ship with tightly integrated
@@ -37,8 +37,8 @@ Thus, we had to seek out a test framework; even once we settled on Mocha, we had
 integrate it with the rest of the project.
 
 Mocha's greatest shortcoming was its lack of support for loading fixtures as a means of putting the
-database into a known state before undertaking tests, meaning that we had to develop our own
-fixture-loading framework.  This imposed challenges of its own --- our initial implementation had
+database into a known state before undertaking tests. This in turn forced us to develop our own
+fixture-loading framework, which imposed challenges of its own. Our initial implementation had
 the testing framework interfacing directly with the database to load fixture data, which resulted in
 errors occurring at irregular intervals relating to database file write lock contention between the
 test and server processes.  This was all the more aggravating given the assurances provided by the
@@ -50,7 +50,7 @@ server, which would then load the fixtures itself, eliminating issues related to
 interfacing directly with the database. (The server's fixture-loading functionality does, of course,
 present a security risk, and is thus active only in the test environment.) In this fashion, the
 immaturity of the Node ecosystem stymied our testing efforts --- some team members spent an undue
-amount of time building essential "plubming" functionality such as fixture loading that is provided
+amount of time building essential "plumbing" functionality such as fixture loading that is provided
 out-of-the-box in other frameworks, while the frequent interface changes necessitated by underlying
 technological challenges hampered other members' ability to write tests.
 
@@ -71,10 +71,13 @@ extensive in-person time, we often collaborated online over the weekends, making
 web-based discussion group. Most surprising was just how much higher interpersonal bandwidth is in
 person rather than online --- explaining a problem or demonstrating a technique is much more easily
 accomplished in the flesh, for it allows both parties to hone in more quickly on a mutual
-understanding.
+understanding.  Extensive though our meeting time was, it was entirely worthwhile. Time invested in
+planning ensured that our end product was constructed on an extensible base, while our discussion
+efforts ensured that all team members could contribute to the project despite our differing amounts
+of web development experience.
 
 For project members without past experience in web development, the gamut of technologies they had
-to learn was overwhelming. Though the course's labs provided a grounding in Node and Javascript,
+to learn was overwhelming. Though the course's labs provided a grounding in Node and JavaScript,
 building a full-fledged application required that team members be competent with a bevy of
 additional technologies, ranging from the SQLite database library, to the Express web framework, to
 the Mocha testing framework, to the Backbone.js "thick-client" framework, to jQuery. While more
@@ -85,7 +88,7 @@ been to appoint a single leader responsible for ensuring that every team member 
 effectively at all points of the project, rather than relying on a bottom-up, self-organizing
 strategy.
 
-Most frustrating through the project was the immaturity of the Node.js ecosystem. While full-stack
+The project's most frustrating aspect was the immaturity of the Node.js ecosystem. While full-stack
 frameworks such as Rails and Django impose their preferences on you, forcing you to conform to a set
 of "best practices" established by developers well-versed in the field, Node left us largely to our
 own devices. Despite some team members having previous web development experience, we still found
@@ -99,21 +102,21 @@ frustrations engendered by Node's minimalist philosophy; had management not impo
 choice on us, we likely would have sought out a framework offering a richer set of building blocks.
 
 Our team's most ambitious decision was to pursue a thick-client approach. We deemed this methodology
-prefereable to the traditional thin-client philosophy prevalent in web applications, in which the
+preferable to the traditional thin-client philosophy prevalent in web applications, in which the
 server provides fully-rendered HTML pages and little code executes on the client, as it would enable
 a richer, lower-latency interface. Also attractive was the potential of this approach to simplify
 our server-side functionality --- given Node's minimal tool set, any means of reducing the server's
-complexity seemed ideal. This plan of attack worked surprisingly well, with our finished server
-providing only a single static HTML page used to "bootstrap" the application, and all dynamic data
-returned in JSON format. The server's complexity was indeed minimized, with us able to ignore issues
-such as template libraries, given that we never rendered anything not in JSON format. Additionally,
-the client-side interface became exceedingly responsive, as no full page reloads are required at any
-point of our application's use. Despite this, convention-breaking issues with which early rich
-application had to content, such as the lack of unique URLs associated with each page and the
-crippling of the browser's back and forward buttons, are overcome through our use of HTML5. Of
+complexity seemed ideal. This plan of attack worked surprisingly well. Our finished server provided
+only a single static HTML page used to "bootstrap" the application, and all dynamic data was
+returned in JSON format. The server's complexity was indeed minimized, allowing us to ignore issues
+such as choice of template libraries, given that we never served anything not in JSON format.
+Additionally, the client-side interface became exceedingly responsive, as no full page reloads are
+required at any point of our application's use. Despite this, convention-breaking issues with which
+early rich application had to content, such as the lack of unique URLs associated with each page and
+the crippling of the browser's back and forward buttons, are overcome through our use of HTML5. Of
 course, these benefits came at the cost of increasing the amount of background knowledge required by
-team members before they could contribute to development, but given the end product's effectiveness,
-we believe this trade-off was worthwhile.
+team members before they could contribute to development. However, given the end product's
+effectiveness, we believe this trade-off was worthwhile.
 
 When we reflect on the sum total of our experiences through this project, most interesting are not
 the lessons learned regarding technology, such as the worth of pursuing rich-client interfaces or
@@ -125,23 +128,3 @@ required to coordinate our efforts -- in our final analysis, we spent nearly hal
 simply designing and discussing the system as we did writing it. As little real-world software is
 written in isolation, however, these lessons, no matter how hard-won, will serve us well in our
 eventual careers.
-
-
-* Major product decisions:
-  * Switched to server-side framework
-  * Cut a number of features:
-    * No memo pane UI
-    * No new notification of memos -- no Dashboard
-    * No pagination
-    * No tagging
-  * Changed test plan:
-    * Less formal client testing
-    * No performance testing
-* What we learned:
-  * Hard for new members to pick up technologies
-  * High overhead to working together
-    * Met almost every day
-    * Bandwidth much higher in person than online
-    * System evolved radically -- obsoleted knowledge
-  * Leadership important -- perhaps dictatorship better?
-  * Immaturity of Node
