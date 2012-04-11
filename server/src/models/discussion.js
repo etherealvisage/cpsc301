@@ -5,6 +5,7 @@ var Discussion = function() {
 };
 exports.Discussion = Discussion;
 
+// Prepare discussion queries
 Discussion.prototype._listQuery =
   db.prepare("SELECT d.*, p.postDate AS postDate, u.name AS authorName FROM " + config.dbTablePrefix +
     "discussions AS d LEFT OUTER JOIN " + config.dbTablePrefix + "posts AS p " +
@@ -38,6 +39,7 @@ Discussion.prototype._addPostQuery =
   db.prepare("INSERT INTO " + config.dbTablePrefix +
     'posts VALUES (NULL, ?, strftime("%s", "now"), ?, ?)');
 
+// Takes in a discussion id, and returns a list of discussions
 Discussion.prototype.list = function(uid, onResults) {
   var listQuery = this._listQuery;
   var namesQuery = this._userNamesQuery;
@@ -51,6 +53,7 @@ Discussion.prototype.list = function(uid, onResults) {
   });
 }
 
+// Takes appropriate discussion parameters, including title and body, and creates a new discussion. The body inside of paramater becomes the first post
 Discussion.prototype.createDiscussion = function(params, onResult) {
   var createDiscussionQuery = this._createDiscussionQuery;
   var createPostQuery = this._createPostQuery;
@@ -70,6 +73,7 @@ Discussion.prototype.createDiscussion = function(params, onResult) {
   });
 }
 
+// Upon receiving a parameter with a discussion id, a new post is created and added as the last post in the selected discussion
 Discussion.prototype.addPost = function(params, onResult) {
   var addPostQuery = this._addPostQuery;
   db.serialize(function() {
@@ -79,6 +83,7 @@ Discussion.prototype.addPost = function(params, onResult) {
   });
 }
 
+// Takes a discussion ID and attempts to access the discussion. If not available, an error is thrown
 Discussion.prototype.getDiscussion = function(id, onResult) {
   var listPostsQuery = this._listPostsQuery;
   var getDiscussionQuery = this._getDiscussionQuery;
@@ -87,6 +92,11 @@ Discussion.prototype.getDiscussion = function(id, onResult) {
   };
   db.serialize(function() {
     getDiscussionQuery.get(id, function(err, row) {
+      if(typeof row === 'undefined') {
+        onResult({error: 'request'});
+        return;
+      }
+
       result.title = row.title;
       listPostsQuery.all(id, function(err, rows) {
         for(var i = 0; i < rows.length; i ++)

@@ -7,7 +7,8 @@ exports.Permissions = Permissions;
 
 Permissions.prototype._getUserDetailsQuery = 
   db.prepare("SELECT * FROM " + config.dbTablePrefix + "users WHERE id = ?");
-  
+
+// Based on a users "permission level", determines whether a user is validated to activate a specified action.   
 Permissions.prototype.check = function(userid, action, cb, context) {
   var getQuery = this._getUserDetailsQuery;
   db.serialize(function() {
@@ -32,6 +33,7 @@ Permissions.prototype.check = function(userid, action, cb, context) {
   });
 };
 
+// List of actions available to the user
 var Actions = {
   // 0 = resident, 1 = doctor, 2 = admin
 
