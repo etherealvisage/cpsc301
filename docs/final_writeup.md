@@ -19,7 +19,7 @@ the need for an explicit memo notification system.
 Just as our feature set narrowed, so too did our test plan. At development's outset, we planned to
 perform extensive automated testing on the server and manual (though regular and structured) testing
 on the client. At first, we even toyed with the notion of investigating Selenium for automated
-cilent-side testing, but quickly discarded this idea once the extreme time pressures of the
+client-side testing, but quickly discarded this idea once the extreme time pressures of the
 development cycle became apparent. Though our intent was to perform scheduled manual testing of the
 client, this too slipped --- instead, we found our meetings frequent enough and our feature set
 sufficiently paltry that working through newly added functionality as a group was sufficient.
@@ -116,7 +116,7 @@ team members before they could contribute to development, but given the end prod
 we believe this trade-off was worthwhile.
 
 When we reflect on the sum total of our experiences through this project, most interesting are not
-the lessons learned regarding technology, such as the worth of pursuing rich-cilent interfaces or
+the lessons learned regarding technology, such as the worth of pursuing rich-client interfaces or
 the frustration of writing one's own fixture library, but those that relate to the interactions of
 individuals composing a team. Though we are all competent as individual developers, integrating our
 efforts to produce cohesive progress as a team presented novel challenges. The difficulties of
