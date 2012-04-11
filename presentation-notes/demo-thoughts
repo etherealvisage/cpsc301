@@ -1,0 +1,23 @@
++ Introduce login page.
++ Talk about `system-wide memo list':
+    + Don't be fooled by simplicity: Streamlined design for speed.
+    + Large emphasis on clean interface and security.
+    + Minimize overhead used in using system/maximize productivity
+
+"Don't be fooled by the simplicity of the system -- it's minimalistic interface has been designed for the busy doctor."
+"By emphasizing the key features, our site is easy to navigate, and can access all the important information you need, quickly and easily."
+
++ Create a memo (stock phrase in clipboard, add & demonstrate formatting)
+    + Can easily create system-wide announcments to quickly notify all users of the system.
+    + Rich text editing for all user input into the system.
+    + "Who wants to read a unformatted block of text? Not us. We want you to create beautiful memos that everyone will enjoy reading."
+    + "But not only does the rich text editor give you the ability to create beautiful memos, but we also brought this functionality to the user-created discussions."
+
++ "We need to talk about new users. We know that you've been frequently frustrated by the difficulty of the seemingly-simple task of adding a new user to the system."
++ "Now, let's talk about new users. It is _so_ easy to add them: click a button, enter their details, and they're in!"
++ "We made sure, right from the very start, that it would be easy to add a brand-new user to the system. And, you can start using it _right_ away." (cue demo of logging in as new user)
++ Show memo page -- note unread memo!
++ Note lack of `new memo' button & admin -- security, blah blah.
++ Segues into the discussion system.
++ Easy to create/reply to new discussions.
++ Rich text headers allow for organization and improve presentation of user-posted content -- cue demo example of adding formatting to pasted plain text.

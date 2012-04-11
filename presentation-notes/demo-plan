@@ -1,0 +1,19 @@
+Main points to cover (and ordering):
+
++ Login page
++ System-wide memo list
+    - View memo
+        > War and Peace
+    - Create memo
+        > Note rich text functionality
++ New user
+    - Create new user
+    - Log into new user
+    - View memo list
+        > Note lack of `new memo' button
+        > Lack of permissions lead-in to discussions
++ Discussions
+    - View existing discussion
+    - Create new discussion
+        > Rich text functionality (again?)
+
